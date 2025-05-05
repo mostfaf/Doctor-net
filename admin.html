@@ -143,6 +143,7 @@
         var refreshRequests = function () {
           try {
             var storedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
+            console.log('Fetched requests:', storedRequests); // تسجيل مؤقت
             setRequests(storedRequests);
           } catch (e) {
             console.error('Error parsing requests from localStorage:', e);
@@ -173,6 +174,7 @@
             });
             setRequests(updatedRequests);
             localStorage.setItem('requests', JSON.stringify(updatedRequests));
+            console.log('Updated requests after status change:', updatedRequests); // تسجيل مؤقت
           } catch (e) {
             console.error('Error updating status:', e);
           }
@@ -185,6 +187,7 @@
             });
             setRequests(updatedRequests);
             localStorage.setItem('requests', JSON.stringify(updatedRequests));
+            console.log('Updated requests after appointment change:', updatedRequests); // تسجيل مؤقت
           } catch (e) {
             console.error('Error updating appointment:', e);
           }
@@ -197,6 +200,7 @@
             });
             setRequests(updatedRequests);
             localStorage.setItem('requests', JSON.stringify(updatedRequests));
+            console.log('Updated requests after deletion:', updatedRequests); // تسجيل مؤقت
           } catch (e) {
             console.error('Error deleting request:', e);
           }

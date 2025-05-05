@@ -152,33 +152,47 @@
             setMessage('يرجى ملء جميع الحقول');
             return;
           }
-          var requests = JSON.parse(localStorage.getItem('requests') || '[]');
-          var newId = Date.now();
-          requests.push({
-            id: newId,
-            phone: phone,
-            notes: notes,
-            status: 'قيد التنفيذ',
-            createdAt: new Date().toLocaleString('ar-EG'),
-            appointment: ''
-          });
-          localStorage.setItem('requests', JSON.stringify(requests));
-          setMessage('تم إرسال الطلب بنجاح! رقم الطلب: ' + newId);
-          setPhone('');
-          setNotes('');
-          window.open('https://wa.me/201064496440?text=' + encodeURIComponent('تم تقديم طلبك، رقم الطلب: ' + newId), '_blank');
+          try {
+            var requests = JSON.parse(localStorage.getItem('requests') || '[]');
+            var newId = Date.now();
+            var newRequest = {
+              id: newId,
+              phone: phone,
+              notes: notes,
+              status: 'قيد التنفيذ',
+              createdAt: new Date().toLocaleString('ar-EG'),
+              appointment: ''
+            };
+            requests.push(newRequest);
+            localStorage.setItem('requests', JSON.stringify(requests));
+            console.log('Request saved:', newRequest); // تسجيل مؤقت
+            console.log('All requests:', JSON.parse(localStorage.getItem('requests'))); // تسجيل مؤقت
+            setMessage('تم إرسال الطلب بنجاح! رقم الطلب: ' + newId);
+            setPhone('');
+            setNotes('');
+            window.open('https://wa.me/201064496440?text=' + encodeURIComponent('تم تقديم طلبك، رقم الطلب: ' + newId), '_blank');
+          } catch (error) {
+            console.error('Error saving request:', error);
+            setMessage('حدث خطأ أثناء حفظ الطلب. يرجى المحاولة مرة أخرى.');
+          }
         };
 
         var handleTrack = function (e) {
           e.preventDefault();
-          var requests = JSON.parse(localStorage.getItem('requests') || '[]');
-          var request = requests.find(function (req) {
-            return req.id === parseInt(trackId);
-          });
-          if (request) {
-            setTrackResult(request);
-          } else {
-            setTrackResult({ error: 'رقم الطلب غير موجود' });
+          try {
+            var requests = JSON.parse(localStorage.getItem('requests') || '[]');
+            console.log('Tracking requests:', requests); // تسجيل مؤقت
+            var request = requests.find(function (req) {
+              return req.id === parseInt(trackId);
+            });
+            if (request) {
+              setTrackResult(request);
+            } else {
+              setTrackResult({ error: 'رقم الطلب غير موجود' });
+            }
+          } catch (error) {
+            console.error('Error tracking request:', error);
+            setTrackResult({ error: 'حدث خطأ أثناء الاستعلام عن الطلب' });
           }
         };
 
@@ -262,7 +276,7 @@
             ),
             message && React.createElement(
               'p',
-              { className: 'mt-4 text-center text-green-600' },
+              { className: 'mt-4 text-center ' + (message.includes('خطأ') ? 'text-red-600' : 'text-green-600') },
               message
             )
           ),
