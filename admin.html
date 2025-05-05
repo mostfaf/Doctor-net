@@ -41,47 +41,41 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="لوحة إدارة دكتور نت للدعم الفني">
-  <meta name="theme-color" content="#1E3A8A">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="دكتور نت - لوحة الإدارة">
   <title>دكتور نت - لوحة الإدارة</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
   <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="https://via.placeholder.com/150?text=Doctor+Net">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Orbitron:wght@400;700&display=swap');
     body {
-      font-family: 'Amiri', serif;
-      background: #1E3A8A;
-      color: #FFFFFF;
-      touch-action: manipulation;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      color: #333;
     }
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-    }
-    .admin-container {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     input, button {
-      font-family: 'Amiri', serif;
-      border: 2px solid #FFFFFF;
-      border-radius: 10px;
-      transition: all 0.3s;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    input:focus {
-      border-color: #DC2626;
-      box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
-      outline: none;
+    button {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #b91c1c;
     }
     table {
       width: 100%;
@@ -89,65 +83,32 @@
       margin-top: 20px;
     }
     th, td {
-      border: 2px solid #FFFFFF;
-      padding: 10px;
+      border: 1px solid #ccc;
+      padding: 8px;
       text-align: right;
-      font-size: 0.9rem;
     }
     th {
-      background: #1E3A8A;
-      color: #FFFFFF;
-      font-family: 'Orbitron', sans-serif;
+      background: #1e3a8a;
+      color: #fff;
     }
-    tr:nth-child(even) {
-      background: #E6F3FF;
-    }
-    button {
-      padding: 8px;
-      font-size: 0.9rem;
-    }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      padding: 10px 20px;
-      background: #DC2626;
-      color: #FFFFFF;
-      border-radius: 25px;
-      z-index: 1000;
-    }
-    @media (max-width: 640px) {
-      .logo { font-size: 1.8rem; }
-      .admin-container { padding: 1rem; }
-      table { font-size: 0.8rem; }
-      th, td { padding: 6px; }
-      .theme-toggle { top: 10px; left: 10px; padding: 8px 15px; font-size: 0.9rem; }
-      input { width: 100%; font-size: 1rem; }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #1e3a8a;
     }
   </style>
 </head>
-<body class="min-h-screen">
-  <button class="theme-toggle" onclick="toggleTheme()">وضع مظلم</button>
-  <header class="text-center py-8">
-    <h1 class="logo animate__animated animate__zoomIn">دكتور نت - لوحة الإدارة</h1>
-  </header>
-  <div class="admin-container max-w-5xl mx-auto mt-6 p-6">
-    <div id="login-form" class="text-center">
-      <h2 class="text-2xl font-bold text-blue-900 mb-4">تسجيل الدخول</h2>
-      <input type="password" id="password" class="p-3 border border-blue-900 rounded w-full max-w-xs mb-4" placeholder="أدخل كلمة المرور" required aria-required="true">
-      <button onclick="login()" class="bg-red-600 text-white p-3 rounded hover:bg-red-700">دخول</button>
+<body>
+  <div class="container">
+    <h1 class="text-2xl font-bold text-center mb-4">دكتور نت - لوحة الإدارة</h1>
+    <div id="login-form">
+      <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+      <button onclick="login()">دخول</button>
     </div>
     <div id="admin-content" class="hidden">
-      <div class="flex flex-col sm:flex-row justify-between mb-4">
-        <input type="text" id="search" class="p-3 border border-blue-900 rounded w-full sm:w-1/2 mb-2 sm:mb-0" placeholder="ابحث في الطلبات..." oninput="filterTickets()">
-        <button onclick="exportToCSV()" class="bg-blue-600 text-white p-3 rounded hover:bg-blue-700">تصدير كـ CSV</button>
-      </div>
-      <p class="mb-4">إجمالي الطلبات: <strong id="total-tickets">0</strong> | الطلبات اليوم: <strong id="today-tickets">0</strong></p>
-      <table id="tickets-table">
+      <input type="text" id="search" placeholder="ابحث في الطلبات..." oninput="filterTickets()">
+      <table>
         <thead>
           <tr>
             <th>رقم الطلب</th>
@@ -160,19 +121,34 @@
         </thead>
         <tbody id="tickets-body"></tbody>
       </table>
-      <a href="index.html" class="block mt-6 text-center text-blue-900 hover:underline">العودة إلى الصفحة الرئيسية</a>
+      <a href="index.html">العودة إلى تقديم الطلب</a>
     </div>
   </div>
   <script>
     const ADMIN_PASSWORD_HASH = CryptoJS.SHA256('199222').toString(); // كلمة المرور: 199222
-    let inactivityTimeout;
 
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-      document.querySelector('.theme-toggle').textContent = document.body.classList.contains('dark') ? 'وضع فاتح' : 'وضع مظلم';
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
+        try {
+          // Unregister any existing Service Workers to avoid conflicts
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (let reg of registrations) {
+            await reg.unregister();
+            console.log('Unregistered old Service Worker:', reg.scope);
+          }
+
+          // Register new Service Worker
+          const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+          console.log('Service Worker registered with scope:', registration.scope);
+        } catch (error) {
+          console.error('Service Worker registration failed:', error);
+          alert('فشل تسجيل Service Worker. الرجاء: 1. تشغيل الموقع عبر خادم (مثل localhost:8000). 2. التأكد من وجود ملف sw.js في المجلد الجذر. 3. فتح وحدة التحكم (F12) ومشاركة رسالة الخطأ.');
+        }
+      });
+    } else {
+      console.warn('Service Worker غير مدعوم في هذا المتصفح.');
     }
-    if (localStorage.getItem('theme') === 'dark') toggleTheme();
 
     function login() {
       const password = document.getElementById('password').value;
@@ -181,50 +157,26 @@
       if (hash === ADMIN_PASSWORD_HASH) {
         document.getElementById('login-form').classList.add('hidden');
         document.getElementById('admin-content').classList.remove('hidden');
-        gsap.to('#admin-content', { opacity: 1, y: 0, duration: 0.5 });
         loadTickets();
-
-        const sound = new Audio('https://www.soundjay.com/button/beep-01a.mp3');
-        sound.play().catch(() => {});
-        if ('vibrate' in navigator) navigator.vibrate([200]);
-
-        // Start inactivity timer
-        resetInactivityTimer();
-        document.addEventListener('mousemove', resetInactivityTimer);
-        document.addEventListener('touchstart', resetInactivityTimer);
-        document.addEventListener('keypress', resetInactivityTimer);
       } else {
         alert('كلمة المرور غير صحيحة!');
       }
     }
 
-    function resetInactivityTimer() {
-      clearTimeout(inactivityTimeout);
-      inactivityTimeout = setTimeout(() => {
-        alert('تم تسجيل الخروج بسبب عدم النشاط.');
-        document.getElementById('login-form').classList.remove('hidden');
-        document.getElementById('admin-content').classList.add('hidden');
-        document.getElementById('password').value = '';
-      }, 30 * 60 * 1000); // 30 دقيقة
-    }
-
     function loadTickets() {
       if (!window.localStorage) {
-        alert('المتصفح لا يدعم التخزين المحلي. لا يمكن تحميل الطلبات.');
+        alert('المتصفح لا يدعم التخزين المحلي.');
         return;
       }
 
       const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
       const tbody = document.getElementById('tickets-body');
-      const today = new Date().toLocaleDateString('ar-EG');
-      let todayCount = 0;
-
       tbody.innerHTML = '';
+
       tickets.forEach(encryptedTicket => {
         try {
           const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
           const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          if (ticket.date.includes(today)) todayCount++;
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${ticket.ticketNumber}</td>
@@ -232,16 +184,13 @@
             <td>${ticket.phone}</td>
             <td>${ticket.issue}</td>
             <td>${ticket.date}</td>
-            <td><button onclick="deleteTicket('${ticket.ticketNumber}')" class="bg-red-600 text-white p-2 rounded hover:bg-red-700">حذف</button></td>
+            <td><button onclick="deleteTicket('${ticket.ticketNumber}')" class="bg-red-600 text-white p-1 rounded">حذف</button></td>
           `;
           tbody.appendChild(row);
         } catch (error) {
           console.error('Error decrypting ticket:', error);
         }
       });
-
-      document.getElementById('total-tickets').textContent = tickets.length;
-      document.getElementById('today-tickets').textContent = todayCount;
     }
 
     function filterTickets() {
@@ -258,8 +207,7 @@
             ticket.ticketNumber.toLowerCase().includes(search) ||
             ticket.name.toLowerCase().includes(search) ||
             ticket.phone.includes(search) ||
-            ticket.issue.toLowerCase().includes(search) ||
-            ticket.date.includes(search)
+            ticket.issue.toLowerCase().includes(search)
           ) {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -268,7 +216,7 @@
               <td>${ticket.phone}</td>
               <td>${ticket.issue}</td>
               <td>${ticket.date}</td>
-              <td><button onclick="deleteTicket('${ticket.ticketNumber}')" class="bg-red-600 text-white p-2 rounded hover:bg-red-700">حذف</button></td>
+              <td><button onclick="deleteTicket('${ticket.ticketNumber}')" class="bg-red-600 text-white p-1 rounded">حذف</button></td>
             `;
             tbody.appendChild(row);
           }
@@ -279,7 +227,7 @@
     }
 
     function deleteTicket(ticketNumber) {
-      if (confirm(`هل أنت متأكد من حذف الطلب ${ticketNumber}؟`)) {
+      if (confirm(`هل تريد حذف الطلب ${ticketNumber}؟`)) {
         let tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
         tickets = tickets.filter(encryptedTicket => {
           try {
@@ -293,27 +241,6 @@
         localStorage.setItem('tickets', JSON.stringify(tickets));
         loadTickets();
       }
-    }
-
-    function exportToCSV() {
-      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-      const csv = ['رقم الطلب,الاسم,رقم الهاتف,وصف المشكلة,التاريخ,عاجل'];
-      tickets.forEach(encryptedTicket => {
-        try {
-          const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
-          const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          csv.push(`"${ticket.ticketNumber}","${ticket.name}","${ticket.phone}","${ticket.issue.replace(/"/g, '""')}","${ticket.date}","${ticket.isEmergency ? 'نعم' : 'لا'}"`);
-        } catch (error) {
-          console.error('Error decrypting ticket:', error);
-        }
-      });
-      const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv.join('\n'));
-      const link = document.createElement('a');
-      link.setAttribute('href', csvContent);
-      link.setAttribute('download', 'tickets.csv');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
   </script>
 </body>
