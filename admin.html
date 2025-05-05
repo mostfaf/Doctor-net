@@ -187,7 +187,7 @@
     </div>
   </div>
   <script>
-    const ADMIN_PASSWORD_HASH = '7c4a8d09ca3762af61e59520943dc26494f8941b'; // SHA1 hash of '199222'
+    const ADMIN_PASSWORD = '199222'; // كلمة المرور للمدير
 
     // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
@@ -202,33 +202,29 @@
     }
 
     function login() {
-      const password = document.getElementById('password').value;
-      const hash = sha1(password);
-      if (hash === ADMIN_PASSWORD_HASH) {
+      const password = document.getElementById('password').value.trim();
+      console.log('Entered password:', password); // للتصحيح
+      if (password === ADMIN_PASSWORD) {
+        console.log('Password correct');
         document.getElementById('login-form').classList.add('hidden');
         document.getElementById('admin-content').classList.remove('hidden');
         loadTickets();
       } else {
+        console.log('Password incorrect');
         alert('كلمة المرور غير صحيحة!');
       }
     }
 
-    // Simple SHA1 implementation
-    function sha1(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-      }
-      return hash.toString(16);
-    }
-
     let allTickets = [];
     function loadTickets() {
-      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-      allTickets = tickets;
-      renderTickets(tickets);
+      try {
+        const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+        allTickets = tickets;
+        renderTickets(tickets);
+      } catch (error) {
+        console.error('Error loading tickets:', error);
+        alert('حدث خطأ أثناء تحميل الطلبات. حاول مرة أخرى.');
+      }
     }
 
     function renderTickets(tickets) {
@@ -237,11 +233,11 @@
       tickets.forEach((ticket, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${ticket.ticketNumber}</td>
-          <td>${ticket.name}</td>
-          <td>${ticket.phone}</td>
-          <td>${ticket.issue}</td>
-          <td>${ticket.date}</td>
+          <td>${sanitize(ticket.ticketNumber)}</td>
+          <td>${sanitize(ticket.name)}</td>
+          <td>${sanitize(ticket.phone)}</td>
+          <td>${sanitize(ticket.issue)}</td>
+          <td>${sanitize(ticket.date)}</td>
           <td>
             <select onchange="updateStatus(${index}, this.value)">
               <option value="قيد التنفيذ" ${ticket.status === 'قيد التنفيذ' ? 'selected' : ''}>قيد التنفيذ</option>
@@ -255,10 +251,27 @@
       });
     }
 
+    function sanitize(str) {
+      return str.replace(/[&<>"']/g, function(match) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[match];
+      });
+    }
+
     function updateStatus(index, status) {
-      allTickets[index].status = status;
-      localStorage.setItem('tickets', JSON.stringify(allTickets));
-      renderTickets(allTickets);
+      try {
+        allTickets[index].status = status;
+        localStorage.setItem('tickets', JSON.stringify(allTickets));
+        renderTickets(allTickets);
+      } catch (error) {
+        console.error('Error updating status:', error);
+        alert('حدث خطأ أثناء تحديث الحالة. حاول مرة أخرى.');
+      }
     }
 
     function filterTickets() {
@@ -280,22 +293,32 @@
 
     function deleteTicket(index) {
       if (confirm('هل تريد حذف هذا الطلب نهائيًا؟')) {
-        allTickets.splice(index, 1);
-        localStorage.setItem('tickets', JSON.stringify(allTickets));
-        renderTickets(allTickets);
+        try {
+          allTickets.splice(index, 1);
+          localStorage.setItem('tickets', JSON.stringify(allTickets));
+          renderTickets(allTickets);
+        } catch (error) {
+          console.error('Error deleting ticket:', error);
+          alert('حدث خطأ أثناء الحذف. حاول مرة أخرى.');
+        }
       }
     }
 
     document.getElementById('export-btn').addEventListener('click', () => {
-      const csv = ['رقم الطلب,الاسم,رقم الهاتف,وصف المشكلة,التاريخ,الحالة'];
-      allTickets.forEach(ticket => {
-        csv.push(`${ticket.ticketNumber},${ticket.name},${ticket.phone},${ticket.issue.replace(/,/g, ' ')},${ticket.date},${ticket.status}`);
-      });
-      const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'doctor_net_tickets.csv';
-      link.click();
+      try {
+        const csv = ['رقم الطلب,الاسم,رقم الهاتف,وصف المشكلة,التاريخ,الحالة'];
+        allTickets.forEach(ticket => {
+          csv.push(`${sanitize(ticket.ticketNumber)},${sanitize(ticket.name)},${sanitize(ticket.phone)},${sanitize(ticket.issue.replace(/,/g, ' '))},${sanitize(ticket.date)},${sanitize(ticket.status)}`);
+        });
+        const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'doctor_net_tickets.csv';
+        link.click();
+      } catch (error) {
+        console.error('Error exporting CSV:', error);
+        alert('حدث خطأ أثناء تصدير البيانات. حاول مرة أخرى.');
+      }
     });
   </script>
 </body>
