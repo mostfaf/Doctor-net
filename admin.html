@@ -42,206 +42,344 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="دكتور نت - لوحة الإدارة">
-  <title>دكتور نت - لوحة الإدارة</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <link rel="manifest" href="/manifest.json">
+  <title>دكتور نت - لوحة المدير</title>
   <style>
+    :root {
+      --tw-bg-opacity: 1;
+      --tw-text-opacity: 1;
+      --tw-border-opacity: 1;
+      --tw-ring-opacity: 1;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      color: #333;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    input, button {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
-    button {
-      background: #dc2626;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #b91c1c;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: right;
-    }
-    th {
-      background: #1e3a8a;
-      color: #fff;
-    }
-    a {
-      display: block;
-      text-align: center;
-      margin-top: 10px;
-      color: #1e3a8a;
-    }
+    .bg-gray-100 { background-color: rgb(243 244 246 / var(--tw-bg-opacity)); }
+    .bg-white { background-color: rgb(255 255 255 / var(--tw-bg-opacity)); }
+    .bg-blue-600 { background-color: rgb(37 99 235 / var(--tw-bg-opacity)); }
+    .bg-blue-700 { background-color: rgb(29 78 216 / var(--tw-bg-opacity)); }
+    .bg-gray-600 { background-color: rgb(75 85 99 / var(--tw-bg-opacity)); }
+    .bg-gray-700 { background-color: rgb(55 65 81 / var(--tw-bg-opacity)); }
+    .bg-red-600 { background-color: rgb(220 38 38 / var(--tw-bg-opacity)); }
+    .bg-red-700 { background-color: rgb(185 28 28 / var(--tw-bg-opacity)); }
+    .text-white { color: rgb(255 255 255 / var(--tw-text-opacity)); }
+    .text-gray-600 { color: rgb(75 85 99 / var(--tw-text-opacity)); }
+    .text-gray-700 { color: rgb(55 65 81 / var(--tw-text-opacity)); }
+    .text-red-600 { color: rgb(220 38 38 / var(--tw-text-opacity)); }
+    .text-blue-600 { color: rgb(37 99 235 / var(--tw-text-opacity)); }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .p-2 { padding: 0.5rem; }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .w-full { width: 100%; }
+    .max-w-md { max-width: 28rem; }
+    .flex { display: flex; }
+    .space-x-2 > :not(:last-child) { margin-left: 0.5rem; }
+    .space-y-4 > :not(:last-child) { margin-bottom: 1rem; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .border { border-width: 1px; border-color: rgb(209 213 219 / var(--tw-border-opacity)); }
+    .rounded-md { border-radius: 0.375rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+    .text-center { text-align: center; }
+    .min-h-screen { min-height: 100vh; }
+    .inline-block { display: inline-block; }
+    .hover\:bg-blue-700:hover { background-color: rgb(29 78 216 / var(--tw-bg-opacity)); }
+    .hover\:bg-gray-700:hover { background-color: rgb(55 65 81 / var(--tw-bg-opacity)); }
+    .hover\:bg-red-700:hover { background-color: rgb(185 28 28 / var(--tw-bg-opacity)); }
+    .focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+    .focus\:ring-2:focus { --tw-ring-offset-width: 2px; box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), 0 0 #0000; }
+    .focus\:ring-blue-500:focus { --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity)); }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
 </head>
-<body>
-  <div class="container">
-    <h1 class="text-2xl font-bold text-center mb-4">دكتور نت - لوحة الإدارة</h1>
-    <div id="login-form">
-      <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-      <button onclick="login()">دخول</button>
-    </div>
-    <div id="admin-content" class="hidden">
-      <input type="text" id="search" placeholder="ابحث في الطلبات..." oninput="filterTickets()">
-      <table>
-        <thead>
-          <tr>
-            <th>رقم الطلب</th>
-            <th>الاسم</th>
-            <th>رقم الهاتف</th>
-            <th>وصف المشكلة</th>
-            <th>التاريخ</th>
-            <th>إجراء</th>
-          </tr>
-        </thead>
-        <tbody id="tickets-body"></tbody>
-      </table>
-      <a href="index.html">العودة إلى تقديم الطلب</a>
-    </div>
-  </div>
+<body class="bg-gray-100 font-sans">
+  <div id="root" className="min-h-screen"></div>
+
   <script>
-    const ADMIN_PASSWORD_HASH = CryptoJS.SHA256('199222').toString(); // كلمة المرور: 199222
+    (function () {
+      "use strict";
 
-    // Service Worker registration
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
-        try {
-          // Unregister any existing Service Workers to avoid conflicts
-          const registrations = await navigator.serviceWorker.getRegistrations();
-          for (let reg of registrations) {
-            await reg.unregister();
-            console.log('Unregistered old Service Worker:', reg.scope);
+      var App = function () {
+        var _React$useState = React.useState(''),
+            password = _React$useState[0],
+            setPassword = _React$useState[1];
+
+        var _React$useState2 = React.useState(''),
+            error = _React$useState2[0],
+            setError = _React$useState2[1];
+
+        var _React$useState3 = React.useState(false),
+            isAuthenticated = _React$useState3[0],
+            setIsAuthenticated = _React$useState3[1];
+
+        var _React$useState4 = React.useState([]),
+            requests = _React$useState4[0],
+            setRequests = _React$useState4[1];
+
+        React.useEffect(function () {
+          if (isAuthenticated) {
+            var storedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
+            setRequests(storedRequests);
           }
+        }, [isAuthenticated]);
 
-          // Register new Service Worker
-          const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
-          console.log('Service Worker registered with scope:', registration.scope);
-        } catch (error) {
-          console.error('Service Worker registration failed:', error);
-          alert('فشل تسجيل Service Worker. الرجاء: 1. تشغيل الموقع عبر خادم (مثل localhost:8000). 2. التأكد من وجود ملف sw.js في المجلد الجذر. 3. فتح وحدة التحكم (F12) ومشاركة رسالة الخطأ.');
-        }
-      });
-    } else {
-      console.warn('Service Worker غير مدعوم في هذا المتصفح.');
-    }
-
-    function login() {
-      const password = document.getElementById('password').value;
-      const hash = CryptoJS.SHA256(password).toString();
-
-      if (hash === ADMIN_PASSWORD_HASH) {
-        document.getElementById('login-form').classList.add('hidden');
-        document.getElementById('admin-content').classList.remove('hidden');
-        loadTickets();
-      } else {
-        alert('كلمة المرور غير صحيحة!');
-      }
-    }
-
-    function loadTickets() {
-      if (!window.localStorage) {
-        alert('المتصفح لا يدعم التخزين المحلي.');
-        return;
-      }
-
-      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-      const tbody = document.getElementById('tickets-body');
-      tbody.innerHTML = '';
-
-      tickets.forEach(encryptedTicket => {
-        try {
-          const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
-          const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${ticket.ticketNumber}</td>
-            <td>${ticket.name}</td>
-            <td>${ticket.phone}</td>
-            <td>${ticket.issue}</td>
-            <td>${ticket.date}</td>
-            <td><button onclick="deleteTicket('${ticket.ticketNumber}')" class="bg-red-600 text-white p-1 rounded">حذف</button></td>
-          `;
-          tbody.appendChild(row);
-        } catch (error) {
-          console.error('Error decrypting ticket:', error);
-        }
-      });
-    }
-
-    function filterTickets() {
-      const search = document.getElementById('search').value.toLowerCase();
-      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-      const tbody = document.getElementById('tickets-body');
-      tbody.innerHTML = '';
-
-      tickets.forEach(encryptedTicket => {
-        try {
-          const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
-          const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-          if (
-            ticket.ticketNumber.toLowerCase().includes(search) ||
-            ticket.name.toLowerCase().includes(search) ||
-            ticket.phone.includes(search) ||
-            ticket.issue.toLowerCase().includes(search)
-          ) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${ticket.ticketNumber}</td>
-              <td>${ticket.name}</td>
-              <td>${ticket.phone}</td>
-              <td>${ticket.issue}</td>
-              <td>${ticket.date}</td>
-              <td><button onclick="deleteTicket('${ticket.ticketNumber}')" class="bg-red-600 text-white p-1 rounded">حذف</button></td>
-            `;
-            tbody.appendChild(row);
+        var handleLogin = function (e) {
+          e.preventDefault();
+          if (password === 'admin54321') {
+            setIsAuthenticated(true);
+            setError('');
+          } else {
+            setError('كلمة المرور غير صحيحة');
           }
-        } catch (error) {
-          console.error('Error decrypting ticket:', error);
-        }
-      });
-    }
+        };
 
-    function deleteTicket(ticketNumber) {
-      if (confirm(`هل تريد حذف الطلب ${ticketNumber}؟`)) {
-        let tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-        tickets = tickets.filter(encryptedTicket => {
-          try {
-            const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
-            const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            return ticket.ticketNumber !== ticketNumber;
-          } catch (error) {
-            return true;
-          }
-        });
-        localStorage.setItem('tickets', JSON.stringify(tickets));
-        loadTickets();
+        var updateStatus = function (id, newStatus) {
+          var updatedRequests = requests.map(function (req) {
+            return req.id === id ? Object.assign({}, req, { status: newStatus }) : req;
+          });
+          setRequests(updatedRequests);
+          localStorage.setItem('requests', JSON.stringify(updatedRequests));
+        };
+
+        var updateAppointment = function (id, newAppointment) {
+          var updatedRequests = requests.map(function (req) {
+            return req.id === id ? Object.assign({}, req, { appointment: newAppointment }) : req;
+          });
+          setRequests(updatedRequests);
+          localStorage.setItem('requests', JSON.stringify(updatedRequests));
+        };
+
+        var deleteRequest = function (id) {
+          var updatedRequests = requests.filter(function (req) {
+            return req.id !== id;
+          });
+          setRequests(updatedRequests);
+          localStorage.setItem('requests', JSON.stringify(updatedRequests));
+        };
+
+        if (!isAuthenticated) {
+          return React.createElement(
+            'div',
+            { className: 'container mx-auto p-4 flex items-center justify-center min-h-screen' },
+            React.createElement(
+              'div',
+              { className: 'bg-white p-6 rounded-lg shadow-md w-full max-w-md' },
+              React.createElement(
+                'h2',
+                { className: 'text-2xl font-semibold mb-4 text-center' },
+                'تسجيل دخول المدير'
+              ),
+              React.createElement(
+                'div',
+                { className: 'space-y-4' },
+                React.createElement(
+                  'div',
+                  null,
+                  React.createElement(
+                    'label',
+                    { className: 'block text-gray-700' },
+                    'كلمة المرور'
+                  ),
+                  React.createElement('input', {
+                    type: 'password',
+                    value: password,
+                    onChange: function (e) {
+                      return setPassword(e.target.value);
+                    },
+                    className: 'w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
+                    placeholder: 'أدخل كلمة المرور'
+                  })
+                ),
+                React.createElement(
+                  'button',
+                  {
+                    onClick: handleLogin,
+                    className: 'w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700'
+                  },
+                  'تسجيل الدخول'
+                )
+              ),
+              error && React.createElement(
+                'p',
+                { className: 'mt-4 text-center text-red-600' },
+                error
+              ),
+              React.createElement(
+                'a',
+                {
+                  href: 'index.html',
+                  className: 'mt-4 inline-block w-full bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 text-center'
+                },
+                'العودة إلى الصفحة الرئيسية'
+              )
+            )
+          );
+        }
+
+        return React.createElement(
+          'div',
+          { className: 'container mx-auto p-4' },
+          React.createElement(
+            'header',
+            { className: 'bg-blue-600 text-white p-4 rounded-lg shadow-md mb-6' },
+            React.createElement(
+              'h1',
+              { className: 'text-3xl font-bold text-center' },
+              'لوحة إدارة دكتور نت'
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'bg-white p-6 rounded-lg shadow-md' },
+            React.createElement(
+              'h2',
+              { className: 'text-2xl font-semibold mb-4 text-center' },
+              'إدارة الطلبات'
+            ),
+            requests.length === 0 ? React.createElement(
+              'p',
+              { className: 'text-center text-gray-600' },
+              'لا توجد طلبات حاليًا'
+            ) : React.createElement(
+              'div',
+              { className: 'space-y-4' },
+              requests.map(function (req) {
+                return React.createElement(
+                  'div',
+                  { key: req.id, className: 'border p-4 rounded-md' },
+                  React.createElement(
+                    'p',
+                    null,
+                    React.createElement('strong', null, 'رقم الطلب:'),
+                    ' ',
+                    req.id
+                  ),
+                  React.createElement(
+                    'p',
+                    null,
+                    React.createElement('strong', null, 'رقم الهاتف:'),
+                    ' ',
+                    React.createElement(
+                      'a',
+                      {
+                        href: 'https://wa.me/' + req.phone.replace(/[^0-9]/g, ''),
+                        className: 'text-blue-600 underline'
+                      },
+                      req.phone
+                    )
+                  ),
+                  React.createElement(
+                    'p',
+                    null,
+                    React.createElement('strong', null, 'الملاحظات:'),
+                    ' ',
+                    req.notes
+                  ),
+                  React.createElement(
+                    'p',
+                    null,
+                    React.createElement('strong', null, 'الحالة:'),
+                    ' ',
+                    req.status
+                  ),
+                  React.createElement(
+                    'p',
+                    null,
+                    React.createElement('strong', null, 'تاريخ الإنشاء:'),
+                    ' ',
+                    req.createdAt
+                  ),
+                  React.createElement(
+                    'p',
+                    null,
+                    React.createElement('strong', null, 'موعد الدعم:'),
+                    ' ',
+                    req.appointment ? new Date(req.appointment).toLocaleString('ar-EG') : 'غير محدد'
+                  ),
+                  React.createElement(
+                    'div',
+                    { className: 'mt-2 flex space-x-2' },
+                    React.createElement(
+                      'select',
+                      {
+                        value: req.status,
+                        onChange: function (e) {
+                          return updateStatus(req.id, e.target.value);
+                        },
+                        className: 'p-2 border rounded-md'
+                      },
+                      React.createElement('option', { value: 'قيد التنفيذ' }, 'قيد التنفيذ'),
+                      React.createElement('option', { value: 'مكتمل' }, 'مكتمل'),
+                      React.createElement('option', { value: 'محذوف' }, 'محذوف')
+                    ),
+                    React.createElement('input', {
+                      type: 'datetime-local',
+                      onChange: function (e) {
+                        return updateAppointment(req.id, e.target.value);
+                      },
+                      className: 'p-2 border rounded-md',
+                      defaultValue: req.appointment
+                    }),
+                    React.createElement(
+                      'button',
+                      {
+                        onClick: function () {
+                          return deleteRequest(req.id);
+                        },
+                        className: 'bg-red-600 text-white p-2 rounded-md hover:bg-red-700'
+                      },
+                      'حذف'
+                    )
+                  )
+                );
+              })
+            )
+          ),
+          React.createElement(
+            'footer',
+            { className: 'mt-6 text-center' },
+            React.createElement(
+              'a',
+              {
+                href: 'index.html',
+                className: 'inline-block bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700'
+              },
+              'العودة إلى الصفحة الرئيسية'
+            )
+          )
+        );
+      };
+
+      try {
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+      } catch (error) {
+        console.error('Error rendering the application:', error);
+        document.getElementById('root').innerHTML = '<div style="text-align: center; color: red; padding: 20px;">حدث خطأ أثناء تحميل الصفحة. يرجى التحقق من وحدة التحكم لمزيد من التفاصيل.</div>';
       }
-    }
+    })();
   </script>
 </body>
 </html>
