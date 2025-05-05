@@ -98,6 +98,7 @@
     .space-y-4 > :not(:last-child) { margin-bottom: 1rem; }
     .items-center { align-items: center; }
     .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
     .border { border-width: 1px; border-color: rgb(209 213 219 / var(--tw-border-opacity)); }
     .rounded-md { border-radius: 0.375rem; }
     .rounded-lg { border-radius: 0.5rem; }
@@ -140,22 +141,18 @@
             setRequests = _React$useState4[1];
 
         var refreshRequests = function () {
-          var storedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
-          setRequests(storedRequests);
+          try {
+            var storedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
+            setRequests(storedRequests);
+          } catch (e) {
+            console.error('Error parsing requests from localStorage:', e);
+            setRequests([]);
+          }
         };
 
         React.useEffect(function () {
           if (isAuthenticated) {
             refreshRequests();
-            var handleStorageChange = function (event) {
-              if (event.key === 'requests') {
-                refreshRequests();
-              }
-            };
-            window.addEventListener('storage', handleStorageChange);
-            return function () {
-              window.removeEventListener('storage', handleStorageChange);
-            };
           }
         }, [isAuthenticated]);
 
@@ -170,27 +167,39 @@
         };
 
         var updateStatus = function (id, newStatus) {
-          var updatedRequests = requests.map(function (req) {
-            return req.id === id ? Object.assign({}, req, { status: newStatus }) : req;
-          });
-          setRequests(updatedRequests);
-          localStorage.setItem('requests', JSON.stringify(updatedRequests));
+          try {
+            var updatedRequests = requests.map(function (req) {
+              return req.id === id ? Object.assign({}, req, { status: newStatus }) : req;
+            });
+            setRequests(updatedRequests);
+            localStorage.setItem('requests', JSON.stringify(updatedRequests));
+          } catch (e) {
+            console.error('Error updating status:', e);
+          }
         };
 
         var updateAppointment = function (id, newAppointment) {
-          var updatedRequests = requests.map(function (req) {
-            return req.id === id ? Object.assign({}, req, { appointment: newAppointment }) : req;
-          });
-          setRequests(updatedRequests);
-          localStorage.setItem('requests', JSON.stringify(updatedRequests));
+          try {
+            var updatedRequests = requests.map(function (req) {
+              return req.id === id ? Object.assign({}, req, { appointment: newAppointment }) : req;
+            });
+            setRequests(updatedRequests);
+            localStorage.setItem('requests', JSON.stringify(updatedRequests));
+          } catch (e) {
+            console.error('Error updating appointment:', e);
+          }
         };
 
         var deleteRequest = function (id) {
-          var updatedRequests = requests.filter(function (req) {
-            return req.id !== id;
-          });
-          setRequests(updatedRequests);
-          localStorage.setItem('requests', JSON.stringify(updatedRequests));
+          try {
+            var updatedRequests = requests.filter(function (req) {
+              return req.id !== id;
+            });
+            setRequests(updatedRequests);
+            localStorage.setItem('requests', JSON.stringify(updatedRequests));
+          } catch (e) {
+            console.error('Error deleting request:', e);
+          }
         };
 
         if (!isAuthenticated) {
@@ -272,7 +281,7 @@
               { className: 'flex justify-between items-center mb-4' },
               React.createElement(
                 'h2',
-                { className: 'text-2xl font-semibold text-center' },
+                { className: 'text-2xl font-semibold' },
                 'إدارة الطلبات'
               ),
               React.createElement(
