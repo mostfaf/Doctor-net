@@ -139,10 +139,23 @@
             requests = _React$useState4[0],
             setRequests = _React$useState4[1];
 
+        var refreshRequests = function () {
+          var storedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
+          setRequests(storedRequests);
+        };
+
         React.useEffect(function () {
           if (isAuthenticated) {
-            var storedRequests = JSON.parse(localStorage.getItem('requests') || '[]');
-            setRequests(storedRequests);
+            refreshRequests();
+            var handleStorageChange = function (event) {
+              if (event.key === 'requests') {
+                refreshRequests();
+              }
+            };
+            window.addEventListener('storage', handleStorageChange);
+            return function () {
+              window.removeEventListener('storage', handleStorageChange);
+            };
           }
         }, [isAuthenticated]);
 
@@ -255,9 +268,21 @@
             'div',
             { className: 'bg-white p-6 rounded-lg shadow-md' },
             React.createElement(
-              'h2',
-              { className: 'text-2xl font-semibold mb-4 text-center' },
-              'إدارة الطلبات'
+              'div',
+              { className: 'flex justify-between items-center mb-4' },
+              React.createElement(
+                'h2',
+                { className: 'text-2xl font-semibold text-center' },
+                'إدارة الطلبات'
+              ),
+              React.createElement(
+                'button',
+                {
+                  onClick: refreshRequests,
+                  className: 'bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700'
+                },
+                'تحديث الطلبات'
+              )
             ),
             requests.length === 0 ? React.createElement(
               'p',
