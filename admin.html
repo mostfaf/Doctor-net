@@ -1,0 +1,252 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دكتور نت - لوحة المدير</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .loading-spinner {
+      display: none;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .new-request {
+      animation: pulse 2s ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { background-color: #ffffff; }
+      50% { background-color: #e0f7fa; }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen">
+  <div class="container mx-auto p-4 max-w-4xl">
+    <header class="bg-blue-600 text-white p-4 rounded-lg shadow-md mb-6">
+      <h1 class="text-3xl font-bold text-center">لوحة إدارة دكتور نت</h1>
+      <p class="text-center mt-1 text-xl font-semibold">مصطفى عاطف الشوري</p>
+    </header>
+
+    <section id="loginSection" class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
+      <h2 class="text-2xl font-semibold mb-4 text-center">تسجيل دخول المدير</h2>
+      <div class="space-y-4">
+        <div>
+          <label for="password" class="block text-gray-700">كلمة المرور</label>
+          <input type="password" id="password" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="أدخل كلمة المرور" required>
+        </div>
+        <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition">تسجيل الدخول</button>
+      </div>
+      <p id="error" class="mt-4 text-center text-red-600 hidden"></p>
+      <a href="index.html" class="mt-4 inline-block w-full bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition text-center">العودة إلى الصفحة الرئيسية</a>
+    </section>
+
+    <section id="adminSection" class="hidden bg-white p-6 rounded-lg shadow-md">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold">إدارة الطلبات</h2>
+        <div class="flex space-x-2">
+          <button onclick="refreshRequests()" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition">تحديث الطلبات</button>
+          <button onclick="toggleAutoRefresh()" id="autoRefreshBtn" class="bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition">تفعيل التحديث التلقائي</button>
+        </div>
+      </div>
+      <div class="flex space-x-2 mb-4">
+        <button onclick="filterRequests('all')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">الكل</button>
+        <button onclick="filterRequests('قيد التنفيذ')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">قيد التنفيذ</button>
+        <button onclick="filterRequests('مكتمل')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">مكتمل</button>
+        <button onclick="filterRequests('محذوف')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">محذوف</button>
+      </div>
+      <div id="stats" class="mb-4 text-gray-700"></div>
+      <div id="requests" class="space-y-4"></div>
+      <div id="loading" class="loading-spinner"></div>
+    </section>
+
+    <footer class="mt-6 text-center">
+      <a href="index.html" class="inline-block bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition">العودة إلى الصفحة الرئيسية</a>
+      <p class="mt-2 text-gray-600">تم تطويره بواسطة مصطفى عاطف الشوري</p>
+    </footer>
+  </div>
+
+  <script>
+    let currentFilter = 'all';
+    let lastRequestCount = 0;
+    let autoRefreshInterval = null;
+
+    function login() {
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('error');
+
+      if (password === 'admin54321') {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('adminSection').classList.remove('hidden');
+        refreshRequests();
+        errorEl.classList.add('hidden');
+      } else {
+        errorEl.textContent = 'كلمة المرور غير صحيحة';
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    function toggleAutoRefresh() {
+      const btn = document.getElementById('autoRefreshBtn');
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval);
+        autoRefreshInterval = null;
+        btn.textContent = 'تفعيل التحديث التلقائي';
+      } else {
+        autoRefreshInterval = setInterval(refreshRequests, 5000);
+        btn.textContent = 'إيقاف التحديث التلقائي';
+      }
+    }
+
+    function refreshRequests() {
+      const requestsEl = document.getElementById('requests');
+      const statsEl = document.getElementById('stats');
+      const loadingEl = document.getElementById('loading');
+
+      loadingEl.style.display = 'block';
+      requestsEl.innerHTML = '';
+
+      try {
+        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
+        const filteredRequests = currentFilter === 'all' ? requests : requests.filter(req => req.status === currentFilter);
+        const stats = {
+          total: requests.length,
+          pending: requests.filter(req => req.status === 'قيد التنفيذ').length,
+          completed: requests.filter(req => req.status === 'مكتمل').length,
+          deleted: requests.filter(req => req.status === 'محذوف').length
+        };
+
+        statsEl.innerHTML = `
+          <p>إجمالي الطلبات: ${stats.total}</p>
+          <p>قيد التنفيذ: ${stats.pending}</p>
+          <p>مكتمل: ${stats.completed}</p>
+          <p>محذوف: ${stats.deleted}</p>
+        `;
+
+        if (requests.length > lastRequestCount && lastRequestCount > 0) {
+          requestsEl.classList.add('new-request');
+          setTimeout(() => requestsEl.classList.remove('new-request'), 2000);
+        }
+        lastRequestCount = requests.length;
+
+        if (filteredRequests.length === 0) {
+          requestsEl.innerHTML = '<p class="text-center text-gray-600">لا توجد طلبات حاليًا</p>';
+        } else {
+          filteredRequests.forEach(req => {
+            const reqDiv = document.createElement('div');
+            reqDiv.className = 'border p-4 rounded-md';
+            reqDiv.innerHTML = `
+              <p><strong>رقم الطلب:</strong> ${req.id}</p>
+              <p><strong>رقم الهاتف:</strong> <a href="https://wa.me/${req.phone.replace(/[^0-9]/g, '')}" class="text-blue-600 underline" target="_blank">${req.phone}</a></p>
+              <p><strong>الملاحظات:</strong> ${req.notes}</p>
+              <p><strong>الحالة:</strong> ${req.status}</p>
+              <p><strong>تاريخ الإنشاء:</strong> ${req.createdAt}</p>
+              <p><strong>موعد الدعم:</strong> ${req.appointment ? new Date(req.appointment).toLocaleString('ar-EG') : 'غير محدد'}</p>
+              <div class="mt-2 flex space-x-2">
+                <select onchange="updateStatus('${req.id}', this.value)" class="p-2 border rounded-md">
+                  <option value="قيد التنفيذ" ${req.status === 'قيد التنفيذ' ? 'selected' : ''}>قيد التنفيذ</option>
+                  <option value="مكتمل" ${req.status === 'مكتمل' ? 'selected' : ''}>مكتمل</option>
+                  <option value="محذوف" ${req.status === 'محذوف' ? 'selected' : ''}>محذوف</option>
+                </select>
+                <input type="datetime-local" onchange="updateAppointment('${req.id}', this.value)" class="p-2 border rounded-md" value="${req.appointment || ''}">
+                <button onclick="deleteRequest('${req.id}')" class="bg-red-600 text-white p-2 rounded-md hover:bg-red-700 transition">حذف</button>
+              </div>
+            `;
+            requestsEl.appendChild(reqDiv);
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+        requestsEl.innerHTML = '<p class="text-center text-red-600">حدث خطأ أثناء جلب الطلبات</p>';
+      } finally {
+        loadingEl.style.display = 'none';
+      }
+    }
+
+    function filterRequests(status) {
+      currentFilter = status;
+      refreshRequests();
+    }
+
+    function updateStatus(id, newStatus) {
+      try {
+        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
+        requests = requests.map(req => req.id === id ? { ...req, status: newStatus } : req);
+        localStorage.setItem('requests', JSON.stringify(requests));
+        refreshRequests();
+      } catch (error) {
+        console.error('Error updating status:', error);
+      }
+    }
+
+    function updateAppointment(id, newAppointment) {
+      try {
+        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
+        requests = requests.map(req => req.id === id ? { ...req, appointment: newAppointment } : req);
+        localStorage.setItem('requests', JSON.stringify(requests));
+        refreshRequests();
+      } catch (error) {
+        console.error('Error updating appointment:', error);
+      }
+    }
+
+    function deleteRequest(id) {
+      try {
+        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
+        requests = requests.filter(req => req.id !== id);
+        localStorage.setItem('requests', JSON.stringify(requests));
+        refreshRequests();
+      } catch (error) {
+        console.error('Error deleting request:', error);
+      }
+    }
+  </script>
+</body>
+</html>
