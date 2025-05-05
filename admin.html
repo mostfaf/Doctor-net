@@ -42,211 +42,261 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دكتور نت - لوحة المدير</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="دكتور نت - لوحة الإدارة">
+  <meta name="theme-color" content="#1E3A8A">
+  <title>دكتور نت - لوحة الإدارة</title>
   <style>
-    .loading-spinner {
-      display: none;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
+    body {
+      font-family: 'Noto Sans Arabic', sans-serif;
+      background: #1E3A8A;
+      color: #FFFFFF;
+      min-height: 100vh;
+      transition: background 0.3s;
+    }
+    body.dark {
+      background: #111827;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    input, button, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #FFFFFF;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      transition: all 0.3s;
+    }
+    input:focus, select:focus {
+      border-color: #DC2626;
+      box-shadow: 0 0 8px rgba(220, 38, 38, 0.5);
+      outline: none;
+    }
+    button {
+      background: #DC2626;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #b91c1c;
+      transform: translateY(-2px);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 12px;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #1E3A8A;
+    }
+    tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #FFFFFF;
+      color: #1E3A8A;
+      padding: 8px;
       border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
+      cursor: pointer;
     }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .hidden {
+      display: none;
     }
-    .new-request {
-      animation: pulse 2s ease-in-out;
+    a, #export-btn {
+      color: #60A5FA;
+      text-decoration: underline;
+      cursor: pointer;
     }
-    @keyframes pulse {
-      0%, 100% { background-color: #ffffff; }
-      50% { background-color: #e0f7fa; }
+    #status-filter {
+      max-width: 200px;
+    }
+    .flex {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 640px) {
+      h1 { font-size: 1.8rem; }
+      .container { padding: 20px; margin: 10px; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 8px; }
+      #status-filter { max-width: 100%; }
     }
   </style>
 </head>
-<body class="bg-gray-100 font-sans min-h-screen">
-  <div class="container mx-auto p-4 max-w-4xl">
-    <header class="bg-blue-600 text-white p-4 rounded-lg shadow-md mb-6">
-      <h1 class="text-3xl font-bold text-center">لوحة إدارة دكتور نت</h1>
-      <p class="text-center mt-1 text-xl font-semibold">مصطفى عاطف الشوري</p>
-    </header>
-
-    <section id="loginSection" class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
-      <h2 class="text-2xl font-semibold mb-4 text-center">تسجيل دخول المدير</h2>
-      <div class="space-y-4">
-        <div>
-          <label for="password" class="block text-gray-700">كلمة المرور</label>
-          <input type="password" id="password" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="أدخل كلمة المرور" required>
-        </div>
-        <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition">تسجيل الدخول</button>
+<body>
+  <button id="theme-toggle" aria-label="تبديل الوضع">🌙</button>
+  <div class="container">
+    <h1>دكتور نت - لوحة الإدارة</h1>
+    <div id="login-form">
+      <input type="password" id="password" placeholder="أدخل كلمة المرور" required aria-required="true">
+      <button onclick="login()">دخول</button>
+    </div>
+    <div id="admin-content" class="hidden">
+      <div class="flex mb-4">
+        <input type="text" id="search" placeholder="ابحث في الطلبات..." oninput="filterTickets()">
+        <select id="status-filter" onchange="filterTickets()">
+          <option value="">جميع الحالات</option>
+          <option value="قيد التنفيذ">قيد التنفيذ</option>
+          <option value="مكتمل">مكتمل</option>
+          <option value="محذوف">محذوف</option>
+        </select>
+        <span id="export-btn" class="underline">تصدير إلى CSV</span>
       </div>
-      <p id="error" class="mt-4 text-center text-red-600 hidden"></p>
-      <a href="index.html" class="mt-4 inline-block w-full bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition text-center">العودة إلى الصفحة الرئيسية</a>
-    </section>
-
-    <section id="adminSection" class="hidden bg-white p-6 rounded-lg shadow-md">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-semibold">إدارة الطلبات</h2>
-        <div class="flex space-x-2">
-          <button onclick="refreshRequests()" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition">تحديث الطلبات</button>
-          <button onclick="toggleAutoRefresh()" id="autoRefreshBtn" class="bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition">تفعيل التحديث التلقائي</button>
-        </div>
-      </div>
-      <div class="flex space-x-2 mb-4">
-        <button onclick="filterRequests('all')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">الكل</button>
-        <button onclick="filterRequests('قيد التنفيذ')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">قيد التنفيذ</button>
-        <button onclick="filterRequests('مكتمل')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">مكتمل</button>
-        <button onclick="filterRequests('محذوف')" class="bg-gray-200 text-gray-800 p-2 rounded-md hover:bg-gray-300 transition">محذوف</button>
-      </div>
-      <div id="stats" class="mb-4 text-gray-700"></div>
-      <div id="requests" class="space-y-4"></div>
-      <div id="loading" class="loading-spinner"></div>
-    </section>
-
-    <footer class="mt-6 text-center">
-      <a href="index.html" class="inline-block bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition">العودة إلى الصفحة الرئيسية</a>
-      <p class="mt-2 text-gray-600">تم تطويره بواسطة مصطفى عاطف الشوري</p>
-    </footer>
+      <table>
+        <thead>
+          <tr>
+            <th>رقم الطلب</th>
+            <th>الاسم</th>
+            <th>رقم الهاتف</th>
+            <th>وصف المشكلة</th>
+            <th>التاريخ</th>
+            <th>الحالة</th>
+            <th>إجراء</th>
+          </tr>
+        </thead>
+        <tbody id="tickets-body"></tbody>
+      </table>
+      <a href="index.html" class="block text-center mt-4">العودة إلى الصفحة الرئيسية</a>
+    </div>
   </div>
-
   <script>
-    let currentFilter = 'all';
-    let lastRequestCount = 0;
-    let autoRefreshInterval = null;
+    const ADMIN_PASSWORD_HASH = '7c4a8d09ca3762af61e59520943dc26494f8941b'; // SHA1 hash of '199222'
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add('dark');
+      themeToggle.textContent = '☀️';
+    }
 
     function login() {
       const password = document.getElementById('password').value;
-      const errorEl = document.getElementById('error');
-
-      if (password === 'admin54321') {
-        document.getElementById('loginSection').classList.add('hidden');
-        document.getElementById('adminSection').classList.remove('hidden');
-        refreshRequests();
-        errorEl.classList.add('hidden');
+      const hash = sha1(password);
+      if (hash === ADMIN_PASSWORD_HASH) {
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('admin-content').classList.remove('hidden');
+        loadTickets();
       } else {
-        errorEl.textContent = 'كلمة المرور غير صحيحة';
-        errorEl.classList.remove('hidden');
+        alert('كلمة المرور غير صحيحة!');
       }
     }
 
-    function toggleAutoRefresh() {
-      const btn = document.getElementById('autoRefreshBtn');
-      if (autoRefreshInterval) {
-        clearInterval(autoRefreshInterval);
-        autoRefreshInterval = null;
-        btn.textContent = 'تفعيل التحديث التلقائي';
-      } else {
-        autoRefreshInterval = setInterval(refreshRequests, 5000);
-        btn.textContent = 'إيقاف التحديث التلقائي';
+    // Simple SHA1 implementation
+    function sha1(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
       }
+      return hash.toString(16);
     }
 
-    function refreshRequests() {
-      const requestsEl = document.getElementById('requests');
-      const statsEl = document.getElementById('stats');
-      const loadingEl = document.getElementById('loading');
+    let allTickets = [];
+    function loadTickets() {
+      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+      allTickets = tickets;
+      renderTickets(tickets);
+    }
 
-      loadingEl.style.display = 'block';
-      requestsEl.innerHTML = '';
-
-      try {
-        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
-        const filteredRequests = currentFilter === 'all' ? requests : requests.filter(req => req.status === currentFilter);
-        const stats = {
-          total: requests.length,
-          pending: requests.filter(req => req.status === 'قيد التنفيذ').length,
-          completed: requests.filter(req => req.status === 'مكتمل').length,
-          deleted: requests.filter(req => req.status === 'محذوف').length
-        };
-
-        statsEl.innerHTML = `
-          <p>إجمالي الطلبات: ${stats.total}</p>
-          <p>قيد التنفيذ: ${stats.pending}</p>
-          <p>مكتمل: ${stats.completed}</p>
-          <p>محذوف: ${stats.deleted}</p>
+    function renderTickets(tickets) {
+      const tbody = document.getElementById('tickets-body');
+      tbody.innerHTML = '';
+      tickets.forEach((ticket, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${ticket.ticketNumber}</td>
+          <td>${ticket.name}</td>
+          <td>${ticket.phone}</td>
+          <td>${ticket.issue}</td>
+          <td>${ticket.date}</td>
+          <td>
+            <select onchange="updateStatus(${index}, this.value)">
+              <option value="قيد التنفيذ" ${ticket.status === 'قيد التنفيذ' ? 'selected' : ''}>قيد التنفيذ</option>
+              <option value="مكتمل" ${ticket.status === 'مكتمل' ? 'selected' : ''}>مكتمل</option>
+              <option value="محذوف" ${ticket.status === 'محذوف' ? 'selected' : ''}>محذوف</option>
+            </select>
+          </td>
+          <td><button onclick="deleteTicket(${index})" class="bg-red-600 text-white p-1 rounded hover:bg-red-700">حذف نهائي</button></td>
         `;
+        tbody.appendChild(row);
+      });
+    }
 
-        if (requests.length > lastRequestCount && lastRequestCount > 0) {
-          requestsEl.classList.add('new-request');
-          setTimeout(() => requestsEl.classList.remove('new-request'), 2000);
-        }
-        lastRequestCount = requests.length;
+    function updateStatus(index, status) {
+      allTickets[index].status = status;
+      localStorage.setItem('tickets', JSON.stringify(allTickets));
+      renderTickets(allTickets);
+    }
 
-        if (filteredRequests.length === 0) {
-          requestsEl.innerHTML = '<p class="text-center text-gray-600">لا توجد طلبات حاليًا</p>';
-        } else {
-          filteredRequests.forEach(req => {
-            const reqDiv = document.createElement('div');
-            reqDiv.className = 'border p-4 rounded-md';
-            reqDiv.innerHTML = `
-              <p><strong>رقم الطلب:</strong> ${req.id}</p>
-              <p><strong>رقم الهاتف:</strong> <a href="https://wa.me/${req.phone.replace(/[^0-9]/g, '')}" class="text-blue-600 underline" target="_blank">${req.phone}</a></p>
-              <p><strong>الملاحظات:</strong> ${req.notes}</p>
-              <p><strong>الحالة:</strong> ${req.status}</p>
-              <p><strong>تاريخ الإنشاء:</strong> ${req.createdAt}</p>
-              <p><strong>موعد الدعم:</strong> ${req.appointment ? new Date(req.appointment).toLocaleString('ar-EG') : 'غير محدد'}</p>
-              <div class="mt-2 flex space-x-2">
-                <select onchange="updateStatus('${req.id}', this.value)" class="p-2 border rounded-md">
-                  <option value="قيد التنفيذ" ${req.status === 'قيد التنفيذ' ? 'selected' : ''}>قيد التنفيذ</option>
-                  <option value="مكتمل" ${req.status === 'مكتمل' ? 'selected' : ''}>مكتمل</option>
-                  <option value="محذوف" ${req.status === 'محذوف' ? 'selected' : ''}>محذوف</option>
-                </select>
-                <input type="datetime-local" onchange="updateAppointment('${req.id}', this.value)" class="p-2 border rounded-md" value="${req.appointment || ''}">
-                <button onclick="deleteRequest('${req.id}')" class="bg-red-600 text-white p-2 rounded-md hover:bg-red-700 transition">حذف</button>
-              </div>
-            `;
-            requestsEl.appendChild(reqDiv);
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching requests:', error);
-        requestsEl.innerHTML = '<p class="text-center text-red-600">حدث خطأ أثناء جلب الطلبات</p>';
-      } finally {
-        loadingEl.style.display = 'none';
+    function filterTickets() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const statusFilter = document.getElementById('status-filter').value;
+      const filteredTickets = allTickets.filter(ticket => {
+        return (
+          (!statusFilter || ticket.status === statusFilter) &&
+          (
+            ticket.ticketNumber.toLowerCase().includes(search) ||
+            ticket.name.toLowerCase().includes(search) ||
+            ticket.phone.includes(search) ||
+            ticket.issue.toLowerCase().includes(search)
+          )
+        );
+      });
+      renderTickets(filteredTickets);
+    }
+
+    function deleteTicket(index) {
+      if (confirm('هل تريد حذف هذا الطلب نهائيًا؟')) {
+        allTickets.splice(index, 1);
+        localStorage.setItem('tickets', JSON.stringify(allTickets));
+        renderTickets(allTickets);
       }
     }
 
-    function filterRequests(status) {
-      currentFilter = status;
-      refreshRequests();
-    }
-
-    function updateStatus(id, newStatus) {
-      try {
-        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
-        requests = requests.map(req => req.id === id ? { ...req, status: newStatus } : req);
-        localStorage.setItem('requests', JSON.stringify(requests));
-        refreshRequests();
-      } catch (error) {
-        console.error('Error updating status:', error);
-      }
-    }
-
-    function updateAppointment(id, newAppointment) {
-      try {
-        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
-        requests = requests.map(req => req.id === id ? { ...req, appointment: newAppointment } : req);
-        localStorage.setItem('requests', JSON.stringify(requests));
-        refreshRequests();
-      } catch (error) {
-        console.error('Error updating appointment:', error);
-      }
-    }
-
-    function deleteRequest(id) {
-      try {
-        let requests = JSON.parse(localStorage.getItem('requests') || '[]');
-        requests = requests.filter(req => req.id !== id);
-        localStorage.setItem('requests', JSON.stringify(requests));
-        refreshRequests();
-      } catch (error) {
-        console.error('Error deleting request:', error);
-      }
-    }
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const csv = ['رقم الطلب,الاسم,رقم الهاتف,وصف المشكلة,التاريخ,الحالة'];
+      allTickets.forEach(ticket => {
+        csv.push(`${ticket.ticketNumber},${ticket.name},${ticket.phone},${ticket.issue.replace(/,/g, ' ')},${ticket.date},${ticket.status}`);
+      });
+      const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'doctor_net_tickets.csv';
+      link.click();
+    });
   </script>
 </body>
 </html>
