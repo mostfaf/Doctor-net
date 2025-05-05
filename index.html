@@ -80,6 +80,7 @@
     .text-green-600 { color: rgb(22 163 74 / var(--tw-text-opacity)); }
     .text-blue-600 { color: rgb(37 99 235 / var(--tw-text-opacity)); }
     .text-red-600 { color: rgb(220 38 38 / var(--tw-text-opacity)); }
+    .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
     .text-2xl { font-size: 1.5rem; line-height: 2rem; }
     .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
     .font-bold { font-weight: 700; }
@@ -89,6 +90,7 @@
     .p-6 { padding: 1.5rem; }
     .mb-4 { margin-bottom: 1rem; }
     .mb-6 { margin-bottom: 1.5rem; }
+    .mt-1 { margin-top: 0.25rem; }
     .mt-2 { margin-top: 0.5rem; }
     .mt-4 { margin-top: 1rem; }
     .mt-6 { margin-top: 1.5rem; }
@@ -164,6 +166,7 @@
           setMessage('تم إرسال الطلب بنجاح! رقم الطلب: ' + newId);
           setPhone('');
           setNotes('');
+          window.open('https://wa.me/201064496440?text=' + encodeURIComponent('تم تقديم طلبك، رقم الطلب: ' + newId), '_blank');
         };
 
         var handleTrack = function (e) {
@@ -193,7 +196,12 @@
             React.createElement(
               'p',
               { className: 'text-center mt-2' },
-              'خدمات دعم فني لشبكات MikroTik'
+              'دعم فني شبكات'
+            ),
+            React.createElement(
+              'p',
+              { className: 'text-center mt-1 text-xl font-semibold' },
+              'مصطفى عاطف الشوري'
             )
           ),
           React.createElement(
@@ -328,7 +336,7 @@
               React.createElement(
                 'a',
                 {
-                  href: 'https://wa.me/01064496440',
+                  href: 'https://wa.me/201064496440',
                   className: 'inline-block bg-green-600 text-white p-2 rounded-md hover:bg-green-700'
                 },
                 React.createElement(
