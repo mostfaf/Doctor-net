@@ -1,0 +1,585 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="دكتور نت للدعم الفني - الحل النهائي لمشاكل الشبكات">
+  <meta name="keywords" content="دكتور نت, دعم فني, شبكات, إنترنت, تقنية, إصلاح">
+  <meta name="author" content="Doctor Net">
+  <meta name="theme-color" content="#1E3A8A">
+  <title>دكتور نت للدعم الفني</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@2.2.2/three.js/build/ar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="https://unpkg.com/libphonenumber-js@1.10.14/bundle/libphonenumber-min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="https://via.placeholder.com/150?text=Doctor+Net">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Orbitron:wght@400;700&display=swap');
+    body {
+      font-family: 'Amiri', serif;
+      background: #1E3A8A;
+      color: #FFFFFF;
+      overflow-x: hidden;
+      position: relative;
+      touch-action: manipulation;
+    }
+    #webgl-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.4;
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    input, textarea, button {
+      font-family: 'Amiri', serif;
+      border: 2px solid #FFFFFF;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    input:focus, textarea:focus {
+      border-color: #DC2626;
+      box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+      outline: none;
+    }
+    button {
+      padding: 12px;
+      font-size: 1.1rem;
+    }
+    .chatbot {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #DC2626;
+      color: #FFFFFF;
+      padding: 15px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .chatbot-panel {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #1E3A8A;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 350px;
+      z-index: 1000;
+    }
+    .theme-toggle, .accessibility-toggle, .emergency-btn {
+      position: fixed;
+      top: 20px;
+      padding: 10px 20px;
+      background: #DC2626;
+      color: #FFFFFF;
+      border-radius: 25px;
+      z-index: 1000;
+    }
+    .theme-toggle { left: 20px; }
+    .accessibility-toggle { left: 120px; }
+    .emergency-btn { left: 220px; }
+    .suggestions {
+      display: none;
+      position: absolute;
+      background: #FFFFFF;
+      color: #1E3A8A;
+      border: 1px solid #1E3A8A;
+      border-radius: 10px;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    .suggestions div {
+      padding: 12px;
+      cursor: pointer;
+    }
+    .suggestions div:hover {
+      background: #E6F3FF;
+    }
+    .ar-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2000;
+    }
+    .stats-canvas {
+      margin-top: 20px;
+      max-width: 100%;
+    }
+    @media (max-width: 640px) {
+      .logo { font-size: 2rem; }
+      .form-container { padding: 1rem; }
+      button { font-size: 1rem; }
+      .theme-toggle, .accessibility-toggle, .emergency-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+      .theme-toggle { left: 10px; top: 10px; }
+      .accessibility-toggle { left: 100px; top: 10px; }
+      .emergency-btn { left: 190px; top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="webgl-canvas"></canvas>
+  <button class="theme-toggle" onclick="toggleTheme()">وضع مظلم</button>
+  <button class="accessibility-toggle" onclick="toggleAccessibility()">تباين عالٍ</button>
+  <button class="emergency-btn" onclick="submitEmergency()">طلب عاجل</button>
+  <header class="text-center py-10">
+    <h1 class="logo animate__animated animate__zoomIn">دكتور نت للدعم الفني</h1>
+  </header>
+  <div class="form-container max-w-lg mx-auto mt-6 p-8">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">تقديم طلب دعم فني</h2>
+    <form id="support-form">
+      <div class="mb-4">
+        <label for="name" class="block text-blue-900 font-medium">الاسم</label>
+        <input type="text" id="name" class="w-full p-3" required aria-required="true">
+      </div>
+      <div class="mb-4">
+        <label for="phone" class="block text-blue-900 font-medium">رقم الهاتف</label>
+        <input type="tel" id="phone" class="w-full p-3" required aria-required="true">
+      </div>
+      <div class="mb-4 relative">
+        <label for="issue" class="block text-blue-900 font-medium">وصف المشكلة</label>
+        <textarea id="issue" rows="5" class="w-full p-3" required aria-required="true"></textarea>
+        <button type="button" onclick="startVoiceInput()" class="absolute top-0 left-0 bg-blue-600 text-white p-2 rounded">🎙️</button>
+        <div id="suggestions" class="suggestions"></div>
+      </div>
+      <button type="submit" class="w-full bg-red-600 text-white p-3 hover:bg-red-700">إرسال الطلب</button>
+    </form>
+    <div id="result" class="hidden mt-4 p-4 bg-blue-100 rounded text-center">
+      <p class="text-lg">تم إنشاء طلبك! رقم الطلب: <strong id="ticket-number"></strong></p>
+      <p>تواصل عبر واتساب أو امسح رمز QR (يجب إرسال رقم الطلب).</p>
+      <a id="whatsapp-btn" href="#" target="_blank" class="inline-block mt-2 bg-green-500 text-white p-3 rounded hover:bg-green-600">تواصل عبر واتساب</a>
+      <div id="qr-code" class="mt-4"></div>
+    </div>
+    <div class="mt-6">
+      <label for="ticket-check" class="block text-blue-900 font-medium">تحقق من حالة الطلب</label>
+      <input type="text" id="ticket-check" class="w-full p-3" placeholder="أدخل رقم الطلب (مثل TN123456)">
+      <button onclick="checkTicket()" class="mt-2 bg-blue-600 text-white p-3 rounded hover:bg-blue-700">تحقق</button>
+      <p id="ticket-status" class="mt-2 text-blue-900"></p>
+    </div>
+    <div class="mt-6">
+      <button onclick="startAR()" class="w-full bg-purple-600 text-white p-3 rounded hover:bg-purple-700">دليل إصلاح بالواقع المعزز</button>
+    </div>
+    <div class="mt-6">
+      <canvas id="stats-canvas" class="stats-canvas"></canvas>
+    </div>
+    <a href="admin.html" class="block mt-6 text-center text-blue-900 hover:underline">لوحة الإدارة 🔒</a>
+  </div>
+  <div class="chatbot" onclick="toggleChatbot()">💬 مساعد دكتور نت</div>
+  <div class="chatbot-panel" id="chatbot-panel">
+    <p class="font-bold">مساعد دكتور نت الذكي</p>
+    <p>اسأل عن مشكلتك أو كيفية تقديم طلب!</p>
+    <input type="text" id="chatbot-input" class="w-full p-2 border border-blue-900 rounded" placeholder="اكتب سؤالك...">
+    <div id="chatbot-response" class="mt-2"></div>
+  </div>
+  <div class="ar-container" id="ar-container">
+    <a-scene embedded arjs="trackingMethod: best;">
+      <a-marker preset="hiro">
+        <a-box position="0 0.5 0" material="color: #DC2626;"></a-box>
+        <a-text value="إعادة تشغيل الراوتر" color="white" position="0 1 0" align="center"></a-text>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </div>
+  <script>
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+            alert('فشل تسجيل Service Worker. تأكد من تشغيل الموقع عبر خادم (localhost أو HTTPS) ووجود ملف sw.js.');
+          });
+      });
+    } else {
+      console.warn('Service Worker غير مدعوم في هذا المتصفح.');
+    }
+
+    // WebGL background
+    let scene, camera, renderer, particles = [];
+    function initWebGL() {
+      try {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.z = 50;
+
+        const geometry = new THREE.SphereGeometry(0.5, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0xDC2626, wireframe: true });
+        for (let i = 0; i < 50; i++) {
+          const particle = new THREE.Mesh(geometry, material);
+          particle.position.set(
+            (Math.random() - 0.5) * 100,
+            (Math.random() - 0.5) * 100,
+            (Math.random() - 0.5) * 100
+          );
+          scene.add(particle);
+          particles.push(particle);
+        }
+
+        function animate() {
+          requestAnimationFrame(animate);
+          particles.forEach(p => {
+            p.rotation.x += 0.01;
+            p.rotation.y += 0.01;
+          });
+          renderer.render(scene, camera);
+        }
+        animate();
+      } catch (error) {
+        console.error('WebGL initialization failed:', error);
+        document.getElementById('webgl-canvas').style.display = 'none';
+      }
+    }
+    initWebGL();
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      document.querySelector('.theme-toggle').textContent = document.body.classList.contains('dark') ? 'وضع فاتح' : 'وضع مظلم';
+    }
+    if (localStorage.getItem('theme') === 'dark') toggleTheme();
+
+    // Accessibility toggle
+    function toggleAccessibility() {
+      document.body.classList.toggle('high-contrast');
+      if (document.body.classList.contains('high-contrast')) {
+        document.body.style.background = '#000000';
+        document.body.style.color = '#FFFFFF';
+        document.querySelectorAll('input, textarea').forEach(el => {
+          el.style.background = '#000000';
+          el.style.color = '#FFFFFF';
+          el.style.borderColor = '#FFFFFF';
+        });
+        document.querySelector('.form-container').style.background = 'rgba(0, 0, 0, 0.8)';
+      } else {
+        document.body.style.background = '#1E3A8A';
+        document.body.style.color = '#FFFFFF';
+        document.querySelectorAll('input, textarea').forEach(el => {
+          el.style.background = '';
+          el.style.color = '';
+          el.style.borderColor = '';
+        });
+        document.querySelector('.form-container').style.background = 'rgba(255, 255, 255, 0.1)';
+      }
+      localStorage.setItem('accessibility', document.body.classList.contains('high-contrast') ? 'high' : 'normal');
+    }
+    if (localStorage.getItem('accessibility') === 'high') toggleAccessibility();
+
+    // Form submission
+    document.getElementById('support-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!window.localStorage) {
+        alert('المتصفح لا يدعم التخزين المحلي. لا يمكن حفظ الطلب.');
+        return;
+      }
+
+      const ticketNumber = 'TN' + Math.floor(100000 + Math.random() * 900000);
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const issue = document.getElementById('issue').value;
+      const date = new Date().toLocaleString('ar-EG');
+
+      // Phone number validation
+      try {
+        const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
+        const number = phoneUtil.parseAndKeepRawInput(phone, 'EG');
+        if (!phoneUtil.isValidNumber(number)) {
+          alert('رقم الهاتف غير صحيح. الرجاء إدخال رقم صالح.');
+          return;
+        }
+      } catch (error) {
+        alert('خطأ في تنسيق رقم الهاتف. الرجاء المحاولة مرة أخرى.');
+        return;
+      }
+
+      // Encrypt data
+      const ticket = { ticketNumber, name, phone, issue, date, isEmergency: false };
+      const encryptedTicket = CryptoJS.AES.encrypt(JSON.stringify(ticket), 'doctor-net-secret').toString();
+      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+      tickets.push(encryptedTicket);
+      localStorage.setItem('tickets', JSON.stringify(tickets));
+
+      // Display result
+      document.getElementById('ticket-number').textContent = ticketNumber;
+      document.getElementById('result').classList.remove('hidden');
+      gsap.to('#result', { opacity: 1, y: 0, duration: 0.5 });
+
+      // WhatsApp link and QR code
+      const message = `مرحبًا دكتور نت، أنا ${name}. رقم الطلب: ${ticketNumber}. المشكلة: ${issue}`;
+      const whatsappUrl = `https://wa.me/201064496440?text=${encodeURIComponent(message)}`;
+      document.getElementById('whatsapp-btn').href = whatsappUrl;
+
+      const qrCode = document.createElement('img');
+      qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(whatsappUrl)}`;
+      document.getElementById('qr-code').innerHTML = '';
+      document.getElementById('qr-code').appendChild(qrCode);
+
+      // Notification and sound
+      if (Notification.permission === 'granted') {
+        new Notification('طلب جديد', { body: `رقم الطلب: ${ticketNumber}`, icon: 'https://via.placeholder.com/150?text=Doctor+Net' });
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            new Notification('طلب جديد', { body: `رقم الطلب: ${ticketNumber}`, icon: 'https://via.placeholder.com/150?text=Doctor+Net' });
+          }
+        });
+      }
+      const sound = new Audio('https://www.soundjay.com/button/beep-01a.mp3');
+      sound.play().catch(() => {});
+
+      updateStats();
+      this.reset();
+    });
+
+    // Emergency submission
+    function submitEmergency() {
+      if (!window.localStorage) {
+        alert('المتصفح لا يدعم التخزين المحلي. لا يمكن حفظ الطلب.');
+        return;
+      }
+
+      const ticketNumber = 'EM' + Math.floor(100000 + Math.random() * 900000);
+      const name = 'طلب عاجل';
+      const phone = '201064496440';
+      const issue = 'طلب دعم فني عاجل';
+      const date = new Date().toLocaleString('ar-EG');
+
+      const ticket = { ticketNumber, name, phone, issue, date, isEmergency: true };
+      const encryptedTicket = CryptoJS.AES.encrypt(JSON.stringify(ticket), 'doctor-net-secret').toString();
+      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+      tickets.push(encryptedTicket);
+      localStorage.setItem('tickets', JSON.stringify(tickets));
+
+      const message = `طلب عاجل من دكتور نت! رقم الطلب: ${ticketNumber}. المشكلة: ${issue}`;
+      const whatsappUrl = `https://wa.me/201064496440?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+
+      if (Notification.permission === 'granted') {
+        new Notification('طلب عاجل', { body: `رقم الطلب: ${ticketNumber}`, icon: 'https://via.placeholder.com/150?text=Doctor+Net' });
+      }
+      const emergencySound = new Audio('https://www.soundjay.com/buttons/beep-02.mp3');
+      emergencySound.play().catch(() => {});
+
+      updateStats();
+    }
+
+    // Voice input
+    function startVoiceInput() {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert('المتصفح لا يدعم الإدخال الصوتي.');
+        return;
+      }
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'ar-EG';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = event => {
+        document.getElementById('issue').value = event.results[0][0].transcript;
+        recognition.stop();
+      };
+      recognition.onerror = () => alert('خطأ في الإدخال الصوتي. حاول مرة أخرى.');
+      recognition.start();
+    }
+
+    // Issue suggestions
+    const suggestions = [
+      'انقطاع الشبكة',
+      'بطء الإنترنت',
+      'مشكلة الواي فاي',
+      'إعداد الراوتر',
+      'فشل الاتصال بالخادم'
+    ];
+    document.getElementById('issue').addEventListener('input', function() {
+      const input = this.value.toLowerCase();
+      const suggestionsEl = document.getElementById('suggestions');
+      suggestionsEl.innerHTML = '';
+      if (input) {
+        const matches = suggestions.filter(s => s.includes(input));
+        if (matches.length) {
+          matches.forEach(match => {
+            const div = document.createElement('div');
+            div.textContent = match;
+            div.onclick = () => {
+              document.getElementById('issue').value = match;
+              suggestionsEl.style.display = 'none';
+            };
+            suggestionsEl.appendChild(div);
+          });
+          suggestionsEl.style.display = 'block';
+        } else {
+          suggestionsEl.style.display = 'none';
+        }
+      } else {
+        suggestionsEl.style.display = 'none';
+      }
+    });
+
+    // Check ticket status
+    function checkTicket() {
+      const ticketId = document.getElementById('ticket-check').value.trim();
+      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+      const statusEl = document.getElementById('ticket-status');
+
+      for (let encryptedTicket of tickets) {
+        try {
+          const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
+          const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+          if (ticket.ticketNumber === ticketId) {
+            statusEl.textContent = `الطلب: ${ticket.ticketNumber}, الاسم: ${ticket.name}, المشكلة: ${ticket.issue}, التاريخ: ${ticket.date}${ticket.isEmergency ? ' (عاجل)' : ''}`;
+            return;
+          }
+        } catch (error) {
+          console.error('Error decrypting ticket:', error);
+        }
+      }
+      statusEl.textContent = 'لم يتم العثور على طلب بهذا الرقم.';
+    }
+
+    // Chatbot
+    function toggleChatbot() {
+      const panel = document.getElementById('chatbot-panel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      gsap.to('#chatbot-panel', { opacity: panel.style.display === 'block' ? 1 : 0, y: panel.style.display === 'block' ? 0 : 20, duration: 0.3 });
+    }
+
+    document.getElementById('chatbot-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const input = this.value.toLowerCase();
+        const responseEl = document.getElementById('chatbot-response');
+        if (input.includes('انقطاع') || input.includes('إنترنت')) {
+          responseEl.textContent = 'جرب إعادة تشغيل الراوتر أو فحص الكابلات. إذا استمرت المشكلة، قدم طلب دعم.';
+        } else if (input.includes('طلب')) {
+          responseEl.textContent = 'املأ النموذج أعلاه أو اضغط "طلب عاجل" للتواصل عبر واتساب.';
+        } else {
+          responseEl.textContent = 'جرب وصف المشكلة مثل "انقطاع الإنترنت" أو اسأل عن تقديم طلب.';
+        }
+        this.value = '';
+      }
+    });
+
+    // AR guide
+    function startAR() {
+      const arContainer = document.getElementById('ar-container');
+      arContainer.style.display = 'block';
+      gsap.to('#ar-container', { opacity: 1, duration: 0.5 });
+    }
+
+    // Statistics
+    function updateStats() {
+      const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+      const today = new Date().toLocaleDateString('ar-EG');
+      const dailyCounts = {};
+
+      tickets.forEach(encryptedTicket => {
+        try {
+          const bytes = CryptoJS.AES.decrypt(encryptedTicket, 'doctor-net-secret');
+          const ticket = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+          const date = ticket.date.split(',')[0];
+          dailyCounts[date] = (dailyCounts[date] || 0) + 1;
+        } catch (error) {
+          console.error('Error decrypting ticket:', error);
+        }
+      });
+
+      const labels = Object.keys(dailyCounts).slice(-7);
+      const data = labels.map(date => dailyCounts[date]);
+
+      const ctx = document.getElementById('stats-canvas').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'عدد الطلبات اليومية',
+            data: data,
+            borderColor: '#DC2626',
+            backgroundColor: 'rgba(220, 38, 38, 0.2)',
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+    updateStats();
+  </script>
+</body>
+</html>
