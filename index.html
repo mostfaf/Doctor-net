@@ -1,532 +1,257 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>دكتور نت لحلول الشبكات - حجز الدعم الفني</title>
-  <style>
-    /* --- Reset and base styles --- */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #333;
-    }
-    h1, h2, h3 {
-      margin: 0 0 15px 0;
-      font-weight: 700;
-      color: #004d99;
-    }
-    a {
-      color: #004d99;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    button {
-      cursor: pointer;
-      background: #004d99;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 5px;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #003366;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1.5px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: #004d99;
-      outline: none;
-    }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: white;
-      padding: 25px 30px 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    /* --- Tabs --- */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 25px;
-      gap: 15px;
-    }
-    .tab {
-      padding: 10px 25px;
-      border-radius: 30px;
-      background: #e1e9f8;
-      color: #004d99;
-      font-weight: 600;
-      user-select: none;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .tab.active {
-      background: #004d99;
-      color: white;
-      box-shadow: 0 4px 10px rgba(0,77,153,0.4);
-    }
-    /* --- Form styles --- */
-    label {
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: block;
-    }
-    .small-text {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: -10px;
-      margin-bottom: 15px;
-    }
-    /* --- Status badges --- */
-    .status-badge {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      display: inline-block;
-      min-width: 90px;
-      text-align: center;
-      color: white;
-    }
-    .status-pending {
-      background-color: #f0ad4e;
-    }
-    .status-completed {
-      background-color: #5cb85c;
-    }
-    .status-deleted {
-      background-color: #d9534f;
-    }
-    /* --- Table styles --- */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    th, td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
-    th {
-      background-color: #004d99;
-      color: white;
-    }
-    tr:hover {
-      background-color: #f5faff;
-    }
-    /* --- Footer --- */
-    footer {
-      text-align: center;
-      padding: 15px 10px;
-      background: #004d99;
-      color: white;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-    footer a {
-      color: #a9d1ff;
-      font-weight: 700;
-    }
-    /* --- Responsive --- */
-    @media (max-width: 600px) {
-      .tabs {
-        flex-direction: column;
-        gap: 10px;
-      }
-      button {
-        width: 100%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>دكتور نت لحلول الشبكات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Tahoma, Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px 25px 25px 25px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
+        h1 { color: #2186c4; text-align: center; }
+        h2 { color: #2186c4; margin-top: 40px; }
+        label { display: block; margin: 10px 0 4px 0; }
+        input, textarea, select { width: 100%; padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #2186c4; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #176399; }
+        .admin-section { display: none; margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #2186c4; color: #fff; }
+        .logout-btn { margin-top: 15px; float: left; background: #e74c3c; }
+        .success { color: green; margin: 10px 0; }
+        .error { color: red; margin: 10px 0; }
+        .flex-row { display: flex; gap: 10px; }
+        @media (max-width: 700px) {
+            .container { padding: 10px 5px; }
+            table, th, td { font-size: 13px; }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>دكتور نت لحلول الشبكات</h1>
+        <p style="text-align:center;">لحجز طلبات الدعم الفني بسهولة وسرعة</p>
+        
+        <!-- حجز طلب جديد -->
+        <h2>حجز طلب جديد</h2>
+        <form id="ticket-form">
+            <label for="name">الاسم الكامل:</label>
+            <input type="text" id="name" required>
+            <label for="phone">رقم الهاتف:</label>
+            <input type="text" id="phone" required>
+            <label for="email">البريد الإلكتروني (اختياري):</label>
+            <input type="email" id="email">
+            <label for="desc">وصف المشكلة:</label>
+            <textarea id="desc" rows="3" required></textarea>
+            <button type="submit" id="submit-btn">حجز الطلب</button>
+            <div id="ticket-success" class="success"></div>
+            <div id="ticket-error" class="error"></div>
+        </form>
 
-  <div class="container">
-    <h1>دكتور نت لحلول الشبكات</h1>
-    <p style="color:#555; margin-bottom: 30px;">لحجز طلبات الدعم الفني بسهولة وسرعة</p>
+        <!-- متابعة الطلب -->
+        <h2>متابعة الطلب</h2>
+        <form id="track-form">
+            <label for="track-id">أدخل رقم الحجز لمتابعة الطلب:</label>
+            <input type="text" id="track-id" required>
+            <button type="submit" id="track-btn">متابعة</button>
+            <div id="track-result"></div>
+        </form>
 
-    <div class="tabs">
-      <div class="tab active" id="tab-book">حجز طلب جديد</div>
-      <div class="tab" id="tab-track">متابعة الطلب</div>
-      <div class="tab" id="tab-admin">لوحة الإدارة</div>
+        <!-- لوحة الإدارة -->
+        <h2>لوحة الإدارة</h2>
+        <form id="admin-login-form">
+            <label for="admin-password">كلمة مرور لوحة الإدارة:</label>
+            <input type="password" id="admin-password" required>
+            <button type="submit">دخول</button>
+            <div id="admin-login-error" class="error"></div>
+        </form>
+
+        <div class="admin-section" id="admin-section">
+            <button class="logout-btn" id="logout-btn">تسجيل خروج</button>
+            <h3>لوحة إدارة الطلبات</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>رقم الحجز</th>
+                        <th>الاسم</th>
+                        <th>الهاتف</th>
+                        <th>الوصف</th>
+                        <th>الحالة</th>
+                        <th>تغيير الحالة</th>
+                        <th>حذف</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-tbody"></tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- حجز طلب جديد -->
-    <section id="section-book">
-      <form id="bookingForm">
-        <label for="name">الاسم الكامل:</label>
-        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل" />
-
-        <label for="phone">رقم الهاتف:</label>
-        <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم هاتفك" pattern="^\+?\d{7,15}$" title="رقم هاتف صالح" />
-
-        <label for="email">البريد الإلكتروني (اختياري):</label>
-        <input type="email" id="email" name="email" placeholder="example@mail.com" />
-
-        <label for="issue">وصف المشكلة:</label>
-        <textarea id="issue" name="issue" rows="4" required placeholder="صف مشكلتك بالتفصيل"></textarea>
-
-        <button type="submit">حجز الطلب</button>
-      </form>
-    </section>
-
-    <!-- متابعة الطلب -->
-    <section id="section-track" style="display:none;">
-      <form id="trackForm">
-        <label for="trackingNumber">أدخل رقم الحجز لمتابعة الطلب:</label>
-        <input type="text" id="trackingNumber" name="trackingNumber" required placeholder="رقم الحجز" />
-        <button type="submit">متابعة</button>
-      </form>
-      <div id="trackingResult" style="margin-top:20px; font-weight: 600;"></div>
-    </section>
-
-    <!-- لوحة الإدارة -->
-    <section id="section-admin" style="display:none;">
-      <form id="adminLoginForm">
-        <label for="adminPassword">كلمة مرور لوحة الإدارة:</label>
-        <input type="password" id="adminPassword" required placeholder="ادخل كلمة المرور" />
-        <button type="submit">دخول</button>
-      </form>
-
-      <div id="adminPanel" style="display:none; margin-top:20px;">
-        <h2>لوحة إدارة الطلبات</h2>
-        <table id="ordersTable">
-          <thead>
-            <tr>
-              <th>رقم الحجز</th>
-              <th>الاسم</th>
-              <th>الهاتف</th>
-              <th>الوصف</th>
-              <th>الحالة</th>
-              <th>تغيير الحالة</th>
-              <th>حذف</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- الطلبات ستظهر هنا -->
-          </tbody>
-        </table>
-        <button id="logoutBtn" style="margin-top:15px; background:#d9534f;">تسجيل خروج</button>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    برعاية <a href="#">سيستم سمارت راديوس</a> | حقوق النشر &copy; مصطفى عاطف الشوري
-  </footer>
-
-  <script>
-    // --- بيانات الطلبات مخزنة في localStorage ---
-    const STORAGE_KEY = "doctorNetOrders";
-
-    // --- عناصر الصفحة ---
-    const tabBook = document.getElementById("tab-book");
-    const tabTrack = document.getElementById("tab-track");
-    const tabAdmin = document.getElementById("tab-admin");
-
-    const sectionBook = document.getElementById("section-book");
-    const sectionTrack = document.getElementById("section-track");
-    const sectionAdmin = document.getElementById("section-admin");
-
-    const bookingForm = document.getElementById("bookingForm");
-    const trackForm = document.getElementById("trackForm");
-    const trackingResult = document.getElementById("trackingResult");
-
-    const adminLoginForm = document.getElementById("adminLoginForm");
-    const adminPasswordInput = document.getElementById("adminPassword");
-    const adminPanel = document.getElementById("adminPanel");
-    const ordersTableBody = document.querySelector("#ordersTable tbody");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    // --- كلمة مرور لوحة الإدارة ---
-    const ADMIN_PASSWORD = "admin54321";
-
-    // --- حالة الطلب ---
-    const STATUS_PENDING = "قيد التنفيذ";
-    const STATUS_COMPLETED = "مكتمل";
-    const STATUS_DELETED = "محذوف";
-
-    // --- تخزين واسترجاع الطلبات ---
-    function getOrders() {
-      const data = localStorage.getItem(STORAGE_KEY);
-      return data ? JSON.parse(data) : [];
-    }
-    function saveOrders(orders) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
-    }
-
-    // --- توليد رقم حجز فريد ---
-    function generateBookingNumber() {
-      // رقم عشوائي 6 أرقام مع تاريخ مختصر
-      const datePart = new Date().toISOString().slice(2,10).replace(/-/g,""); // YYMMDD
-      const randomPart = Math.floor(100000 + Math.random() * 900000);
-      return datePart + randomPart;
-    }
-
-    // --- تحويل الطلب إلى واتساب ---
-    function sendToWhatsApp(order) {
-      const waNumber = "201064496440";
-      const text = encodeURIComponent(
-        `طلب دعم فني جديد\n` +
-        `رقم الحجز: ${order.bookingNumber}\n` +
-        `الاسم: ${order.name}\n` +
-        `الهاتف: ${order.phone}\n` +
-        `البريد: ${order.email || "-"}\n` +
-        `الوصف: ${order.issue}`
-      );
-      const url = `https://wa.me/${waNumber}?text=${text}`;
-      window.open(url, "_blank");
-    }
-
-    // --- عرض حالة الطلب مع لون ---
-    function getStatusBadge(status) {
-      let className = "";
-      switch(status) {
-        case STATUS_PENDING: className = "status-pending"; break;
-        case STATUS_COMPLETED: className = "status-completed"; break;
-        case STATUS_DELETED: className = "status-deleted"; break;
-        default: className = "";
-      }
-      return `<span class="status-badge ${className}">${status}</span>`;
-    }
-
-    // --- تحديث جدول الطلبات في لوحة الإدارة ---
-    function renderOrdersTable() {
-      const orders = getOrders();
-      ordersTableBody.innerHTML = "";
-      if (orders.length === 0) {
-        ordersTableBody.innerHTML = `<tr><td colspan="7" style="color:#999;">لا توجد طلبات حالياً</td></tr>`;
-        return;
-      }
-      orders.forEach(order => {
-        if(order.status === STATUS_DELETED) return; // لا تعرض المحذوفة
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${order.bookingNumber}</td>
-          <td>${order.name}</td>
-          <td>${order.phone}</td>
-          <td style="text-align:right;">${order.issue.replace(/\n/g,"<br>")}</td>
-          <td>${getStatusBadge(order.status)}</td>
-          <td>
-            <select data-booking="${order.bookingNumber}">
-              <option value="${STATUS_PENDING}" ${order.status === STATUS_PENDING ? "selected" : ""}>قيد التنفيذ</option>
-              <option value="${STATUS_COMPLETED}" ${order.status === STATUS_COMPLETED ? "selected" : ""}>مكتمل</option>
-              <option value="${STATUS_DELETED}">محذوف</option>
-            </select>
-          </td>
-          <td><button data-delete="${order.bookingNumber}" style="background:#d9534f; padding:6px 12px; font-size:0.9rem;">حذف</button></td>
-        `;
-        ordersTableBody.appendChild(tr);
-      });
-    }
-
-    // --- تغيير حالة الطلب ---
-    function changeOrderStatus(bookingNumber, newStatus) {
-      const orders = getOrders();
-      const index = orders.findIndex(o => o.bookingNumber === bookingNumber);
-      if(index !== -1) {
-        if(newStatus === STATUS_DELETED) {
-          // حذف الطلب فعلياً
-          orders.splice(index, 1);
-        } else {
-          orders[index].status = newStatus;
-        }
-        saveOrders(orders);
-        renderOrdersTable();
-      }
-    }
-
-    // --- التبديل بين التبويبات ---
-    function switchTab(tab) {
-      // إزالة الكلاس من الكل
-      [tabBook, tabTrack, tabAdmin].forEach(t => t.classList.remove("active"));
-      [sectionBook, sectionTrack, sectionAdmin].forEach(s => s.style.display = "none");
-
-      // عرض القسم المناسب
-      if(tab === "book") {
-        tabBook.classList.add("active");
-        sectionBook.style.display = "block";
-      } else if(tab === "track") {
-        tabTrack.classList.add("active");
-        sectionTrack.style.display = "block";
-      } else if(tab === "admin") {
-        tabAdmin.classList.add("active");
-        sectionAdmin.style.display = "block";
-      }
-    }
-
-    // --- التحقق من كلمة مرور الإدارة ---
-    function checkAdminPassword(password) {
-      return password === ADMIN_PASSWORD;
-    }
-
-    // --- تسجيل دخول الإدارة ---
-    function adminLogin(password) {
-      if(checkAdminPassword(password)) {
-        adminLoginForm.style.display = "none";
-        adminPanel.style.display = "block";
-        renderOrdersTable();
-        alert("تم تسجيل الدخول بنجاح");
-      } else {
-        alert("كلمة المرور غير صحيحة");
-      }
-    }
-
-    // --- تسجيل خروج الإدارة ---
-    function adminLogout() {
-      adminLoginForm.style.display = "block";
-      adminPanel.style.display = "none";
-      adminPasswordInput.value = "";
-    }
-
-    // --- متابعة حالة الطلب ---
-    function trackOrder(bookingNumber) {
-      const orders = getOrders();
-      const order = orders.find(o => o.bookingNumber === bookingNumber);
-      if(!order) {
-        trackingResult.innerHTML = `<span style="color:#d9534f;">رقم الحجز غير موجود</span>`;
-        return;
-      }
-      if(order.status === STATUS_DELETED) {
-        trackingResult.innerHTML = `<span style="color:#d9534f;">هذا الطلب محذوف</span>`;
-        return;
-      }
-      // يمكن إضافة حساب تقريبي للانتظار (مثلاً: حسب ترتيب الطلبات قيد التنفيذ)
-      const pendingOrders = orders.filter(o => o.status === STATUS_PENDING);
-      const position = pendingOrders.findIndex(o => o.bookingNumber === bookingNumber) + 1;
-      let waitMsg = "";
-      if(order.status === STATUS_PENDING) {
-        waitMsg = `وضعك في قائمة الانتظار: ${position} من ${pendingOrders.length} طلبات قيد التنفيذ.`;
-      } else if(order.status === STATUS_COMPLETED) {
-        waitMsg = "تم الانتهاء من طلبك.";
-      }
-      trackingResult.innerHTML = `
-        <p>رقم الحجز: <strong>${order.bookingNumber}</strong></p>
-        <p>الحالة: ${getStatusBadge(order.status)}</p>
-        <p>${waitMsg}</p>
-      `;
-    }
-
-    // --- حدث حجز الطلب ---
-    bookingForm.addEventListener("submit", e => {
-      e.preventDefault();
-
-      const name = bookingForm.name.value.trim();
-      const phone = bookingForm.phone.value.trim();
-      const email = bookingForm.email.value.trim();
-      const issue = bookingForm.issue.value.trim();
-
-      if(!name || !phone || !issue) {
-        alert("يرجى ملء الحقول المطلوبة");
-        return;
-      }
-
-      const bookingNumber = generateBookingNumber();
-
-      const newOrder = {
-        bookingNumber,
-        name,
-        phone,
-        email,
-        issue,
-        status: STATUS_PENDING,
-        createdAt: new Date().toISOString()
+    <!-- Firebase App (core) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <!-- Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <!-- (اختياري) Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+    <script>
+      // بيانات مشروعك من Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
+        authDomain: "doctor-net-e72eb.firebaseapp.com",
+        projectId: "doctor-net-e72eb",
+        storageBucket: "doctor-net-e72eb.appspot.com",
+        messagingSenderId: "564197492244",
+        appId: "1:564197492244:web:a901c2dac343aa5a268901",
+        measurementId: "G-RZ2XHF1J27"
       };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+      if (firebase.analytics) { firebase.analytics(); }
+    </script>
 
-      const orders = getOrders();
-      orders.push(newOrder);
-      saveOrders(orders);
+    <script>
+    // =========== حجز طلب جديد ===========
+    document.getElementById("ticket-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const desc = document.getElementById("desc").value.trim();
+        const successDiv = document.getElementById("ticket-success");
+        const errorDiv = document.getElementById("ticket-error");
+        successDiv.textContent = "";
+        errorDiv.textContent = "";
 
-      // تحويل إلى واتساب
-      sendToWhatsApp(newOrder);
-
-      alert(`تم حجز الطلب بنجاح\nرقم الحجز الخاص بك: ${bookingNumber}\nيمكنك متابعة الطلب باستخدام رقم الحجز.`);
-
-      bookingForm.reset();
-      switchTab("track");
-      document.getElementById("trackingNumber").value = bookingNumber;
-      trackOrder(bookingNumber);
-    });
-
-    // --- حدث متابعة الطلب ---
-    trackForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const bookingNumber = trackForm.trackingNumber.value.trim();
-      if(!bookingNumber) {
-        alert("يرجى إدخال رقم الحجز");
-        return;
-      }
-      trackOrder(bookingNumber);
-    });
-
-    // --- حدث دخول لوحة الإدارة ---
-    adminLoginForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const password = adminPasswordInput.value.trim();
-      if(!password) {
-        alert("يرجى إدخال كلمة المرور");
-        return;
-      }
-      adminLogin(password);
-    });
-
-    // --- حدث تغيير حالة الطلب ---
-    ordersTableBody.addEventListener("change", e => {
-      if(e.target.tagName === "SELECT") {
-        const bookingNumber = e.target.getAttribute("data-booking");
-        const newStatus = e.target.value;
-        if(bookingNumber && newStatus) {
-          changeOrderStatus(bookingNumber, newStatus);
+        if (!name || !phone || !desc) {
+            errorDiv.textContent = "يرجى ملء جميع الحقول المطلوبة.";
+            return;
         }
-      }
+
+        const ticket = {
+            name,
+            phone,
+            email,
+            desc,
+            status: "جديد",
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        db.collection("tickets").add(ticket)
+            .then((docRef) => {
+                successDiv.textContent = "تم حجز الطلب بنجاح! رقم الحجز: " + docRef.id;
+                document.getElementById("ticket-form").reset();
+            })
+            .catch((error) => {
+                errorDiv.textContent = "حدث خطأ أثناء الحجز: " + error.message;
+            });
     });
 
-    // --- حدث حذف الطلب ---
-    ordersTableBody.addEventListener("click", e => {
-      if(e.target.tagName === "BUTTON" && e.target.hasAttribute("data-delete")) {
-        const bookingNumber = e.target.getAttribute("data-delete");
-        if(confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
-          changeOrderStatus(bookingNumber, STATUS_DELETED);
+    // =========== متابعة الطلب ===========
+    document.getElementById("track-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const ticketId = document.getElementById("track-id").value.trim();
+        const resultDiv = document.getElementById("track-result");
+        resultDiv.textContent = "";
+
+        if (!ticketId) {
+            resultDiv.textContent = "يرجى إدخال رقم الحجز.";
+            return;
         }
-      }
+
+        db.collection("tickets").doc(ticketId).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    const t = doc.data();
+                    resultDiv.innerHTML =
+                        `<div class="success">
+                            <b>الاسم:</b> ${t.name}<br>
+                            <b>الهاتف:</b> ${t.phone}<br>
+                            <b>الوصف:</b> ${t.desc}<br>
+                            <b>الحالة:</b> ${t.status}
+                        </div>`;
+                } else {
+                    resultDiv.innerHTML = '<div class="error">لم يتم العثور على الطلب.</div>';
+                }
+            })
+            .catch((error) => {
+                resultDiv.innerHTML = '<div class="error">حدث خطأ أثناء البحث: ' + error.message + '</div>';
+            });
     });
 
-    // --- حدث تسجيل خروج الإدارة ---
-    logoutBtn.addEventListener("click", () => {
-      adminLogout();
+    // =========== لوحة الإدارة ===========
+    const ADMIN_PASSWORD = "doctor123"; // يمكنك تغيير كلمة المرور هنا
+
+    document.getElementById("admin-login-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const password = document.getElementById("admin-password").value;
+        const errorDiv = document.getElementById("admin-login-error");
+        errorDiv.textContent = "";
+        if (password === ADMIN_PASSWORD) {
+            document.getElementById("admin-section").style.display = "block";
+            document.getElementById("admin-login-form").style.display = "none";
+            fetchTicketsFromFirestore();
+        } else {
+            errorDiv.textContent = "كلمة المرور غير صحيحة!";
+        }
     });
 
-    // --- التبديل بين التبويبات ---
-    tabBook.addEventListener("click", () => switchTab("book"));
-    tabTrack.addEventListener("click", () => switchTab("track"));
-    tabAdmin.addEventListener("click", () => switchTab("admin"));
+    document.getElementById("logout-btn").addEventListener("click", function() {
+        document.getElementById("admin-section").style.display = "none";
+        document.getElementById("admin-login-form").style.display = "block";
+        document.getElementById("admin-password").value = "";
+    });
 
-    // --- بدء الصفحة بالتبويب الأول ---
-    switchTab("book");
-  </script>
+    function fetchTicketsFromFirestore() {
+        db.collection("tickets").orderBy("createdAt", "desc").get().then((querySnapshot) => {
+            const tickets = [];
+            querySnapshot.forEach((doc) => {
+                tickets.push({ id: doc.id, ...doc.data() });
+            });
+            renderTicketsTable(tickets);
+        });
+    }
 
+    function renderTicketsTable(tickets) {
+        const tbody = document.getElementById("admin-tbody");
+        tbody.innerHTML = "";
+        tickets.forEach((t) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${t.id}</td>
+                <td>${t.name}</td>
+                <td>${t.phone}</td>
+                <td>${t.desc}</td>
+                <td>${t.status}</td>
+                <td>
+                    <select onchange="updateTicketStatus('${t.id}', this.value)">
+                        <option value="جديد" ${t.status === "جديد" ? "selected" : ""}>جديد</option>
+                        <option value="جاري التنفيذ" ${t.status === "جاري التنفيذ" ? "selected" : ""}>جاري التنفيذ</option>
+                        <option value="مغلق" ${t.status === "مغلق" ? "selected" : ""}>مغلق</option>
+                    </select>
+                </td>
+                <td>
+                    <button onclick="deleteTicket('${t.id}')">حذف</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // تحديث حالة الطلب
+    function updateTicketStatus(id, newStatus) {
+        db.collection("tickets").doc(id).update({ status: newStatus })
+            .then(() => fetchTicketsFromFirestore());
+    }
+    window.updateTicketStatus = updateTicketStatus;
+
+    // حذف طلب
+    function deleteTicket(id) {
+        if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+            db.collection("tickets").doc(id).delete()
+                .then(() => fetchTicketsFromFirestore());
+        }
+    }
+    window.deleteTicket = deleteTicket;
+
+    </script>
 </body>
 </html>
