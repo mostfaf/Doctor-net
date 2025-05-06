@@ -38,19 +38,168 @@
         return gk_fileData[filename] || "";
         }
         </script><!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="دكتور نت - دعم فني متقدم بسهولة وسرعة، مقدم من مصطفى عاطف الشوري">
-  <meta name="keywords" content="دكتور نت, دعم فني, مصطفى عاطف الشوري, تقنية, خدمات تقنية">
-  <meta name="author" content="مصطفى عاطف الشوري">
-  <title>دكتور نت - الدعم الفني المستقبلي</title>
-  <link rel="stylesheet" href="/src/styles.css">
-  <link rel="icon" href="/src/assets/logo.png">
+  <title>دكتور نت - دعم فني</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Arial, sans-serif; direction: rtl; }
+  </style>
 </head>
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4 max-w-4xl">
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">دكتور نت - دعم فني</h1>
+
+    <!-- Form -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+      <h2 class="text-xl font-semibold mb-4">تسجيل طلب دعم</h2>
+      <div>
+        <div class="mb-4">
+          <label class="block text-gray-700">الاسم</label>
+          <input
+            type="text"
+            id="name"
+            class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="أدخل اسمك"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700">رقم الهاتف</label>
+          <input
+            type="tel"
+            id="phone"
+            class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="أدخل رقم هاتفك"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700">وصف المشكلة</label>
+          <textarea
+            id="issue"
+            class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="صف المشكلة بالتفصيل"
+            rows="4"
+          ></textarea>
+        </div>
+        <button
+          onclick="submitRequest()"
+          class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
+        >
+          إرسال الطلب
+        </button>
+      </div>
+    </div>
+
+    <!-- Password Section -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+      <h2 class="text-xl font-semibold mb-4">عرض الطلبات المسجلة</h2>
+      <div class="mb-4">
+        <label class="block text-gray-700">أدخل الرقم السري</label>
+        <input
+          type="password"
+          id="password"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="أدخل الرقم السري"
+        />
+      </div>
+      <button
+        onclick="showRequests()"
+        class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700 transition"
+      >
+        عرض الطلبات
+      </button>
+    </div>
+
+    <!-- Requests Table -->
+    <div id="requests-table" class="bg-white p-6 rounded-lg shadow-md hidden">
+      <h2 class="text-xl font-semibold mb-4">الطلبات المسجلة</h2>
+      <div id="table-content">
+        <p class="text-gray-600">لا توجد طلبات مسجلة بعد.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PASSWORD = 'admin12345';
+
+    function loadRequests() {
+      const requests = JSON.parse(localStorage.getItem('techSupportRequests') || '[]');
+      const tableContent = document.getElementById('table-content');
+      if (requests.length === 0) {
+        tableContent.innerHTML = '<p class="text-gray-600">لا توجد طلبات مسجلة بعد.</p>';
+        return;
+      }
+
+      let tableHTML = `
+        <div class="overflow-x-auto">
+          <table class="w-full text-right">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="p-2">الاسم</th>
+                <th class="p-2">رقم الهاتف</th>
+                <th class="p-2">المشكلة</th>
+                <th class="p-2">التاريخ</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+      requests.forEach(req => {
+        tableHTML += `
+          <tr class="border-t">
+            <td class="p-2">${req.name}</td>
+            <td class="p-2">${req.phone}</td>
+            <td class="p-2">${req.issue}</td>
+            <td class="p-2">${req.date}</td>
+          </tr>
+        `;
+      });
+      tableHTML += '</tbody></table></div>';
+      tableContent.innerHTML = tableHTML;
+    }
+
+    function submitRequest() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const issue = document.getElementById('issue').value;
+
+      if (!name || !phone || !issue) {
+        alert('يرجى ملء جميع الحقول');
+        return;
+      }
+
+      const newRequest = {
+        id: Date.now(),
+        name,
+        phone,
+        issue,
+        date: new Date().toLocaleString('ar-EG')
+      };
+
+      const requests = JSON.parse(localStorage.getItem('techSupportRequests') || '[]');
+      requests.push(newRequest);
+      localStorage.setItem('techSupportRequests', JSON.stringify(requests));
+
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('issue').value = '';
+
+      alert('تم تسجيل الطلب بنجاح!');
+    }
+
+    function showRequests() {
+      const password = document.getElementById('password').value;
+      const tableSection = document.getElementById('requests-table');
+
+      if (password === PASSWORD) {
+        tableSection.classList.remove('hidden');
+        loadRequests();
+        document.getElementById('password').value = '';
+      } else {
+        alert('الرقم السري غير صحيح!');
+      }
+    }
+  </script>
 </body>
 </html>
