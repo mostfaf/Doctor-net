@@ -5,32 +5,155 @@
     <title>دكتور نت لحلول الشبكات</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: Tahoma, Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px 25px 25px 25px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
-        h1 { color: #2186c4; text-align: center; }
-        h2 { color: #2186c4; margin-top: 40px; }
-        label { display: block; margin: 10px 0 4px 0; }
-        input, textarea, select { width: 100%; padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 5px; }
-        button { background: #2186c4; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #176399; }
-        .admin-section { display: none; margin-top: 30px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        th { background: #2186c4; color: #fff; }
-        .logout-btn { margin-top: 15px; float: left; background: #e74c3c; }
-        .success { color: green; margin: 10px 0; }
-        .error { color: red; margin: 10px 0; }
-        .flex-row { display: flex; gap: 10px; }
+        body {
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            margin: 0; padding: 0;
+        }
+        .container {
+            max-width: 650px;
+            margin: 40px auto 20px auto;
+            background: #fff;
+            padding: 35px 25px 25px 25px;
+            border-radius: 14px;
+            box-shadow: 0 6px 24px #b3c2d4;
+            position: relative;
+        }
+        h1 {
+            color: #2186c4;
+            text-align: center;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        h2 {
+            color: #176399;
+            margin-top: 40px;
+            margin-bottom: 8px;
+            border-right: 5px solid #2186c4;
+            padding-right: 8px;
+            font-size: 1.2em;
+        }
+        label {
+            display: block;
+            margin: 10px 0 4px 0;
+            font-weight: bold;
+            color: #333;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 9px;
+            margin-bottom: 12px;
+            border: 1px solid #b3c2d4;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f7fbff;
+            transition: border 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border: 1.5px solid #2186c4;
+            outline: none;
+        }
+        button {
+            background: linear-gradient(90deg, #2186c4 0%, #176399 100%);
+            color: #fff;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 2px 8px #cfd8e6;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #176399 0%, #2186c4 100%);
+            transform: scale(1.04);
+        }
+        .admin-section {
+            display: none;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #f7fbff;
+        }
+        th, td {
+            border: 1px solid #d6e0ef;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background: #2186c4;
+            color: #fff;
+            font-size: 1em;
+        }
+        .logout-btn {
+            margin-top: 15px;
+            float: left;
+            background: #e74c3c;
+            font-size: 0.95em;
+            padding: 8px 18px;
+        }
+        .success {
+            color: #219150;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .whatsapp-section {
+            background: #e7f9ed;
+            border: 1.5px solid #25d366;
+            border-radius: 8px;
+            margin: 16px 0 8px 0;
+            padding: 13px 10px 10px 10px;
+            text-align: center;
+        }
+        .whatsapp-btn {
+            background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            font-size: 1.05em;
+            border: none;
+            border-radius: 6px;
+            padding: 9px 24px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .whatsapp-btn:hover {
+            background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
+            transform: scale(1.05);
+        }
+        .copyright {
+            text-align: center;
+            color: #666;
+            font-size: 0.98em;
+            margin: 30px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+        .copyright strong {
+            color: #2186c4;
+        }
         @media (max-width: 700px) {
-            .container { padding: 10px 5px; }
+            .container { padding: 12px 4px; }
             table, th, td { font-size: 13px; }
+            h1 { font-size: 1.3em; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>دكتور نت لحلول الشبكات</h1>
-        <p style="text-align:center;">لحجز طلبات الدعم الفني بسهولة وسرعة</p>
+        <p style="text-align:center; color:#555; margin-bottom:18px;">
+            لحجز طلبات الدعم الفني بسهولة وسرعة
+        </p>
         
         <!-- حجز طلب جديد -->
         <h2>حجز طلب جديد</h2>
@@ -46,6 +169,8 @@
             <button type="submit" id="submit-btn">حجز الطلب</button>
             <div id="ticket-success" class="success"></div>
             <div id="ticket-error" class="error"></div>
+            <!-- مكان رسالة واتساب سيظهر هنا -->
+            <div id="whatsapp-section"></div>
         </form>
 
         <!-- متابعة الطلب -->
@@ -68,7 +193,7 @@
 
         <div class="admin-section" id="admin-section">
             <button class="logout-btn" id="logout-btn">تسجيل خروج</button>
-            <h3>لوحة إدارة الطلبات</h3>
+            <h3 style="color:#176399;">لوحة إدارة الطلبات</h3>
             <table>
                 <thead>
                     <tr>
@@ -84,6 +209,10 @@
                 <tbody id="admin-tbody"></tbody>
             </table>
         </div>
+    </div>
+
+    <div class="copyright">
+        حقوق النشر &copy; <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong>
     </div>
 
     <!-- Firebase App (core) -->
@@ -118,8 +247,10 @@
         const desc = document.getElementById("desc").value.trim();
         const successDiv = document.getElementById("ticket-success");
         const errorDiv = document.getElementById("ticket-error");
+        const whatsappDiv = document.getElementById("whatsapp-section");
         successDiv.textContent = "";
         errorDiv.textContent = "";
+        whatsappDiv.innerHTML = "";
 
         if (!name || !phone || !desc) {
             errorDiv.textContent = "يرجى ملء جميع الحقول المطلوبة.";
@@ -137,7 +268,27 @@
 
         db.collection("tickets").add(ticket)
             .then((docRef) => {
-                successDiv.textContent = "تم حجز الطلب بنجاح! رقم الحجز: " + docRef.id;
+                const ticketId = docRef.id;
+                successDiv.textContent = "تم حجز الطلب بنجاح! رقم الحجز: " + ticketId;
+
+                // رسالة واتساب
+                whatsappDiv.innerHTML = `
+                  <div class="whatsapp-section">
+                    <div style="font-size:1.05em; color:#128c7e; font-weight:bold;">
+                      يرجى إرسال رقم الحجز الخاص بك على الواتساب حتى يتم متابعة طلبك بسرعة!
+                    </div>
+                    <a class="whatsapp-btn"
+                       href="https://wa.me/201064496440?text=مرحباً،%20رقم%20حجز%20الدعم%20الخاص%20بي%20هو:%20${ticketId}"
+                       target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب" style="width:22px;vertical-align:middle;margin-left:7px;">
+                        إرسال رقم الحجز على الواتساب
+                    </a>
+                    <div style="margin-top:7px; color:#555; font-size:0.98em;">
+                      أو قم بنسخ رقم الحجز وإرساله يدويًا على الواتساب: <b>201064496440+</b>
+                    </div>
+                  </div>
+                `;
+
                 document.getElementById("ticket-form").reset();
             })
             .catch((error) => {
