@@ -1,1052 +1,532 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دكتور نت | حجز طلبات الدعم الفني</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f9f9f9;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            left: -80px;
-            width: 300px;
-            height: 300px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-        }
-        
-        .logo {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .logo i {
-            margin-left: 10px;
-            color: var(--light);
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Main Content Styles */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .floating-btns {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-        
-        .floating-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--secondary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .floating-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-        
-        .floating-btn.admin {
-            background: var(--primary);
-        }
-        
-        .booking-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 650px;
-            padding: 40px;
-            margin-bottom: 40px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .booking-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--secondary), var(--primary));
-        }
-        
-        .booking-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: var(--secondary);
-            margin: 15px auto;
-            border-radius: 3px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            font-family: 'Tajawal', sans-serif;
-            transition: all 0.3s;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-        
-        .btn {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-        
-        .btn:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
-        }
-        
-        .btn:active {
-            transform: translateY(1px);
-        }
-        
-        .status-check {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 650px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-        
-        /* Admin Panel Styles */
-        .admin-panel {
-            display: none;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 1000px;
-            padding: 40px;
-            margin: 40px auto;
-            position: relative;
-        }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .admin-title {
-            color: var(--primary);
-        }
-        
-        .admin-controls {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .ticket-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--secondary);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-            border: 1px solid #eee;
-        }
-        
-        .ticket-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        
-        .ticket-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .ticket-meta {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .ticket-status {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        
-        .pending { background: var(--warning); color: white; }
-        .in-progress { background: var(--secondary); color: white; }
-        .completed { background: var(--success); color: white; }
-        .cancelled { background: var(--danger); color: white; }
-        
-        .ticket-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .action-btn {
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .action-btn i {
-            font-size: 0.8rem;
-        }
-        
-        .in-progress-btn { background: var(--secondary); color: white; }
-        .complete-btn { background: var(--success); color: white; }
-        .cancel-btn { background: var(--danger); color: white; }
-        .delete-btn { background: var(--dark); color: white; }
-        
-        .action-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-        
-        .ticket-details {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #eee;
-        }
-        
-        .detail-row {
-            display: flex;
-            margin-bottom: 10px;
-        }
-        
-        .detail-label {
-            font-weight: 600;
-            color: var(--primary);
-            min-width: 120px;
-        }
-        
-        /* Tracking Styles */
-        .tracking-container {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 650px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-        
-        .tracking-header {
-            margin-bottom: 30px;
-        }
-        
-        .tracking-title {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .tracking-number {
-            background: var(--light);
-            padding: 8px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .tracking-steps {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin: 50px 0;
-        }
-        
-        .tracking-steps::before {
-            content: '';
-            position: absolute;
-            top: 25px;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: #eee;
-            z-index: 1;
-            border-radius: 2px;
-        }
-        
-        .progress-bar {
-            position: absolute;
-            top: 25px;
-            left: 0;
-            height: 4px;
-            background: var(--secondary);
-            z-index: 2;
-            border-radius: 2px;
-            transition: width 0.5s ease-in-out;
-        }
-        
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 3;
-            width: 25%;
-        }
-        
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            background: #eee;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            color: #999;
-            transition: all 0.3s;
-            position: relative;
-            border: 3px solid #eee;
-            background: white;
-        }
-        
-        .step.active .step-icon {
-            border-color: var(--secondary);
-            color: var(--secondary);
-            transform: scale(1.1);
-        }
-        
-        .step.completed .step-icon {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-        
-        .step.cancelled .step-icon {
-            background: var(--danger);
-            border-color: var(--danger);
-            color: white;
-        }
-        
-        .step-title {
-            font-weight: 600;
-            color: #777;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        .step.active .step-title {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .step.completed .step-title,
-        .step.cancelled .step-title {
-            color: var(--dark);
-        }
-        
-        .time-estimate {
-            margin-top: 30px;
-            padding: 15px;
-            background: var(--light);
-            border-radius: 10px;
-            display: inline-block;
-        }
-        
-        .time-estimate i {
-            margin-left: 5px;
-            color: var(--secondary);
-        }
-        
-        /* Footer Styles */
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .copyright {
-            margin-bottom: 15px;
-        }
-        
-        .sponsor {
-            margin-top: 20px;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-        
-        .sponsor-logo {
-            font-weight: 700;
-            color: var(--secondary);
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            animation: modalFadeIn 0.3s;
-        }
-        
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-        }
-        
-        .close-modal:hover {
-            color: var(--danger);
-        }
-        
-        .modal-title {
-            margin-bottom: 20px;
-            color: var(--primary);
-            text-align: center;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.2rem;
-            }
-            
-            .tagline {
-                font-size: 1.1rem;
-            }
-            
-            .booking-card,
-            .status-check,
-            .admin-panel,
-            .tracking-container {
-                padding: 25px;
-            }
-            
-            .ticket-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .ticket-actions {
-                width: 100%;
-                justify-content: flex-end;
-            }
-            
-            .detail-row {
-                flex-direction: column;
-            }
-            
-            .detail-label {
-                margin-bottom: 5px;
-            }
-            
-            .step-title {
-                font-size: 0.8rem;
-            }
-        }
-        
-        /* Animation Styles */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Notification Styles */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transform: translateX(200%);
-            transition: transform 0.3s;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification.success {
-            background: var(--success);
-        }
-        
-        .notification.error {
-            background: var(--danger);
-        }
-        
-        .notification.warning {
-            background: var(--warning);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>دكتور نت لحلول الشبكات - حجز الدعم الفني</title>
+  <style>
+    /* --- Reset and base styles --- */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #333;
+    }
+    h1, h2, h3 {
+      margin: 0 0 15px 0;
+      font-weight: 700;
+      color: #004d99;
+    }
+    a {
+      color: #004d99;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    button {
+      cursor: pointer;
+      background: #004d99;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #003366;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #004d99;
+      outline: none;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px 30px 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    /* --- Tabs --- */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+      gap: 15px;
+    }
+    .tab {
+      padding: 10px 25px;
+      border-radius: 30px;
+      background: #e1e9f8;
+      color: #004d99;
+      font-weight: 600;
+      user-select: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .tab.active {
+      background: #004d99;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,77,153,0.4);
+    }
+    /* --- Form styles --- */
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .small-text {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+    /* --- Status badges --- */
+    .status-badge {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-block;
+      min-width: 90px;
+      text-align: center;
+      color: white;
+    }
+    .status-pending {
+      background-color: #f0ad4e;
+    }
+    .status-completed {
+      background-color: #5cb85c;
+    }
+    .status-deleted {
+      background-color: #d9534f;
+    }
+    /* --- Table styles --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #004d99;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f5faff;
+    }
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      background: #004d99;
+      color: white;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    footer a {
+      color: #a9d1ff;
+      font-weight: 700;
+    }
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      .tabs {
+        flex-direction: column;
+        gap: 10px;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo"><i class="fas fa-network-wired"></i> دكتور نت</h1>
-            <p class="tagline">حلول شبكات متكاملة باحترافية</p>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="main-content">
-            <!-- Booking Card -->
-            <div class="booking-card pulse">
-                <h2 class="section-title">حجز طلب دعم فني</h2>
-                
-                <form id="bookingForm">
-                    <div class="form-group">
-                        <label for="name"><i class="fas fa-user"></i> الاسم بالكامل</label>
-                        <input type="text" id="name" required placeholder="أدخل اسمك بالكامل">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone"><i class="fas fa-phone"></i> رقم الهاتف</label>
-                        <input type="tel" id="phone" required placeholder="أدخل رقم هاتفك">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email"><i class="fas fa-envelope"></i> البريد الإلكتروني (اختياري)</label>
-                        <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="service"><i class="fas fa-tools"></i> نوع الخدمة المطلوبة</label>
-                        <select id="service" required>
-                            <option value="">اختر الخدمة المطلوبة</option>
-                            <option value="network-setup">تركيب شبكة جديدة</option>
-                            <option value="network-fix">إصلاح مشاكل الشبكة</option>
-                            <option value="wifi-issues">مشاكل الواي فاي والاتصال</option>
-                            <option value="security">تأمين الشبكة وحمايتها</option>
-                            <option value="optimization">تحسين أداء الشبكة</option>
-                            <option value="other">أخرى (حدد في التفاصيل)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="details"><i class="fas fa-info-circle"></i> تفاصيل المشكلة</label>
-                        <textarea id="details" rows="5" required placeholder="صف المشكلة التي تواجهها بالتفصيل"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="address"><i class="fas fa-map-marker-alt"></i> العنوان (إن أمكن)</label>
-                        <input type="text" id="address" placeholder="أدخل عنوانك إن كانت الخدمة تتطلب زيارة">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="preferred-time"><i class="fas fa-clock"></i> الوقت المفضل للزيارة</label>
-                        <input type="datetime-local" id="preferred-time">
-                    </div>
-                    
-                    <button type="submit" class="btn">
-                        <i class="fas fa-paper-plane"></i> إرسال الطلب
-                    </button>
-                </form>
-            </div>
-            
-            <!-- Status Check -->
-            <div class="status-check">
-                <h3 class="section-title">تتبع حالة الطلب</h3>
-                <div class="form-group">
-                    <label for="tracking-number"><i class="fas fa-ticket-alt"></i> رقم الطلب</label>
-                    <input type="text" id="tracking-number" placeholder="أدخل رقم الطلب لمتابعته">
-                </div>
-                <button id="trackBtn" class="btn">
-                    <i class="fas fa-search"></i> تتبع الطلب
-                </button>
-            </div>
-            
-            <!-- Tracking Result -->
-            <div class="tracking-container" id="trackingResult">
-                <!-- سيتم ملؤه ديناميكيًا -->
-            </div>
-        </div>
-        
-        <!-- Admin Panel -->
-        <div class="admin-panel" id="adminPanel">
-            <div class="admin-header">
-                <h2 class="admin-title"><i class="fas fa-tachometer-alt"></i> لوحة إدارة الطلبات</h2>
-                <div class="admin-controls">
-                    <select id="filterStatus" class="action-btn">
-                        <option value="all">الكل</option>
-                        <option value="pending">قيد الانتظار</option>
-                        <option value="in-progress">قيد التنفيذ</option>
-                        <option value="completed">مكتمل</option>
-                        <option value="cancelled">ملغى</option>
-                    </select>
-                    <button class="action-btn in-progress-btn" id="refreshBtn">
-                        <i class="fas fa-sync-alt"></i> تحديث
-                    </button>
-                </div>
-            </div>
-            
-            <div id="ticketsList">
-                <!-- سيتم ملؤه ديناميكيًا -->
-            </div>
-        </div>
+
+  <div class="container">
+    <h1>دكتور نت لحلول الشبكات</h1>
+    <p style="color:#555; margin-bottom: 30px;">لحجز طلبات الدعم الفني بسهولة وسرعة</p>
+
+    <div class="tabs">
+      <div class="tab active" id="tab-book">حجز طلب جديد</div>
+      <div class="tab" id="tab-track">متابعة الطلب</div>
+      <div class="tab" id="tab-admin">لوحة الإدارة</div>
     </div>
-    
-    <!-- Floating Buttons -->
-    <div class="floating-btns">
-        <div class="floating-btn admin" id="adminBtn" title="لوحة الإدارة">
-            <i class="fas fa-user-shield"></i>
-        </div>
-        <div class="floating-btn" id="whatsappBtn" title="تواصل عبر واتساب">
-            <i class="fab fa-whatsapp"></i>
-        </div>
-    </div>
-    
-    <!-- Admin Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 class="modal-title">تسجيل دخول المدير</h3>
-            <div class="form-group">
-                <label for="adminPassword"><i class="fas fa-lock"></i> كلمة المرور</label>
-                <input type="password" id="adminPassword" placeholder="أدخل كلمة مرور المدير">
-            </div>
-            <button id="loginBtn" class="btn">
-                <i class="fas fa-sign-in-alt"></i> دخول
-            </button>
-        </div>
-    </div>
-    
-    <!-- Notification -->
-    <div class="notification" id="notification"></div>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p class="copyright">جميع الحقوق محفوظة &copy; <span id="year"></span> مصطفى عاطف الشوري</p>
-                <div class="sponsor">برعاية <span class="sponsor-logo">سيستم سمارت راديوس</span></div>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // عرض السنة الحالية في حقوق النشر
-            document.getElementById('year').textContent = new Date().getFullYear();
-            
-            // تهيئة البيانات إذا لم تكن موجودة
-            if (!localStorage.getItem('tickets')) {
-                localStorage.setItem('tickets', JSON.stringify({}));
-            }
-            
-            // معالجة نموذج الحجز
-            document.getElementById('bookingForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // جمع بيانات النموذج
-                const formData = {
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    service: document.getElementById('service').value,
-                    details: document.getElementById('details').value,
-                    address: document.getElementById('address').value,
-                    preferredTime: document.getElementById('preferred-time').value,
-                    status: 'pending',
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString()
-                };
-                
-                // التحقق من البيانات المطلوبة
-                if (!formData.name || !formData.phone || !formData.service || !formData.details) {
-                    showNotification('error', 'الرجاء ملء جميع الحقول المطلوبة');
-                    return;
-                }
-                
-                // إنشاء رقم طلب فريد
-                const ticketNumber = 'DN-' + Date.now().toString().slice(-6);
-                
-                // تخزين الطلب
-                let tickets = JSON.parse(localStorage.getItem('tickets'));
-                tickets[ticketNumber] = formData;
-                localStorage.setItem('tickets', JSON.stringify(tickets));
-                
-                // إعداد رسالة واتساب
-                const serviceName = getServiceName(formData.service);
-                const whatsappMessage = `طلب دعم فني جديد%0A%0Aالاسم: ${formData.name}%0Aالهاتف: ${formData.phone}%0Aالخدمة: ${serviceName}%0Aالتفاصيل: ${formData.details}%0A%0Aرقم الطلب: ${ticketNumber}%0A%0Ahttps://wa.me/201064496440?text=استفسار%20عن%20طلب%20${ticketNumber}`;
-                
-                // فتح واتساب
-                window.open(`https://wa.me/201064496440?text=${whatsappMessage}`, '_blank');
-                
-                // عرض إشعار النجاح
-                showNotification('success', `تم حجز طلبك بنجاح! رقم الطلب: ${ticketNumber}`);
-                
-                // مسح النموذج
-                this.reset();
-                
-                // إذا كانت لوحة المدير مفتوحة، قم بتحديث القائمة
-                if (document.getElementById('adminPanel').style.display === 'block') {
-                    loadTickets(document.getElementById('filterStatus').value);
-                }
-            });
-            
-            // معالجة تتبع الطلب
-            document.getElementById('trackBtn').addEventListener('click', function() {
-                const ticketNumber = document.getElementById('tracking-number').value.trim();
-                const tickets = JSON.parse(localStorage.getItem('tickets')) || {};
-                
-                if (tickets[ticketNumber]) {
-                    const ticket = tickets[ticketNumber];
-                    const trackingResult = document.getElementById('trackingResult');
-                    
-                    // تحديد حالة التقدم
-                    let progress = 25;
-                    let activeStep = 1;
-                    let steps = [
-                        { status: 'pending', title: 'تم الاستلام', icon: 'fa-clipboard-check' },
-                        { status: 'in-progress', title: 'قيد التنفيذ', icon: 'fa-tools' },
-                        { status: 'completed', title: 'مكتمل', icon: 'fa-check-circle' }
-                    ];
-                    
-                    if (ticket.status === 'in-progress') {
-                        progress = 60;
-                        activeStep = 2;
-                    } else if (ticket.status === 'completed') {
-                        progress = 100;
-                        activeStep = 3;
-                    } else if (ticket.status === 'cancelled') {
-                        progress = 100;
-                        activeStep = 0; // حالة خاصة للإلغاء
-                    }
-                    
-                    // حساب الوقت المتبقي (تقديري)
-                    let timeEstimate = '';
-                    if (ticket.status === 'pending') {
-                        timeEstimate = 'سيبدأ الفريق بالعمل على طلبك خلال 24 ساعة';
-                    } else if (ticket.status === 'in-progress') {
-                        timeEstimate = 'يتم العمل على طلبك حالياً، من المتوقع الانتهاء خلال 48 ساعة';
-                    } else if (ticket.status === 'completed') {
-                        const completedDate = new Date(ticket.updatedAt);
-                        timeEstimate = `تم الانتهاء من الطلب في ${completedDate.toLocaleDateString()} الساعة ${completedDate.toLocaleTimeString()}`;
-                    } else if (ticket.status === 'cancelled') {
-                        timeEstimate = 'تم إلغاء هذا الطلب';
-                    }
-                    
-                    // إنشاء واجهة تتبع الطلب
-                    let html = `
-                        <div class="tracking-header">
-                            <h3 class="tracking-title">حالة الطلب</h3>
-                            <div class="tracking-number">#${ticketNumber}</div>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <div class="detail-label">الاسم:</div>
-                            <div>${ticket.name}</div>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <div class="detail-label">نوع الخدمة:</div>
-                            <div>${getServiceName(ticket.service)}</div>
-                        </div>
-                        
-                        <div class="detail-row">
-                            <div class="detail-label">حالة الطلب:</div>
-                            <div><span class="ticket-status ${ticket.status.replace('-', ' ')}">${getStatusName(ticket.status)}</span></div>
-                        </div>
-                        
-                        <div class="tracking-steps">
-                            <div class="progress-bar" style="width: ${progress}%"></div>
-                    `;
-                    
-                    steps.forEach((step, index) => {
-                        let stepClass = '';
-                        if (ticket.status === 'cancelled') {
-                            stepClass = 'cancelled';
-                        } else if (index + 1 < activeStep) {
-                            stepClass = 'completed';
-                        } else if (index + 1 === activeStep) {
-                            stepClass = 'active';
-                        }
-                        
-                        html += `
-                            <div class="step ${stepClass}">
-                                <div class="step-icon"><i class="fas ${step.icon}"></i></div>
-                                <div class="step-title">${step.title}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    html += `
-                        </div>
-                        
-                        <div class="time-estimate">
-                            <i class="fas fa-clock"></i> ${timeEstimate}
-                        </div>
-                    `;
-                    
-                    trackingResult.innerHTML = html;
-                    trackingResult.style.display = 'block';
-                    
-                    // التمرير إلى قسم التتبع
-                    trackingResult.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    showNotification('error', 'رقم الطلب غير صحيح. يرجى التحقق والمحاولة مرة أخرى.');
-                }
-            });
-            
-            // إدارة لوحة المدير
-            document.getElementById('adminBtn').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'flex';
-            });
-            
-            document.getElementById('whatsappBtn').addEventListener('click', function() {
-                window.open('https://wa.me/201064496440', '_blank');
-            });
-            
-            document.querySelector('.close-modal').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'none';
-            });
-            
-            document.getElementById('loginBtn').addEventListener('click', function() {
-                const password = document.getElementById('adminPassword').value;
-                if (password === 'admin54321') {
-                    document.getElementById('loginModal').style.display = 'none';
-                    document.getElementById('adminPanel').style.display = 'block';
-                    loadTickets();
-                    showNotification('success', 'تم تسجيل الدخول بنجاح');
-                } else {
-                    showNotification('error', 'كلمة المرور غير صحيحة');
-                }
-            });
-            
-            // تصفية الطلبات في لوحة المدير
-            document.getElementById('filterStatus').addEventListener('change', function() {
-                loadTickets(this.value);
-            });
-            
-            // تحديث قائمة الطلبات
-            document.getElementById('refreshBtn').addEventListener('click', function() {
-                loadTickets(document.getElementById('filterStatus').value);
-                showNotification('success', 'تم تحديث قائمة الطلبات');
-            });
-            
-            // وظيفة تحميل الطلبات
-            function loadTickets(filter = 'all') {
-                const tickets = JSON.parse(localStorage.getItem('tickets')) || {};
-                const ticketsList = document.getElementById('ticketsList');
-                
-                // تحويل إلى مصفوفة وترتيب حسب التاريخ
-                let ticketsArray = Object.entries(tickets).map(([number, data]) => ({ number, ...data }));
-                ticketsArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                
-                let html = '';
-                
-                ticketsArray.forEach(ticket => {
-                    if (filter !== 'all' && ticket.status !== filter) return;
-                    
-                    html += `
-                        <div class="ticket-card">
-                            <div class="ticket-header">
-                                <div class="ticket-meta">
-                                    <h3>طلب #${ticket.number}</h3>
-                                    <span class="ticket-status ${ticket.status.replace('-', ' ')}">${getStatusName(ticket.status)}</span>
-                                </div>
-                                
-                                <div class="ticket-actions">
-                                    ${ticket.status !== 'completed' && ticket.status !== 'cancelled' ? `
-                                        <button class="action-btn in-progress-btn" onclick="updateTicketStatus('${ticket.number}', 'in-progress')">
-                                            <i class="fas fa-spinner"></i> قيد التنفيذ
-                                        </button>
-                                        <button class="action-btn complete-btn" onclick="updateTicketStatus('${ticket.number}', 'completed')">
-                                            <i class="fas fa-check"></i> إكمال
-                                        </button>
-                                    ` : ''}
-                                    <button class="action-btn ${ticket.status === 'cancelled' ? 'delete-btn' : 'cancel-btn'}" onclick="updateTicketStatus('${ticket.number}', '${ticket.status === 'cancelled' ? 'delete' : 'cancelled'}')">
-                                        <i class="fas ${ticket.status === 'cancelled' ? 'fa-trash' : 'fa-times'}"></i> ${ticket.status === 'cancelled' ? 'حذف' : 'إلغاء'}
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="ticket-details">
-                                <div class="detail-row">
-                                    <div class="detail-label">الاسم:</div>
-                                    <div>${ticket.name}</div>
-                                </div>
-                                
+
+    <!-- حجز طلب جديد -->
+    <section id="section-book">
+      <form id="bookingForm">
+        <label for="name">الاسم الكامل:</label>
+        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل" />
+
+        <label for="phone">رقم الهاتف:</label>
+        <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم هاتفك" pattern="^\+?\d{7,15}$" title="رقم هاتف صالح" />
+
+        <label for="email">البريد الإلكتروني (اختياري):</label>
+        <input type="email" id="email" name="email" placeholder="example@mail.com" />
+
+        <label for="issue">وصف المشكلة:</label>
+        <textarea id="issue" name="issue" rows="4" required placeholder="صف مشكلتك بالتفصيل"></textarea>
+
+        <button type="submit">حجز الطلب</button>
+      </form>
+    </section>
+
+    <!-- متابعة الطلب -->
+    <section id="section-track" style="display:none;">
+      <form id="trackForm">
+        <label for="trackingNumber">أدخل رقم الحجز لمتابعة الطلب:</label>
+        <input type="text" id="trackingNumber" name="trackingNumber" required placeholder="رقم الحجز" />
+        <button type="submit">متابعة</button>
+      </form>
+      <div id="trackingResult" style="margin-top:20px; font-weight: 600;"></div>
+    </section>
+
+    <!-- لوحة الإدارة -->
+    <section id="section-admin" style="display:none;">
+      <form id="adminLoginForm">
+        <label for="adminPassword">كلمة مرور لوحة الإدارة:</label>
+        <input type="password" id="adminPassword" required placeholder="ادخل كلمة المرور" />
+        <button type="submit">دخول</button>
+      </form>
+
+      <div id="adminPanel" style="display:none; margin-top:20px;">
+        <h2>لوحة إدارة الطلبات</h2>
+        <table id="ordersTable">
+          <thead>
+            <tr>
+              <th>رقم الحجز</th>
+              <th>الاسم</th>
+              <th>الهاتف</th>
+              <th>الوصف</th>
+              <th>الحالة</th>
+              <th>تغيير الحالة</th>
+              <th>حذف</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- الطلبات ستظهر هنا -->
+          </tbody>
+        </table>
+        <button id="logoutBtn" style="margin-top:15px; background:#d9534f;">تسجيل خروج</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    برعاية <a href="#">سيستم سمارت راديوس</a> | حقوق النشر &copy; مصطفى عاطف الشوري
+  </footer>
+
+  <script>
+    // --- بيانات الطلبات مخزنة في localStorage ---
+    const STORAGE_KEY = "doctorNetOrders";
+
+    // --- عناصر الصفحة ---
+    const tabBook = document.getElementById("tab-book");
+    const tabTrack = document.getElementById("tab-track");
+    const tabAdmin = document.getElementById("tab-admin");
+
+    const sectionBook = document.getElementById("section-book");
+    const sectionTrack = document.getElementById("section-track");
+    const sectionAdmin = document.getElementById("section-admin");
+
+    const bookingForm = document.getElementById("bookingForm");
+    const trackForm = document.getElementById("trackForm");
+    const trackingResult = document.getElementById("trackingResult");
+
+    const adminLoginForm = document.getElementById("adminLoginForm");
+    const adminPasswordInput = document.getElementById("adminPassword");
+    const adminPanel = document.getElementById("adminPanel");
+    const ordersTableBody = document.querySelector("#ordersTable tbody");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // --- كلمة مرور لوحة الإدارة ---
+    const ADMIN_PASSWORD = "admin54321";
+
+    // --- حالة الطلب ---
+    const STATUS_PENDING = "قيد التنفيذ";
+    const STATUS_COMPLETED = "مكتمل";
+    const STATUS_DELETED = "محذوف";
+
+    // --- تخزين واسترجاع الطلبات ---
+    function getOrders() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    }
+    function saveOrders(orders) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
+    }
+
+    // --- توليد رقم حجز فريد ---
+    function generateBookingNumber() {
+      // رقم عشوائي 6 أرقام مع تاريخ مختصر
+      const datePart = new Date().toISOString().slice(2,10).replace(/-/g,""); // YYMMDD
+      const randomPart = Math.floor(100000 + Math.random() * 900000);
+      return datePart + randomPart;
+    }
+
+    // --- تحويل الطلب إلى واتساب ---
+    function sendToWhatsApp(order) {
+      const waNumber = "201064496440";
+      const text = encodeURIComponent(
+        `طلب دعم فني جديد\n` +
+        `رقم الحجز: ${order.bookingNumber}\n` +
+        `الاسم: ${order.name}\n` +
+        `الهاتف: ${order.phone}\n` +
+        `البريد: ${order.email || "-"}\n` +
+        `الوصف: ${order.issue}`
+      );
+      const url = `https://wa.me/${waNumber}?text=${text}`;
+      window.open(url, "_blank");
+    }
+
+    // --- عرض حالة الطلب مع لون ---
+    function getStatusBadge(status) {
+      let className = "";
+      switch(status) {
+        case STATUS_PENDING: className = "status-pending"; break;
+        case STATUS_COMPLETED: className = "status-completed"; break;
+        case STATUS_DELETED: className = "status-deleted"; break;
+        default: className = "";
+      }
+      return `<span class="status-badge ${className}">${status}</span>`;
+    }
+
+    // --- تحديث جدول الطلبات في لوحة الإدارة ---
+    function renderOrdersTable() {
+      const orders = getOrders();
+      ordersTableBody.innerHTML = "";
+      if (orders.length === 0) {
+        ordersTableBody.innerHTML = `<tr><td colspan="7" style="color:#999;">لا توجد طلبات حالياً</td></tr>`;
+        return;
+      }
+      orders.forEach(order => {
+        if(order.status === STATUS_DELETED) return; // لا تعرض المحذوفة
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${order.bookingNumber}</td>
+          <td>${order.name}</td>
+          <td>${order.phone}</td>
+          <td style="text-align:right;">${order.issue.replace(/\n/g,"<br>")}</td>
+          <td>${getStatusBadge(order.status)}</td>
+          <td>
+            <select data-booking="${order.bookingNumber}">
+              <option value="${STATUS_PENDING}" ${order.status === STATUS_PENDING ? "selected" : ""}>قيد التنفيذ</option>
+              <option value="${STATUS_COMPLETED}" ${order.status === STATUS_COMPLETED ? "selected" : ""}>مكتمل</option>
+              <option value="${STATUS_DELETED}">محذوف</option>
+            </select>
+          </td>
+          <td><button data-delete="${order.bookingNumber}" style="background:#d9534f; padding:6px 12px; font-size:0.9rem;">حذف</button></td>
+        `;
+        ordersTableBody.appendChild(tr);
+      });
+    }
+
+    // --- تغيير حالة الطلب ---
+    function changeOrderStatus(bookingNumber, newStatus) {
+      const orders = getOrders();
+      const index = orders.findIndex(o => o.bookingNumber === bookingNumber);
+      if(index !== -1) {
+        if(newStatus === STATUS_DELETED) {
+          // حذف الطلب فعلياً
+          orders.splice(index, 1);
+        } else {
+          orders[index].status = newStatus;
+        }
+        saveOrders(orders);
+        renderOrdersTable();
+      }
+    }
+
+    // --- التبديل بين التبويبات ---
+    function switchTab(tab) {
+      // إزالة الكلاس من الكل
+      [tabBook, tabTrack, tabAdmin].forEach(t => t.classList.remove("active"));
+      [sectionBook, sectionTrack, sectionAdmin].forEach(s => s.style.display = "none");
+
+      // عرض القسم المناسب
+      if(tab === "book") {
+        tabBook.classList.add("active");
+        sectionBook.style.display = "block";
+      } else if(tab === "track") {
+        tabTrack.classList.add("active");
+        sectionTrack.style.display = "block";
+      } else if(tab === "admin") {
+        tabAdmin.classList.add("active");
+        sectionAdmin.style.display = "block";
+      }
+    }
+
+    // --- التحقق من كلمة مرور الإدارة ---
+    function checkAdminPassword(password) {
+      return password === ADMIN_PASSWORD;
+    }
+
+    // --- تسجيل دخول الإدارة ---
+    function adminLogin(password) {
+      if(checkAdminPassword(password)) {
+        adminLoginForm.style.display = "none";
+        adminPanel.style.display = "block";
+        renderOrdersTable();
+        alert("تم تسجيل الدخول بنجاح");
+      } else {
+        alert("كلمة المرور غير صحيحة");
+      }
+    }
+
+    // --- تسجيل خروج الإدارة ---
+    function adminLogout() {
+      adminLoginForm.style.display = "block";
+      adminPanel.style.display = "none";
+      adminPasswordInput.value = "";
+    }
+
+    // --- متابعة حالة الطلب ---
+    function trackOrder(bookingNumber) {
+      const orders = getOrders();
+      const order = orders.find(o => o.bookingNumber === bookingNumber);
+      if(!order) {
+        trackingResult.innerHTML = `<span style="color:#d9534f;">رقم الحجز غير موجود</span>`;
+        return;
+      }
+      if(order.status === STATUS_DELETED) {
+        trackingResult.innerHTML = `<span style="color:#d9534f;">هذا الطلب محذوف</span>`;
+        return;
+      }
+      // يمكن إضافة حساب تقريبي للانتظار (مثلاً: حسب ترتيب الطلبات قيد التنفيذ)
+      const pendingOrders = orders.filter(o => o.status === STATUS_PENDING);
+      const position = pendingOrders.findIndex(o => o.bookingNumber === bookingNumber) + 1;
+      let waitMsg = "";
+      if(order.status === STATUS_PENDING) {
+        waitMsg = `وضعك في قائمة الانتظار: ${position} من ${pendingOrders.length} طلبات قيد التنفيذ.`;
+      } else if(order.status === STATUS_COMPLETED) {
+        waitMsg = "تم الانتهاء من طلبك.";
+      }
+      trackingResult.innerHTML = `
+        <p>رقم الحجز: <strong>${order.bookingNumber}</strong></p>
+        <p>الحالة: ${getStatusBadge(order.status)}</p>
+        <p>${waitMsg}</p>
+      `;
+    }
+
+    // --- حدث حجز الطلب ---
+    bookingForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const name = bookingForm.name.value.trim();
+      const phone = bookingForm.phone.value.trim();
+      const email = bookingForm.email.value.trim();
+      const issue = bookingForm.issue.value.trim();
+
+      if(!name || !phone || !issue) {
+        alert("يرجى ملء الحقول المطلوبة");
+        return;
+      }
+
+      const bookingNumber = generateBookingNumber();
+
+      const newOrder = {
+        bookingNumber,
+        name,
+        phone,
+        email,
+        issue,
+        status: STATUS_PENDING,
+        createdAt: new Date().toISOString()
+      };
+
+      const orders = getOrders();
+      orders.push(newOrder);
+      saveOrders(orders);
+
+      // تحويل إلى واتساب
+      sendToWhatsApp(newOrder);
+
+      alert(`تم حجز الطلب بنجاح\nرقم الحجز الخاص بك: ${bookingNumber}\nيمكنك متابعة الطلب باستخدام رقم الحجز.`);
+
+      bookingForm.reset();
+      switchTab("track");
+      document.getElementById("trackingNumber").value = bookingNumber;
+      trackOrder(bookingNumber);
+    });
+
+    // --- حدث متابعة الطلب ---
+    trackForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const bookingNumber = trackForm.trackingNumber.value.trim();
+      if(!bookingNumber) {
+        alert("يرجى إدخال رقم الحجز");
+        return;
+      }
+      trackOrder(bookingNumber);
+    });
+
+    // --- حدث دخول لوحة الإدارة ---
+    adminLoginForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const password = adminPasswordInput.value.trim();
+      if(!password) {
+        alert("يرجى إدخال كلمة المرور");
+        return;
+      }
+      adminLogin(password);
+    });
+
+    // --- حدث تغيير حالة الطلب ---
+    ordersTableBody.addEventListener("change", e => {
+      if(e.target.tagName === "SELECT") {
+        const bookingNumber = e.target.getAttribute("data-booking");
+        const newStatus = e.target.value;
+        if(bookingNumber && newStatus) {
+          changeOrderStatus(bookingNumber, newStatus);
+        }
+      }
+    });
+
+    // --- حدث حذف الطلب ---
+    ordersTableBody.addEventListener("click", e => {
+      if(e.target.tagName === "BUTTON" && e.target.hasAttribute("data-delete")) {
+        const bookingNumber = e.target.getAttribute("data-delete");
+        if(confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+          changeOrderStatus(bookingNumber, STATUS_DELETED);
+        }
+      }
+    });
+
+    // --- حدث تسجيل خروج الإدارة ---
+    logoutBtn.addEventListener("click", () => {
+      adminLogout();
+    });
+
+    // --- التبديل بين التبويبات ---
+    tabBook.addEventListener("click", () => switchTab("book"));
+    tabTrack.addEventListener("click", () => switchTab("track"));
+    tabAdmin.addEventListener("click", () => switchTab("admin"));
+
+    // --- بدء الصفحة بالتبويب الأول ---
+    switchTab("book");
+  </script>
+
+</body>
+</html>
