@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="دكتور نت - حلول الشبكات المتكاملة والدعم الفني الاحترافي">
-    <title>دكتور نت | نظام حجز طلبات الدعم الفني</title>
+    <title>دكتور نت | حلول الشبكات المتكاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2c3e50;
@@ -14,10 +12,9 @@
             --accent: #e74c3c;
             --light: #ecf0f1;
             --dark: #2c3e50;
-            --success: #27ae60;
+            --success: #2ecc71;
             --warning: #f39c12;
             --danger: #e74c3c;
-            --gray: #95a5a6;
         }
         
         * {
@@ -31,16 +28,17 @@
             background-color: #f5f7fa;
             color: var(--dark);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        }
+        
+        @font-face {
+            font-family: 'Tajawal';
+            src: url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            width: 100%;
         }
         
         /* Header Styles */
@@ -58,19 +56,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none;
-            color: white;
         }
         
-        .logo i {
-            font-size: 2rem;
+        .logo img {
+            height: 50px;
         }
         
         .logo-text h1 {
@@ -87,7 +82,6 @@
             display: flex;
             list-style: none;
             gap: 20px;
-            flex-wrap: wrap;
         }
         
         nav a {
@@ -97,17 +91,15 @@
             transition: all 0.3s ease;
             padding: 5px 10px;
             border-radius: 4px;
-            display: block;
         }
         
-        nav a:hover, nav a:focus {
+        nav a:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            outline: none;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center/cover;
             height: 500px;
             display: flex;
             align-items: center;
@@ -116,7 +108,19 @@
             text-align: center;
         }
         
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
         .hero-content {
+            position: relative;
+            z-index: 1;
             width: 100%;
             padding: 0 20px;
         }
@@ -124,19 +128,12 @@
         .hero h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            line-height: 1.3;
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        /* Main Content */
-        main {
-            flex: 1;
         }
         
         /* Booking Form */
@@ -203,11 +200,6 @@
             outline: none;
         }
         
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -220,13 +212,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            text-align: center;
         }
         
-        .btn:hover, .btn:focus {
+        .btn:hover {
             background-color: #2980b9;
             transform: translateY(-2px);
-            outline: none;
         }
         
         .btn-block {
@@ -250,12 +240,10 @@
             text-align: center;
         }
         
-        /* Admin Panel */
+        /* Admin Panel (Hidden by default) */
         .admin-panel {
             display: none;
             padding: 40px 0;
-            background-color: #f9f9f9;
-            min-height: 100vh;
         }
         
         .admin-header {
@@ -263,14 +251,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .admin-controls {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
         }
         
         .ticket-list {
@@ -286,39 +266,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
         }
         
         .ticket-item:last-child {
             border-bottom: none;
         }
         
-        .ticket-info {
-            flex: 1;
-            min-width: 250px;
-        }
-        
         .ticket-info h4 {
             margin-bottom: 5px;
-            color: var(--primary);
         }
         
         .ticket-meta {
             display: flex;
             gap: 15px;
             font-size: 0.9rem;
-            color: var(--gray);
-            flex-wrap: wrap;
+            color: #777;
         }
         
         .ticket-status {
-            padding: 5px 15px;
+            padding: 5px 10px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            min-width: 120px;
-            text-align: center;
         }
         
         .status-pending {
@@ -344,132 +313,23 @@
         .ticket-actions {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
         }
         
         .btn-sm {
-            padding: 8px 15px;
-            font-size: 0.9rem;
+            padding: 5px 10px;
+            font-size: 0.8rem;
         }
         
         .btn-success {
             background-color: var(--success);
         }
         
-        .btn-success:hover, .btn-success:focus {
-            background-color: #219653;
-        }
-        
         .btn-warning {
             background-color: var(--warning);
         }
         
-        .btn-warning:hover, .btn-warning:focus {
-            background-color: #e67e22;
-        }
-        
         .btn-danger {
             background-color: var(--danger);
-        }
-        
-        .btn-danger:hover, .btn-danger:focus {
-            background-color: #c0392b;
-        }
-        
-        .btn-gray {
-            background-color: var(--gray);
-        }
-        
-        .btn-gray:hover, .btn-gray:focus {
-            background-color: #7f8c8d;
-        }
-        
-        /* Ticket Details Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 700px;
-            width: 100%;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #777;
-            background: none;
-            border: none;
-        }
-        
-        .modal-title {
-            margin-bottom: 20px;
-            color: var(--primary);
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .ticket-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .detail-group {
-            margin-bottom: 15px;
-        }
-        
-        .detail-label {
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 5px;
-            display: block;
-        }
-        
-        .detail-value {
-            background-color: var(--light);
-            padding: 10px;
-            border-radius: 4px;
-            word-break: break-word;
-        }
-        
-        /* Alert Messages */
-        .alert {
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            display: none;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
         }
         
         /* Footer */
@@ -490,27 +350,17 @@
             display: flex;
             gap: 20px;
             margin: 20px 0;
-            flex-wrap: wrap;
-            justify-content: center;
         }
         
         .social-links a {
             color: white;
             font-size: 1.5rem;
             transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
         }
         
-        .social-links a:hover, .social-links a:focus {
+        .social-links a:hover {
             color: var(--secondary);
             transform: translateY(-3px);
-            background-color: rgba(255, 255, 255, 0.1);
-            outline: none;
         }
         
         .copyright {
@@ -519,31 +369,36 @@
             opacity: 0.8;
         }
         
-        /* Progress Bar */
-        .progress-container {
-            margin: 20px 0;
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
         
-        .progress-bar {
-            background-color: #eee;
-            height: 20px;
-            border-radius: 10px;
-            overflow: hidden;
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
             position: relative;
         }
         
-        .progress-fill {
-            background-color: var(--secondary);
-            height: 100%;
-            border-radius: 10px;
-            transition: width 0.5s ease;
-        }
-        
-        .progress-text {
-            text-align: center;
-            margin-top: 5px;
-            font-size: 0.9rem;
-            color: var(--gray);
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
         }
         
         /* Responsive */
@@ -551,11 +406,11 @@
             .header-content {
                 flex-direction: column;
                 gap: 20px;
-                text-align: center;
             }
             
             nav ul {
-                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
             }
             
             .hero {
@@ -565,42 +420,6 @@
             .hero h2 {
                 font-size: 2rem;
             }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .admin-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .admin-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .ticket-details {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Print Styles */
-        @media print {
-            header, nav, footer, .admin-controls, .ticket-actions {
-                display: none !important;
-            }
-            
-            body {
-                background: none;
-                padding: 0;
-            }
-            
-            .modal-content {
-                box-shadow: none;
-                max-width: 100%;
-                padding: 0;
-            }
         }
     </style>
 </head>
@@ -608,13 +427,13 @@
     <!-- Header -->
     <header>
         <div class="container header-content">
-            <a href="#" class="logo">
-                <i class="fas fa-network-wired"></i>
+            <div class="logo">
+                <i class="fas fa-network-wired fa-2x"></i>
                 <div class="logo-text">
                     <h1>دكتور نت</h1>
                     <p>حلول الشبكات المتكاملة</p>
                 </div>
-            </a>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#booking">حجز طلب</a></li>
@@ -627,186 +446,121 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="container">
-                    <h2>حلول شبكات متكاملة باحترافية</h2>
-                    <p>نقدم خدمات الدعم الفني المتكاملة للشبكات والأنظمة بأعلى معايير الجودة والكفاءة</p>
-                    <a href="#booking" class="btn">احجز خدمتك الآن</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Booking Section -->
-        <section id="booking" class="booking-section">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
             <div class="container">
-                <div class="section-title">
-                    <h2>حجز طلب دعم فني</h2>
-                </div>
-                <div id="bookingAlert" class="alert alert-success" style="display: none;"></div>
-                <form id="bookingForm" class="booking-form">
-                    <div class="form-group">
-                        <label for="name">الاسم بالكامل</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">رقم الهاتف</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">البريد الإلكتروني (اختياري)</label>
-                        <input type="email" id="email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">العنوان</label>
-                        <input type="text" id="address" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="service">نوع الخدمة المطلوبة</label>
-                        <select id="service" class="form-control" required>
-                            <option value="">اختر الخدمة</option>
-                            <option value="network-installation">تركيب شبكة</option>
-                            <option value="network-maintenance">صيانة شبكة</option>
-                            <option value="internet-issues">مشاكل الإنترنت</option>
-                            <option value="cctv-installation">تركيب كاميرات مراقبة</option>
-                            <option value="other">خدمة أخرى</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">تاريخ الطلب</label>
-                        <input type="date" id="date" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="time">الوقت المفضل</label>
-                        <input type="time" id="time" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="details">تفاصيل المشكلة</label>
-                        <textarea id="details" class="form-control" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-block">إرسال الطلب</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Status Check Section -->
-        <section id="status" class="status-check">
-            <div class="container">
-                <div class="section-title">
-                    <h2>متابعة حالة الطلب</h2>
-                </div>
-                <div id="statusAlert" class="alert" style="display: none;"></div>
-                <form id="statusForm" class="status-form">
-                    <div class="form-group">
-                        <label for="ticket-number">رقم الطلب</label>
-                        <input type="text" id="ticket-number" class="form-control" placeholder="أدخل رقم الطلب الذي استلمته" required>
-                    </div>
-                    <button type="submit" class="btn">البحث عن الطلب</button>
-                </form>
-                <div id="statusResult" style="display: none; margin-top: 30px;">
-                    <!-- Will be filled by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="booking-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>خدماتنا</h2>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                    <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-network-wired" style="margin-left: 10px;"></i>تركيب الشبكات</h3>
-                        <p>نقدم حلول متكاملة لتركيب الشبكات السلكية واللاسلكية للمنازل والمكاتب بجودة عالية وأسعار مناسبة.</p>
-                    </div>
-                    <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-tools" style="margin-left: 10px;"></i>صيانة الشبكات</h3>
-                        <p>خدمات صيانة دورية وحل مشاكل الشبكات بسرعة وكفاءة مع ضمان على الأعمال المقدمة.</p>
-                    </div>
-                    <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-video" style="margin-left: 10px;"></i>كاميرات المراقبة</h3>
-                        <p>تركيب أنظمة مراقبة متكاملة بدقة عالية مع إمكانية المراقبة عن بعد عبر الهاتف أو الكمبيوتر.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="status-check">
-            <div class="container">
-                <div class="section-title">
-                    <h2>اتصل بنا</h2>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                    <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 20px;">معلومات التواصل</h3>
-                        <p style="margin-bottom: 15px;"><i class="fas fa-phone" style="margin-left: 10px;"></i> <a href="tel:+201064496440">+20 106 449 6440</a></p>
-                        <p style="margin-bottom: 15px;"><i class="fas fa-envelope" style="margin-left: 10px;"></i> <a href="mailto:info@doctornet.com">info@doctornet.com</a></p>
-                        <p style="margin-bottom: 15px;"><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> مصر</p>
-                        <div class="social-links" style="justify-content: flex-start; margin-top: 25px;">
-                            <a href="https://wa.me/201064496440" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                    <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 20px;">أوقات العمل</h3>
-                        <p style="margin-bottom: 15px;"><strong>السبت - الخميس:</strong> 9 صباحاً - 10 مساءً</p>
-                        <p style="margin-bottom: 15px;"><strong>الجمعة:</strong> 4 مساءً - 10 مساءً</p>
-                        <p style="margin-bottom: 15px;">خدمة الطوارئ متاحة 24/7</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Admin Panel -->
-        <section id="admin" class="admin-panel">
-            <div class="container">
-                <div class="admin-header">
-                    <h2>لوحة تحكم المدير</h2>
-                    <div class="admin-controls">
-                        <button id="refresh-tickets" class="btn btn-gray btn-sm">
-                            <i class="fas fa-sync-alt"></i> تحديث
-                        </button>
-                        <button id="print-tickets" class="btn btn-gray btn-sm">
-                            <i class="fas fa-print"></i> طباعة
-                        </button>
-                        <button id="logout" class="btn btn-danger btn-sm">
-                            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="adminAlert" class="alert" style="display: none;"></div>
-                
-                <div class="ticket-list" id="ticketList">
-                    <!-- Tickets will be loaded here -->
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Ticket Details Modal -->
-    <div id="ticketModal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <h3 class="modal-title">تفاصيل الطلب</h3>
-            <div id="ticketDetails">
-                <!-- Ticket details will be loaded here -->
+                <h2>حلول شبكات متكاملة باحترافية</h2>
+                <p>نقدم خدمات الدعم الفني المتكاملة للشبكات والأنظمة بأعلى معايير الجودة والكفاءة</p>
+                <a href="#booking" class="btn">احجز خدمتك الآن</a>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>حجز طلب دعم فني</h2>
+            </div>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="name">الاسم بالكامل</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني (اختياري)</label>
+                    <input type="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="address">العنوان</label>
+                    <input type="text" id="address" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">نوع الخدمة المطلوبة</label>
+                    <select id="service" class="form-control" required>
+                        <option value="">اختر الخدمة</option>
+                        <option value="network-installation">تركيب شبكة</option>
+                        <option value="network-maintenance">صيانة شبكة</option>
+                        <option value="internet-issues">مشاكل الإنترنت</option>
+                        <option value="cctv-installation">تركيب كاميرات مراقبة</option>
+                        <option value="other">خدمة أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">تاريخ الطلب</label>
+                    <input type="date" id="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">الوقت المفضل</label>
+                    <input type="time" id="time" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="details">تفاصيل المشكلة</label>
+                    <textarea id="details" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-block">إرسال الطلب</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Status Check Section -->
+    <section id="status" class="status-check">
+        <div class="container">
+            <div class="section-title">
+                <h2>متابعة حالة الطلب</h2>
+            </div>
+            <form id="statusForm" class="status-form">
+                <div class="form-group">
+                    <label for="ticket-number">رقم الطلب</label>
+                    <input type="text" id="ticket-number" class="form-control" placeholder="أدخل رقم الطلب الذي استلمته" required>
+                </div>
+                <button type="submit" class="btn">البحث عن الطلب</button>
+            </form>
+            <div id="statusResult" style="display: none; margin-top: 30px; text-align: center;">
+                <!-- Will be filled by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section id="admin" class="admin-panel">
+        <div class="container">
+            <div class="admin-header">
+                <h2>لوحة تحكم المدير</h2>
+                <button id="logout" class="btn btn-danger">تسجيل الخروج</button>
+            </div>
+            
+            <div class="ticket-list">
+                <div class="ticket-item">
+                    <div class="ticket-info">
+                        <h4>تركيب شبكة مكتبية</h4>
+                        <div class="ticket-meta">
+                            <span>#DR12345</span>
+                            <span>محمد أحمد</span>
+                            <span>2023-06-15</span>
+                        </div>
+                    </div>
+                    <div class="ticket-status status-in-progress">قيد التنفيذ</div>
+                    <div class="ticket-actions">
+                        <button class="btn btn-success btn-sm">إكمال</button>
+                        <button class="btn btn-danger btn-sm">حذف</button>
+                    </div>
+                </div>
+                <!-- More tickets will be added by JavaScript -->
+            </div>
+        </div>
+    </section>
 
     <!-- Admin Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <h3 class="modal-title">تسجيل الدخول إلى لوحة التحكم</h3>
-            <div id="loginAlert" class="alert" style="display: none;"></div>
+            <span class="close-modal">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">تسجيل الدخول</h2>
             <form id="loginForm">
                 <div class="form-group">
                     <label for="admin-username">اسم المستخدم</label>
@@ -825,7 +579,7 @@
     <footer>
         <div class="container footer-content">
             <div class="logo">
-                <i class="fas fa-network-wired"></i>
+                <i class="fas fa-network-wired fa-2x"></i>
                 <div class="logo-text">
                     <h1>دكتور نت</h1>
                     <p>حلول الشبكات المتكاملة</p>
@@ -835,7 +589,7 @@
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/201064496440" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/201064496440"><i class="fab fa-whatsapp"></i></a>
             </div>
             <p class="copyright">جميع الحقوق محفوظة &copy; <span id="year"></span> دكتور نت - مصطفى عاطف الشوري</p>
         </div>
@@ -848,26 +602,20 @@
         // Admin Login
         const adminLoginBtn = document.getElementById('admin-login');
         const loginModal = document.getElementById('loginModal');
-        const closeModalButtons = document.querySelectorAll('.close-modal');
-        const logoutBtn = document.getElementById('logout');
+        const closeModal = document.querySelector('.close-modal');
         
         adminLoginBtn.addEventListener('click', (e) => {
             e.preventDefault();
             loginModal.style.display = 'flex';
-            document.getElementById('loginAlert').style.display = 'none';
         });
         
-        closeModalButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-            });
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
         });
         
         window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
             }
         });
         
@@ -876,31 +624,25 @@
             e.preventDefault();
             const username = document.getElementById('admin-username').value;
             const password = document.getElementById('admin-password').value;
-            const loginAlert = document.getElementById('loginAlert');
             
-            // Validation
-            if (username === 'admin' && password === 'admin54321') {
+            // Simple validation (in real app, you would have server-side validation)
+            if (username === 'admin' && password === '123456') {
                 loginModal.style.display = 'none';
                 document.getElementById('admin').style.display = 'block';
                 window.location.href = '#admin';
-                loadTickets();
             } else {
-                loginAlert.textContent = 'اسم المستخدم أو كلمة المرور غير صحيحة';
-                loginAlert.className = 'alert alert-danger';
-                loginAlert.style.display = 'block';
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
             }
         });
         
         // Logout
-        logoutBtn.addEventListener('click', () => {
+        document.getElementById('logout').addEventListener('click', () => {
             document.getElementById('admin').style.display = 'none';
-            window.location.href = '#';
         });
         
         // Booking Form
         document.getElementById('bookingForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const bookingAlert = document.getElementById('bookingAlert');
             
             // Generate random ticket number
             const ticketNumber = 'DR' + Math.floor(10000 + Math.random() * 90000);
@@ -908,12 +650,7 @@
             // Get form values
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
             const service = document.getElementById('service').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const details = document.getElementById('details').value;
-            const email = document.getElementById('email').value;
             
             // Prepare WhatsApp message
             const serviceText = {
@@ -924,69 +661,90 @@
                 'other': 'خدمة أخرى'
             }[service];
             
-            const whatsappMessage = `*طلب دعم فني جديد - دكتور نت*
+            const whatsappMessage = `مرحباً، أريد حجز خدمة دعم فني:
 الاسم: ${name}
 رقم الهاتف: ${phone}
-${email ? `البريد الإلكتروني: ${email}\n` : ''}العنوان: ${address}
-الخدمة المطلوبة: ${serviceText}
-التاريخ: ${date}
-الوقت: ${time}
-تفاصيل المشكلة: ${details}
-
-*رقم الطلب: ${ticketNumber}*
-`;
-            
-            // Save ticket to localStorage (simulating database)
-            const tickets = JSON.parse(localStorage.getItem('doctornet_tickets')) || [];
-            const newTicket = {
-                id: ticketNumber,
-                name,
-                phone,
-                email,
-                address,
-                service,
-                serviceText,
-                date,
-                time,
-                details,
-                status: 'pending',
-                createdAt: new Date().toISOString()
-            };
-            tickets.push(newTicket);
-            localStorage.setItem('doctornet_tickets', JSON.stringify(tickets));
-            
-            // Show success message
-            bookingAlert.textContent = `تم إنشاء طلبك بنجاح! رقم الطلب: ${ticketNumber}`;
-            bookingAlert.className = 'alert alert-success';
-            bookingAlert.style.display = 'block';
-            
-            // Scroll to alert
-            bookingAlert.scrollIntoView({ behavior: 'smooth' });
-            
-            // Reset form
-            document.getElementById('bookingForm').reset();
+الخدمة: ${serviceText}
+رقم الطلب: ${ticketNumber}`;
             
             // Encode message for URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
             
-            // Open WhatsApp in new tab after 3 seconds
-            setTimeout(() => {
-                window.open(`https://wa.me/201064496440?text=${encodedMessage}`, '_blank');
-            }, 3000);
+            // Redirect to WhatsApp
+            window.location.href = `https://wa.me/201064496440?text=${encodedMessage}`;
+            
+            // In a real app, you would save the ticket to a database
+            // and show a confirmation message to the user
         });
         
         // Status Check Form
         document.getElementById('statusForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const ticketNumber = document.getElementById('ticket-number').value.trim();
+            const ticketNumber = document.getElementById('ticket-number').value;
+            
+            // In a real app, you would check the ticket status from a database
+            // This is just a demo with random status
+            const statuses = ['قيد الانتظار', 'قيد التنفيذ', 'مكتمل', 'ملغى'];
+            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            const randomProgress = Math.floor(Math.random() * 100);
+            
             const statusResult = document.getElementById('statusResult');
-            const statusAlert = document.getElementById('statusAlert');
+            statusResult.innerHTML = `
+                <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <h3>حالة الطلب #${ticketNumber}</h3>
+                    <p style="margin: 15px 0; font-size: 1.2rem;">
+                        الحالة: <strong>${randomStatus}</strong>
+                    </p>
+                    <div style="background: #eee; height: 20px; border-radius: 10px; margin: 20px 0;">
+                        <div style="background: #3498db; width: ${randomProgress}%; height: 100%; border-radius: 10px;"></div>
+                    </div>
+                    <p>تم إكمال ${randomProgress}% من طلبك</p>
+                    <p style="margin-top: 20px; color: #777;">للاستفسار، يمكنك التواصل عبر الواتساب</p>
+                    <a href="https://wa.me/201064496440" class="btn" style="margin-top: 15px;">
+                        <i class="fab fa-whatsapp"></i> تواصل مع الدعم
+                    </a>
+                </div>
+            `;
+            statusResult.style.display = 'block';
+        });
+        
+        // Sample tickets for admin panel (in real app, these would come from a database)
+        const sampleTickets = [
+            {
+                id: 'DR12345',
+                name: 'محمد أحمد',
+                service: 'تركيب شبكة مكتبية',
+                date: '2023-06-15',
+                status: 'in-progress'
+            },
+            {
+                id: 'DR12346',
+                name: 'أحمد محمد',
+                service: 'صيانة شبكة',
+                date: '2023-06-14',
+                status: 'pending'
+            },
+            {
+                id: 'DR12347',
+                name: 'علي محمود',
+                service: 'مشاكل الإنترنت',
+                date: '2023-06-13',
+                status: 'completed'
+            },
+            {
+                id: 'DR12348',
+                name: 'محمود علي',
+                service: 'تركيب كاميرات مراقبة',
+                date: '2023-06-12',
+                status: 'cancelled'
+            }
+        ];
+        
+        // Render sample tickets in admin panel
+        function renderTickets() {
+            const ticketList = document.querySelector('.ticket-list');
             
-            // Get tickets from localStorage
-            const tickets = JSON.parse(localStorage.getItem('doctornet_tickets')) || [];
-            const ticket = tickets.find(t => t.id === ticketNumber);
-            
-            if (ticket) {
+            sampleTickets.forEach(ticket => {
                 const statusText = {
                     'pending': 'قيد الانتظار',
                     'in-progress': 'قيد التنفيذ',
@@ -1001,15 +759,32 @@ ${email ? `البريد الإلكتروني: ${email}\n` : ''}العنوان: $
                     'cancelled': 'status-cancelled'
                 }[ticket.status];
                 
-                // Calculate progress based on status
-                let progress = 0;
-                if (ticket.status === 'pending') progress = 10;
-                else if (ticket.status === 'in-progress') progress = 50;
-                else if (ticket.status === 'completed') progress = 100;
-                else if (ticket.status === 'cancelled') progress = 0;
+                const ticketItem = document.createElement('div');
+                ticketItem.className = 'ticket-item';
+                ticketItem.innerHTML = `
+                    <div class="ticket-info">
+                        <h4>${ticket.service}</h4>
+                        <div class="ticket-meta">
+                            <span>#${ticket.id}</span>
+                            <span>${ticket.name}</span>
+                            <span>${ticket.date}</span>
+                        </div>
+                    </div>
+                    <div class="ticket-status ${statusClass}">${statusText}</div>
+                    <div class="ticket-actions">
+                        <button class="btn btn-success btn-sm">إكمال</button>
+                        <button class="btn btn-danger btn-sm">حذف</button>
+                    </div>
+                `;
                 
-                statusResult.innerHTML = `
-                    <div class="box" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 15px; text-align: center;">حالة الطلب #${ticket.id}</h3>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin
+                ticketList.appendChild(ticketItem);
+            });
+        }
+        
+        // Call renderTickets when admin panel is shown
+        document.getElementById('loginForm').addEventListener('submit', () => {
+            setTimeout(renderTickets, 100);
+        });
+    </script>
+</body>
+</html>
