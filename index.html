@@ -7,7 +7,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #3a0ca3;
@@ -51,7 +51,7 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -63,66 +63,56 @@
         
         .header {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 25px 30px;
+            padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         .header::before {
             content: "";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,122.7C672,117,768,107,864,112C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
             z-index: 1;
         }
         
-        .logo-container {
+        .doctor-net-logo {
             position: relative;
             z-index: 2;
-            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .logo {
-            width: 140px;
-            height: 140px;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            border: 5px solid white;
-            animation: pulse 2s infinite;
-        }
-        
-        .logo i {
-            font-size: 4rem;
+        .doctor-net-logo h1 {
             color: white;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .title {
-            color: white;
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
         
-        .subtitle {
+        .doctor-net-logo p {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 300;
             max-width: 600px;
             margin: 0 auto;
@@ -134,28 +124,30 @@
         
         .section-title {
             color: var(--primary);
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 25px;
             position: relative;
             padding-right: 15px;
-            font-weight: 700;
+            font-weight: 800;
+            text-align: center;
         }
         
         .section-title::after {
             content: "";
             position: absolute;
-            right: 0;
-            bottom: -8px;
-            width: 80px;
-            height: 4px;
+            right: 50%;
+            bottom: -12px;
+            width: 100px;
+            height: 5px;
             background: linear-gradient(90deg, var(--accent), var(--secondary));
-            border-radius: 2px;
+            border-radius: 3px;
+            transform: translateX(50%);
         }
         
         .social-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 40px;
             flex-wrap: wrap;
         }
@@ -166,12 +158,12 @@
             gap: 12px;
             background: linear-gradient(90deg, var(--success), #27ae60);
             color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 14px 28px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 6px 18px rgba(46, 204, 113, 0.3);
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
@@ -179,20 +171,20 @@
         
         .social-btn.facebook {
             background: linear-gradient(90deg, var(--secondary), #3a0ca3);
-            box-shadow: 0 5px 15px rgba(58, 12, 163, 0.3);
+            box-shadow: 0 6px 18px rgba(58, 12, 163, 0.3);
         }
         
         .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
         }
         
         .social-btn.facebook:hover {
-            box-shadow: 0 8px 20px rgba(58, 12, 163, 0.4);
+            box-shadow: 0 10px 25px rgba(58, 12, 163, 0.4);
         }
         
         .social-btn i {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
         
         .form-container {
@@ -200,8 +192,8 @@
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(67, 97, 238, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(67, 97, 238, 0.15);
         }
         
         .form-group {
@@ -213,6 +205,7 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--dark);
+            font-size: 1.1rem;
         }
         
         .form-input {
@@ -220,7 +213,7 @@
             padding: 16px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             background: #f8f9ff;
         }
@@ -229,11 +222,11 @@
             border-color: var(--accent);
             background: white;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.2);
         }
         
         textarea.form-input {
-            min-height: 120px;
+            min-height: 140px;
             resize: vertical;
         }
         
@@ -241,12 +234,12 @@
             background: linear-gradient(90deg, var(--secondary), var(--primary));
             color: white;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             padding: 16px 40px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 6px 22px rgba(67, 97, 238, 0.35);
             transition: all 0.3s ease;
             display: block;
             margin: 30px auto 0;
@@ -255,8 +248,8 @@
         }
         
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.45);
         }
         
         .status-message {
@@ -265,16 +258,17 @@
             border-radius: 10px;
             margin-top: 20px;
             font-weight: 600;
+            font-size: 1.1rem;
         }
         
         .success {
-            background: rgba(46, 204, 113, 0.1);
+            background: rgba(46, 204, 113, 0.12);
             color: var(--success);
             border: 1px solid rgba(46, 204, 113, 0.3);
         }
         
         .error {
-            background: rgba(230, 57, 70, 0.1);
+            background: rgba(230, 57, 70, 0.12);
             color: var(--danger);
             border: 1px solid rgba(230, 57, 70, 0.3);
         }
@@ -285,6 +279,7 @@
             padding: 25px;
             margin-top: 40px;
             border: 1px dashed rgba(67, 97, 238, 0.2);
+            display: none;
         }
         
         .admin-panel h2 {
@@ -293,44 +288,147 @@
             margin-bottom: 25px;
         }
         
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            margin-top: 20px;
+        }
+        
+        .admin-table th {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .admin-table th:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+        
+        .admin-table th:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+        
+        .admin-table td {
+            background: white;
+            padding: 14px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-table tr {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+        }
+        
+        .admin-table select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            background: #f8f9ff;
+            font-weight: 600;
+            cursor: pointer;
+            min-width: 150px;
+        }
+        
+        .admin-btn {
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .delete-btn {
+            background: var(--danger);
+            color: white;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+        }
+        
+        .delete-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(230, 57, 70, 0.35);
+        }
+        
+        .logout-btn {
+            background: linear-gradient(90deg, var(--danger), #c1121f);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(230, 57, 70, 0.3);
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(230, 57, 70, 0.4);
+        }
+        
         .footer {
             background: var(--dark);
             color: white;
             text-align: center;
             padding: 25px;
             font-weight: 300;
+            font-size: 1.1rem;
         }
         
         .footer strong {
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 700;
         }
         
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .doctor-net-logo h1 {
+                font-size: 2.8rem;
+            }
+            
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
             }
             
-            .title {
-                font-size: 2rem;
+            .header {
+                height: 240px;
+                padding: 20px;
             }
             
-            .subtitle {
-                font-size: 1rem;
+            .doctor-net-logo h1 {
+                font-size: 2.3rem;
+            }
+            
+            .doctor-net-logo p {
+                font-size: 1.1rem;
             }
             
             .main-content {
-                padding: 25px 20px;
+                padding: 30px 20px;
             }
             
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.7rem;
             }
             
             .social-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
+                padding: 14px 25px;
+                font-size: 1.1rem;
             }
             
             .form-container {
@@ -338,27 +436,19 @@
             }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .header {
-                padding: 20px 15px;
+                height: 200px;
             }
             
-            .logo {
-                width: 110px;
-                height: 110px;
-            }
-            
-            .logo i {
-                font-size: 3rem;
-            }
-            
-            .title {
-                font-size: 1.7rem;
+            .doctor-net-logo h1 {
+                font-size: 1.8rem;
             }
             
             .social-container {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
             
             .social-btn {
@@ -366,18 +456,24 @@
                 max-width: 300px;
                 justify-content: center;
             }
+            
+            .admin-table th, .admin-table td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+            
+            .admin-table select {
+                min-width: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo-container">
-                <div class="logo">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <h1 class="title">دكتور نت لحلول الشبكات</h1>
-                <p class="subtitle">الحلول التقنية المتكاملة لشبكاتك باحترافية وجودة عالية</p>
+            <div class="doctor-net-logo">
+                <h1>DOCTOR NET</h1>
+                <p>حلول الشبكات المتكاملة باحترافية وجودة عالية</p>
             </div>
         </header>
         
@@ -436,18 +532,41 @@
                 </form>
             </div>
             
-            <div class="admin-panel">
+            <div class="admin-panel" id="admin-panel">
                 <h2 class="section-title">لوحة إدارة الطلبات</h2>
-                <form id="admin-login-form">
-                    <div class="form-group">
-                        <label for="admin-password" class="form-label">كلمة مرور الإدارة</label>
-                        <input type="password" id="admin-password" class="form-input" placeholder="أدخل كلمة المرور" required>
-                    </div>
+                <div class="form-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الحجز</th>
+                                <th>الاسم</th>
+                                <th>الهاتف</th>
+                                <th>الوصف</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tbody">
+                            <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+                        </tbody>
+                    </table>
                     
-                    <button type="submit" class="submit-btn">دخول لوحة الإدارة</button>
-                    
-                    <div id="admin-status" class="status-message" style="display: none;"></div>
-                </form>
+                    <button class="logout-btn" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="form-container" id="admin-login-form">
+                <h2 class="section-title">لوحة إدارة الطلبات</h2>
+                <div class="form-group">
+                    <label for="admin-password" class="form-label">كلمة مرور الإدارة</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="أدخل كلمة المرور" required>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="admin-login-btn">دخول لوحة الإدارة</button>
+                
+                <div id="admin-status" class="status-message" style="display: none;"></div>
             </div>
         </div>
         
@@ -569,22 +688,100 @@
         // تسجيل دخول الإدارة
         const ADMIN_PASSWORD = "doctor123";
         
-        document.getElementById("admin-login-form").addEventListener("submit", async (e) => {
+        document.getElementById("admin-login-btn").addEventListener("click", async (e) => {
             e.preventDefault();
             
             const password = document.getElementById("admin-password").value;
             
             if (password === ADMIN_PASSWORD) {
-                showStatus("admin-status", "تم تسجيل الدخول بنجاح! جاري تحميل لوحة الإدارة...", true);
-                
-                // هنا يمكنك إضافة تحميل لوحة الإدارة
-                setTimeout(() => {
-                    showStatus("admin-status", "لوحة الإدارة قيد التطوير حالياً", true);
-                }, 2000);
+                document.getElementById("admin-login-form").style.display = "none";
+                document.getElementById("admin-panel").style.display = "block";
+                fetchTickets();
+                showStatus("admin-status", "تم تسجيل الدخول بنجاح!", true);
             } else {
                 showStatus("admin-status", "كلمة المرور غير صحيحة!", false);
             }
         });
+        
+        // تسجيل الخروج
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            document.getElementById("admin-panel").style.display = "none";
+            document.getElementById("admin-login-form").style.display = "block";
+            document.getElementById("admin-password").value = "";
+        });
+        
+        // جلب بيانات الطلبات
+        async function fetchTickets() {
+            try {
+                const querySnapshot = await db.collection("tickets").orderBy("createdAt", "desc").get();
+                const tickets = [];
+                querySnapshot.forEach(doc => {
+                    tickets.push({ id: doc.id, ...doc.data() });
+                });
+                renderTickets(tickets);
+            } catch (error) {
+                console.error("Error fetching tickets: ", error);
+            }
+        }
+        
+        // عرض الطلبات في لوحة الإدارة
+        function renderTickets(tickets) {
+            const tbody = document.getElementById("admin-tbody");
+            tbody.innerHTML = "";
+            
+            tickets.forEach(ticket => {
+                const tr = document.createElement("tr");
+                
+                tr.innerHTML = `
+                    <td>${ticket.id}</td>
+                    <td>${ticket.name}</td>
+                    <td>${ticket.phone}</td>
+                    <td>${ticket.desc}</td>
+                    <td>
+                        <select id="status-${ticket.id}" onchange="updateStatus('${ticket.id}', this.value)">
+                            <option value="جديد" ${ticket.status === "جديد" ? "selected" : ""}>جديد</option>
+                            <option value="قيد المعالجة" ${ticket.status === "قيد المعالجة" ? "selected" : ""}>قيد المعالجة</option>
+                            <option value="مكتمل" ${ticket.status === "مكتمل" ? "selected" : ""}>مكتمل</option>
+                            <option value="ملغي" ${ticket.status === "ملغي" ? "selected" : ""}>ملغي</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="admin-btn delete-btn" onclick="deleteTicket('${ticket.id}')">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        }
+        
+        // تحديث حالة الطلب
+        async function updateStatus(ticketId, newStatus) {
+            try {
+                await db.collection("tickets").doc(ticketId).update({ status: newStatus });
+                showStatus("admin-status", "تم تحديث حالة الطلب بنجاح!", true);
+            } catch (error) {
+                showStatus("admin-status", `حدث خطأ أثناء تحديث الحالة: ${error.message}`, false);
+            }
+        }
+        
+        // حذف الطلب
+        async function deleteTicket(ticketId) {
+            if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+                try {
+                    await db.collection("tickets").doc(ticketId).delete();
+                    fetchTickets();
+                    showStatus("admin-status", "تم حذف الطلب بنجاح!", true);
+                } catch (error) {
+                    showStatus("admin-status", `حدث خطأ أثناء حذف الطلب: ${error.message}`, false);
+                }
+            }
+        }
+        
+        // جعل الدوال متاحة بشكل عام
+        window.updateStatus = updateStatus;
+        window.deleteTicket = deleteTicket;
     </script>
 </body>
 </html>
