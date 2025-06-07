@@ -273,6 +273,48 @@
             border: 1px solid rgba(230, 57, 70, 0.3);
         }
         
+        .whatsapp-section {
+            background: rgba(37, 211, 102, 0.1);
+            border: 2px solid var(--success);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+            display: none;
+        }
+        
+        .whatsapp-section h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .whatsapp-section p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #25d366, #128c7e);
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+        }
+        
         .admin-panel {
             background: rgba(29, 53, 87, 0.05);
             border-radius: 15px;
@@ -434,6 +476,11 @@
             .form-container {
                 padding: 20px;
             }
+            
+            .whatsapp-btn {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -515,6 +562,15 @@
                     <button type="submit" class="submit-btn">حجز الطلب</button>
                     
                     <div id="ticket-status" class="status-message" style="display: none;"></div>
+                    
+                    <div class="whatsapp-section" id="whatsapp-section">
+                        <h3>يرجى إرسال رقم الحجز عبر واتساب</h3>
+                        <p>لضمان متابعة طلبك بشكل أسرع، يرجى إرسال رقم الحجز الخاص بك إلى دكتور نت عبر واتساب</p>
+                        <a href="#" class="whatsapp-btn" id="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i>
+                            إرسال رقم الحجز عبر واتساب
+                        </a>
+                    </div>
                 </form>
             </div>
             
@@ -643,6 +699,16 @@
                 const ticketId = docRef.id;
                 
                 showStatus("ticket-status", `تم حجز الطلب بنجاح! رقم الحجز: ${ticketId}`, true);
+                
+                // إظهار قسم إرسال رقم الحجز عبر واتساب
+                const whatsappSection = document.getElementById("whatsapp-section");
+                whatsappSection.style.display = "block";
+                
+                // إنشاء رابط واتساب مع رقم الحجز
+                const whatsappLink = document.getElementById("whatsapp-link");
+                const message = `مرحباً، لقد قمت بحجز طلب دعم فني جديد. رقم الحجز الخاص بي هو: ${ticketId}`;
+                const whatsappUrl = `https://wa.me/201064496440?text=${encodeURIComponent(message)}`;
+                whatsappLink.href = whatsappUrl;
                 
                 // إعادة تعيين النموذج
                 document.getElementById("ticket-form").reset();
