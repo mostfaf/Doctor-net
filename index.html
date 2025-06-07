@@ -4,336 +4,320 @@
     <meta charset="UTF-8" />
     <title>دكتور نت لحلول الشبكات - الدعم الفني</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Font Awesome for icons -->
+    <!-- أيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <!-- Google Fonts Cairo & Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #178184 0%, #0d474a 100%);
-            font-family: 'Cairo', 'Tajawal', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #512da8 50%, #ffd600 100%);
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
             color: #222;
             margin: 0;
             padding: 0;
             min-height: 100vh;
         }
         .container {
-            max-width: 410px;
-            margin: 32px auto 40px auto;
-            background: rgba(255,255,255,0.98);
-            padding: 22px 12px 28px 12px;
-            border-radius: 22px;
-            box-shadow: 0 10px 40px 0 #17818433, 0 2px 8px #0d474a33;
-            position: relative;
+            max-width: 900px;
+            margin: 50px auto 70px auto;
+            background: rgba(255,255,255,0.97);
+            padding: 45px 35px 45px 35px;
+            border-radius: 18px;
+            box-shadow: 0 16px 40px rgba(32, 35, 80, 0.16);
         }
         .logo-hero {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px;
-            margin-top: -18px;
-            animation: logoFadeIn 1.3s cubic-bezier(.68,-0.55,.27,1.55);
+            margin-bottom: 18px;
+            margin-top: -20px;
+            animation: logoFadeIn 1.2s ease;
         }
         .logo-img {
-            width: 120px;
-            max-width: 80vw;
-            border-radius: 18px;
-            box-shadow: 0 8px 32px #17818433, 0 2px 8px #0d474a33;
+            width: 180px;
+            max-width: 90vw;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(81,45,168,0.18), 0 2px 12px #ffd60033;
             background: rgba(255,255,255,0.12);
             transition: transform 0.4s cubic-bezier(.23,1.01,.32,1);
-            border: 3px solid #fff;
         }
         .logo-img:hover {
-            transform: scale(1.09) rotate(-2deg);
-            box-shadow: 0 16px 48px #17818466, 0 2px 16px #0d474a44;
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 16px 48px #ffd60055, 0 2px 16px #512da844;
         }
         @keyframes logoFadeIn {
             from { opacity: 0; transform: scale(0.85);}
             to   { opacity: 1; transform: scale(1);}
         }
         h1 {
-            color: #0d474a;
+            color: #512da8;
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 24px;
             font-weight: 900;
             letter-spacing: 2px;
-            font-size: 2em;
-            font-family: 'Tajawal', 'Cairo', Tahoma, Arial, sans-serif;
-            text-shadow: 1px 2px 10px #17818444, 0 1px 2px #0d474a33;
+            font-size: 3em;
+            font-family: 'Cairo', Tahoma, Arial, sans-serif;
+            text-shadow: 3px 3px 10px #ffd600, 2px 2px 6px rgba(81,45,168,0.18);
         }
         .social-bar {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 22px;
+            margin-bottom: 38px;
         }
         .social-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
             color: #fff;
             font-weight: 800;
-            font-size: 1em;
-            padding: 8px 15px;
-            border-radius: 10px;
+            font-size: 1.18em;
+            padding: 12px 26px;
+            border-radius: 14px;
             text-decoration: none;
-            box-shadow: 0 4px 12px #25d36633;
-            transition: background 0.3s, transform 0.15s;
+            box-shadow: 0 6px 18px rgba(37,211,102,0.23);
+            transition: background 0.3s, transform 0.17s;
         }
         .social-btn.facebook {
-            background: linear-gradient(90deg, #1877f3 0%, #0d474a 100%);
-            box-shadow: 0 4px 12px #1877f344;
+            background: linear-gradient(90deg, #1877f3 0%, #512da8 100%);
+            box-shadow: 0 6px 18px rgba(24,119,243,0.17);
         }
         .social-btn i {
-            font-size: 1.2em;
+            font-size: 1.4em;
         }
         .social-btn:hover {
             background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
             transform: scale(1.07);
         }
         .social-btn.facebook:hover {
-            background: linear-gradient(90deg, #0d474a 0%, #1877f3 100%);
+            background: linear-gradient(90deg, #512da8 0%, #1877f3 100%);
         }
         p.subtitle {
             text-align: center;
-            color: #222;
-            font-size: 1.04em;
-            margin-bottom: 18px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 36px;
+            font-weight: 600;
         }
         h2 {
-            border-right: 4px solid #178184;
-            padding-right: 10px;
-            color: #0d474a;
-            margin-top: 30px;
-            margin-bottom: 12px;
-            font-size: 1.15em;
-            font-weight: 800;
-            font-family: 'Tajawal', 'Cairo', Tahoma, Arial, sans-serif;
+            border-right: 6px solid #ffd600;
+            padding-right: 14px;
+            color: #512da8;
+            margin-top: 60px;
+            margin-bottom: 24px;
+            font-size: 1.6em;
+            font-weight: 700;
         }
         label {
             display: block;
-            margin: 8px 0 4px 0;
+            margin: 14px 0 8px 0;
             font-weight: 700;
-            color: #0d474a;
-            font-size: 1em;
+            color: #222;
+            font-size: 1.05em;
         }
         input, textarea, select {
             width: 100%;
-            padding: 10px 8px;
-            margin-bottom: 12px;
-            border: 1.5px solid #178184;
-            border-radius: 9px;
-            font-size: 1em;
-            background: #f7fafd;
+            padding: 16px 14px;
+            margin-bottom: 22px;
+            border: 2px solid #ffd600;
+            border-radius: 12px;
+            font-size: 1.05em;
+            background: #f7f5ff;
             transition: border-color 0.3s, background 0.3s;
             font-weight: 600;
             color: #2c3e50;
         }
         input:focus, textarea:focus, select:focus {
-            border-color: #0d474a;
+            border-color: #512da8;
             background: #fff;
             outline: none;
-            box-shadow: 0 0 8px #17818477;
+            box-shadow: 0 0 12px #ffd60099;
         }
         textarea {
             resize: vertical;
-            min-height: 60px;
-            max-height: 120px;
+            min-height: 100px;
+            max-height: 200px;
         }
         button {
-            background: linear-gradient(90deg, #178184 0%, #0d474a 100%);
+            background: linear-gradient(90deg, #ffd600 0%, #512da8 100%);
             color: #fff;
             font-weight: 900;
-            font-size: 1em;
-            padding: 11px 22px;
+            font-size: 1.18em;
+            padding: 16px 34px;
             border: none;
-            border-radius: 9px;
+            border-radius: 14px;
             cursor: pointer;
-            box-shadow: 0 4px 12px #17818444;
-            transition: background 0.3s, transform 0.15s;
+            box-shadow: 0 8px 24px #ffd60055;
+            transition: background 0.3s, transform 0.17s;
             user-select: none;
         }
         button:hover {
-            background: linear-gradient(90deg, #0d474a 0%, #178184 100%);
-            transform: scale(1.04);
+            background: linear-gradient(90deg, #512da8 0%, #ffd600 100%);
+            transform: scale(1.07);
         }
         .success {
             color: #27ae60;
             font-weight: 700;
-            margin: 10px 0 0 0;
-            font-size: 1em;
+            margin: 16px 0 0 0;
+            font-size: 1.1em;
             text-align: center;
         }
         .error {
             color: #e74c3c;
             font-weight: 700;
-            margin: 10px 0 0 0;
-            font-size: 1em;
+            margin: 16px 0 0 0;
+            font-size: 1.1em;
             text-align: center;
         }
         .whatsapp-section {
             background: #e6f4ea;
             border: 2px solid #25d366;
-            border-radius: 9px;
-            margin: 14px 0 8px 0;
-            padding: 10px 7px;
+            border-radius: 14px;
+            margin: 24px 0 14px 0;
+            padding: 18px 16px;
             text-align: center;
             font-weight: 700;
             color: #128c7e;
-            font-size: 1em;
+            font-size: 1.15em;
             user-select: none;
         }
         .whatsapp-btn {
             background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
             color: #fff;
-            font-size: 1em;
+            font-size: 1.15em;
             border: none;
-            border-radius: 9px;
-            padding: 10px 18px;
-            margin-top: 7px;
+            border-radius: 14px;
+            padding: 14px 34px;
+            margin-top: 14px;
             cursor: pointer;
             font-weight: 900;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 12px;
             text-decoration: none;
-            transition: background 0.3s, transform 0.15s;
+            transition: background 0.3s ease, transform 0.15s ease;
         }
         .whatsapp-btn img {
-            width: 20px;
-            height: 20px;
+            width: 28px;
+            height: 28px;
         }
+        /* لوحة الإدارة */
         .admin-section {
             display: none;
-            margin-top: 28px;
+            margin-top: 50px;
             overflow-x: auto;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
         }
         .admin-section table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 8px;
+            border-spacing: 0 16px;
             background: #f9fbff;
-            box-shadow: 0 4px 12px #2c536422;
-            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,87,143,0.15);
+            border-radius: 16px;
         }
         .admin-section th,
         .admin-section td {
             border: none;
-            padding: 8px 8px;
+            padding: 16px 22px;
             text-align: center;
             vertical-align: middle;
-            font-size: 0.92em;
+            font-size: 1.05em;
             color: #34495e;
             font-weight: 600;
         }
         .admin-section th {
-            background: linear-gradient(90deg, #178184 0%, #0d474a 100%);
+            background: linear-gradient(90deg, #ffd600 0%, #512da8 100%);
             color: #fff;
             font-weight: 800;
-            font-size: 1em;
-            border-radius: 10px 10px 0 0;
+            font-size: 1.2em;
+            border-radius: 16px 16px 0 0;
         }
         .admin-section tbody tr {
             background: #fff;
-            box-shadow: 0 2px 8px #2c53641a;
-            border-radius: 8px;
-            transition: background 0.3s;
+            box-shadow: 0 4px 16px rgba(0,87,143,0.12);
+            border-radius: 14px;
+            transition: background 0.3s ease;
         }
         .admin-section tbody tr:hover {
             background: #e3f0fb;
         }
         .admin-section td.desc-cell {
-            max-width: 90px;
+            max-width: 220px;
             word-wrap: break-word;
             white-space: normal;
             text-align: right;
             direction: rtl;
         }
         .admin-section select {
-            padding: 7px 12px;
-            border-radius: 8px;
-            border: 1.2px solid #178184;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 1.8px solid #ffd600;
             font-weight: 700;
             cursor: pointer;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
             background: #f9fbfd;
             color: #2c3e50;
         }
         .admin-section select:focus {
-            border-color: #0d474a;
+            border-color: #512da8;
             outline: none;
             background: #fff;
-            box-shadow: 0 0 6px #17818477;
+            box-shadow: 0 0 10px #ffd60099;
         }
         .admin-section button {
             background: #e74c3c;
-            padding: 7px 15px;
-            border-radius: 8px;
+            padding: 12px 28px;
+            border-radius: 14px;
             font-weight: 900;
-            font-size: 0.93em;
+            font-size: 1.1em;
             color: #fff;
             border: none;
             cursor: pointer;
-            box-shadow: 0 3px 8px #e74c3c33;
-            transition: background 0.3s, transform 0.12s;
+            box-shadow: 0 6px 20px rgba(231,76,60,0.5);
+            transition: background 0.3s, transform 0.15s;
         }
         .admin-section button:hover {
             background: #c0392b;
-            transform: scale(1.04);
+            transform: scale(1.07);
         }
         .logout-btn {
             background: #e74c3c;
-            font-size: 1em;
-            padding: 8px 18px;
-            border-radius: 10px;
+            font-size: 1.2em;
+            padding: 14px 36px;
+            border-radius: 16px;
             font-weight: 900;
-            margin-bottom: 18px;
+            margin-bottom: 30px;
             float: left;
-            box-shadow: 0 4px 12px #e74c3c44;
+            box-shadow: 0 8px 25px rgba(231,76,60,0.6);
             cursor: pointer;
-            transition: background 0.3s, transform 0.12s;
+            transition: background 0.3s, transform 0.15s;
         }
         .logout-btn:hover {
             background: #c0392b;
-            transform: scale(1.04);
+            transform: scale(1.07);
         }
+        /* حقوق النشر */
         .copyright {
             text-align: center;
             color: #fff;
-            font-size: 0.95em;
-            margin: 30px 0 18px 0;
+            font-size: 1em;
+            margin: 50px 0 30px 0;
             letter-spacing: 0.7px;
             font-weight: 600;
-            text-shadow: 1px 1px 4px #0d474a;
+            text-shadow: 1px 1px 4px #512da8;
         }
         .copyright strong {
-            color: #178184;
-            text-shadow: 1px 1px 6px #0d474a;
+            color: #ffd600;
+            text-shadow: 1px 1px 6px #512da8;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
             .container {
-                max-width: 97vw;
-                margin: 7px 0 18px 0;
-                padding: 7px 2vw 16px 2vw;
-                border-radius: 12px;
+                margin: 30px 10px 40px 10px;
+                padding: 25px 10px 20px 10px;
             }
-            .logo-img { width: 70px; border-radius: 12px; }
-            h1 { font-size: 1.1em; margin-bottom: 10px; }
-            .social-bar { gap: 4px; margin-bottom: 10px;}
-            .social-btn { font-size: 0.92em; padding: 7px 8px; border-radius: 7px;}
-            h2 { font-size: 0.97em; margin-top: 20px; margin-bottom: 7px; }
-            label { font-size: 0.95em; margin: 4px 0 2px 0;}
-            input, textarea, select { font-size: 0.95em; padding: 7px 6px; border-radius: 6px; margin-bottom: 6px;}
-            button, .logout-btn, .admin-section button { font-size: 0.96em; padding: 7px 12px; border-radius: 7px;}
-            .admin-section th, .admin-section td { padding: 5px 3px; font-size: 0.9em;}
-            .admin-section td.desc-cell { max-width: 50px;}
-            .whatsapp-section { font-size: 0.93em; padding: 6px 2px; border-radius: 6px;}
-            .copyright { font-size: 0.85em; margin: 14px 0 7px 0;}
+            .logo-img { width: 110px; }
+            h1 { font-size: 2.2em; }
         }
     </style>
 </head>
@@ -357,9 +341,6 @@
             </a>
         </div>
         <p class="subtitle">لحجز طلبات الدعم الفني بسهولة وسرعة</p>
-
-        <!-- باقي الموقع (النماذج ولوحة الإدارة) كما في الكود السابق، بدون أي تغيير في الوظائف -->
-        <!-- ... انسخ من الكود السابق كل النماذج والجافاسكريبت ولوحة الإدارة ... -->
 
         <!-- حجز طلب جديد -->
         <h2>حجز طلب جديد</h2>
@@ -398,7 +379,7 @@
 
         <div class="admin-section" id="admin-section" aria-live="polite" aria-label="لوحة إدارة الطلبات">
             <button class="logout-btn" id="logout-btn" aria-label="تسجيل خروج من لوحة الإدارة">تسجيل خروج</button>
-            <h3 style="color:#005a9c; margin-bottom: 20px;">لوحة إدارة الطلبات</h3>
+            <h3 style="color:#005a9c; margin-bottom: 24px;">لوحة إدارة الطلبات</h3>
             <table role="table" aria-describedby="admin-section">
                 <thead>
                     <tr>
@@ -445,9 +426,188 @@
     </script>
 
     <script>
-        // ... (نفس كود الجافاسكريبت السابق لإدارة التذاكر ولوحة الإدارة)
-        // يمكنك نسخه من الكود السابق مباشرة بدون أي تغيير
-        // ...
+        // حجز طلب جديد
+        document.getElementById("ticket-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const desc = document.getElementById("desc").value.trim();
+            const successDiv = document.getElementById("ticket-success");
+            const errorDiv = document.getElementById("ticket-error");
+            const whatsappDiv = document.getElementById("whatsapp-section");
+            successDiv.textContent = "";
+            errorDiv.textContent = "";
+            whatsappDiv.innerHTML = "";
+
+            if (!name || !phone || !desc) {
+                errorDiv.textContent = "يرجى ملء جميع الحقول المطلوبة.";
+                return;
+            }
+
+            // تحقق بسيط من رقم الهاتف (أرقام ومسافات ورموز + - فقط)
+            const phonePattern = /^[\d\s\+\-]+$/;
+            if (!phonePattern.test(phone)) {
+                errorDiv.textContent = "يرجى إدخال رقم هاتف صحيح.";
+                return;
+            }
+
+            const ticket = {
+                name,
+                phone,
+                email,
+                desc,
+                status: "جديد",
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            db.collection("tickets")
+                .add(ticket)
+                .then((docRef) => {
+                    const ticketId = docRef.id;
+                    successDiv.textContent = "تم حجز الطلب بنجاح! رقم الحجز: " + ticketId;
+
+                    whatsappDiv.innerHTML = `
+                      <div class="whatsapp-section" role="region" aria-label="إرسال رقم الحجز عبر واتساب">
+                        <div>
+                          يرجى إرسال رقم الحجز الخاص بك على الواتساب حتى يتم متابعة طلبك بسرعة!
+                        </div>
+                        <a class="whatsapp-btn"
+                           href="https://wa.me/201064496440?text=مرحباً،%20رقم%20حجز%20الدعم%20الخاص%20بي%20هو:%20${ticketId}"
+                           target="_blank" rel="noopener noreferrer" aria-label="إرسال رقم الحجز على الواتساب">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب" />
+                            إرسال رقم الحجز على الواتساب
+                        </a>
+                        <div style="margin-top:10px; color:#555; font-size:1em;">
+                          أو قم بنسخ رقم الحجز وإرساله يدويًا على الواتساب: <b>201064496440+</b>
+                        </div>
+                      </div>
+                    `;
+
+                    this.reset();
+                })
+                .catch((error) => {
+                    errorDiv.textContent = "حدث خطأ أثناء الحجز: " + error.message;
+                });
+        });
+
+        // متابعة الطلب
+        document.getElementById("track-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const ticketId = document.getElementById("track-id").value.trim();
+            const resultDiv = document.getElementById("track-result");
+            resultDiv.textContent = "";
+
+            if (!ticketId) {
+                resultDiv.textContent = "يرجى إدخال رقم الحجز.";
+                return;
+            }
+
+            db.collection("tickets")
+                .doc(ticketId)
+                .get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const t = doc.data();
+                        resultDiv.innerHTML = `<div class="success" role="alert">
+                            <b>الاسم:</b> ${t.name}<br>
+                            <b>الهاتف:</b> ${t.phone}<br>
+                            <b>الوصف:</b> ${t.desc}<br>
+                            <b>الحالة:</b> ${t.status}
+                        </div>`;
+                    } else {
+                        resultDiv.innerHTML = '<div class="error" role="alert">لم يتم العثور على الطلب.</div>';
+                    }
+                })
+                .catch((error) => {
+                    resultDiv.innerHTML = '<div class="error" role="alert">حدث خطأ أثناء البحث: ' + error.message + '</div>';
+                });
+        });
+
+        // لوحة الإدارة
+        const ADMIN_PASSWORD = "doctor123";
+
+        document.getElementById("admin-login-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const password = document.getElementById("admin-password").value;
+            const errorDiv = document.getElementById("admin-login-error");
+            errorDiv.textContent = "";
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById("admin-section").style.display = "block";
+                document.getElementById("admin-login-form").style.display = "none";
+                fetchTicketsFromFirestore();
+            } else {
+                errorDiv.textContent = "كلمة المرور غير صحيحة!";
+            }
+        });
+
+        document.getElementById("logout-btn").addEventListener("click", function () {
+            document.getElementById("admin-section").style.display = "none";
+            document.getElementById("admin-login-form").style.display = "block";
+            document.getElementById("admin-password").value = "";
+        });
+
+        function fetchTicketsFromFirestore() {
+            db.collection("tickets")
+                .orderBy("createdAt", "desc")
+                .get()
+                .then((querySnapshot) => {
+                    const tickets = [];
+                    querySnapshot.forEach((doc) => {
+                        tickets.push({ id: doc.id, ...doc.data() });
+                    });
+                    renderTicketsTable(tickets);
+                })
+                .catch((error) => {
+                    alert("حدث خطأ أثناء جلب الطلبات: " + error.message);
+                });
+        }
+
+        function renderTicketsTable(tickets) {
+            const tbody = document.getElementById("admin-tbody");
+            tbody.innerHTML = "";
+            tickets.forEach((t) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${t.id}</td>
+                    <td>${t.name}</td>
+                    <td>${t.phone}</td>
+                    <td class="desc-cell">${t.desc}</td>
+                    <td>${t.status}</td>
+                    <td>
+                        <select onchange="updateTicketStatus('${t.id}', this.value)" aria-label="تغيير حالة الطلب رقم ${t.id}">
+                            <option value="جديد" ${t.status === "جديد" ? "selected" : ""}>جديد</option>
+                            <option value="جاري التنفيذ" ${t.status === "جاري التنفيذ" ? "selected" : ""}>جاري التنفيذ</option>
+                            <option value="مغلق" ${t.status === "مغلق" ? "selected" : ""}>مغلق</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button onclick="deleteTicket('${t.id}')" aria-label="حذف الطلب رقم ${t.id}">حذف</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateTicketStatus(id, newStatus) {
+            db.collection("tickets")
+                .doc(id)
+                .update({ status: newStatus })
+                .then(() => fetchTicketsFromFirestore())
+                .catch((error) => alert("خطأ أثناء تحديث الحالة: " + error.message));
+        }
+        window.updateTicketStatus = updateTicketStatus;
+
+        function deleteTicket(id) {
+            if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+                db.collection("tickets")
+                    .doc(id)
+                    .delete()
+                    .then(() => fetchTicketsFromFirestore())
+                    .catch((error) => alert("خطأ أثناء حذف الطلب: " + error.message));
+            }
+        }
+        window.deleteTicket = deleteTicket;
     </script>
 </body>
 </html>
