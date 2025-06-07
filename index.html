@@ -1,209 +1,356 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>دكتور نت لحلول الشبكات</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>دكتور نت لحلول الشبكات - الدعم الفني</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+        /* الخطوط والألوان الأساسية */
         body {
+            background: #f0f4f8;
             font-family: 'Cairo', Tahoma, Arial, sans-serif;
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-            margin: 0; padding: 0;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
         .container {
-            max-width: 650px;
-            margin: 40px auto 20px auto;
+            max-width: 720px;
+            margin: 40px auto 60px auto;
             background: #fff;
-            padding: 35px 25px 25px 25px;
+            padding: 35px 30px 40px 30px;
             border-radius: 14px;
-            box-shadow: 0 6px 24px #b3c2d4;
-            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         h1 {
-            color: #2186c4;
+            color: #0077c8;
             text-align: center;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
+            margin-bottom: 18px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            font-size: 2.2em;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: 600;
         }
         h2 {
-            color: #176399;
-            margin-top: 40px;
-            margin-bottom: 8px;
-            border-right: 5px solid #2186c4;
-            padding-right: 8px;
-            font-size: 1.2em;
+            border-right: 6px solid #0077c8;
+            padding-right: 12px;
+            color: #005a9c;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: 700;
         }
         label {
             display: block;
-            margin: 10px 0 4px 0;
-            font-weight: bold;
-            color: #333;
+            margin: 12px 0 6px 0;
+            font-weight: 700;
+            color: #34495e;
+            font-size: 1em;
         }
         input, textarea, select {
             width: 100%;
-            padding: 9px;
-            margin-bottom: 12px;
-            border: 1px solid #b3c2d4;
-            border-radius: 6px;
+            padding: 14px 12px;
+            margin-bottom: 18px;
+            border: 1.8px solid #bdc3c7;
+            border-radius: 10px;
             font-size: 1em;
-            background: #f7fbff;
-            transition: border 0.2s;
+            background: #f9fbfd;
+            transition: border-color 0.3s, background 0.3s;
+            font-weight: 600;
+            color: #2c3e50;
         }
         input:focus, textarea:focus, select:focus {
-            border: 1.5px solid #2186c4;
+            border-color: #0077c8;
+            background: #fff;
             outline: none;
+            box-shadow: 0 0 8px rgba(0,119,200,0.3);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 160px;
         }
         button {
-            background: linear-gradient(90deg, #2186c4 0%, #176399 100%);
+            background: linear-gradient(90deg, #0077c8 0%, #005a9c 100%);
             color: #fff;
+            font-weight: 900;
+            font-size: 1.15em;
+            padding: 14px 28px;
             border: none;
-            padding: 11px 24px;
-            border-radius: 6px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: background 0.2s, transform 0.1s;
-            box-shadow: 0 2px 8px #cfd8e6;
+            box-shadow: 0 6px 15px rgba(0,119,200,0.4);
+            transition: background 0.3s ease, transform 0.15s ease;
+            user-select: none;
         }
         button:hover {
-            background: linear-gradient(90deg, #176399 0%, #2186c4 100%);
-            transform: scale(1.04);
-        }
-        .admin-section {
-            display: none;
-            margin-top: 30px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: #f7fbff;
-        }
-        th, td {
-            border: 1px solid #d6e0ef;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background: #2186c4;
-            color: #fff;
-            font-size: 1em;
-        }
-        .logout-btn {
-            margin-top: 15px;
-            float: left;
-            background: #e74c3c;
-            font-size: 0.95em;
-            padding: 8px 18px;
+            background: linear-gradient(90deg, #005a9c 0%, #0077c8 100%);
+            transform: scale(1.06);
         }
         .success {
-            color: #219150;
-            margin: 10px 0;
-            font-weight: bold;
+            color: #27ae60;
+            font-weight: 700;
+            margin: 14px 0 0 0;
+            font-size: 1em;
+            text-align: center;
         }
         .error {
             color: #e74c3c;
-            margin: 10px 0;
-            font-weight: bold;
+            font-weight: 700;
+            margin: 14px 0 0 0;
+            font-size: 1em;
+            text-align: center;
         }
         .whatsapp-section {
-            background: #e7f9ed;
-            border: 1.5px solid #25d366;
-            border-radius: 8px;
-            margin: 16px 0 8px 0;
-            padding: 13px 10px 10px 10px;
+            background: #e6f4ea;
+            border: 2px solid #25d366;
+            border-radius: 12px;
+            margin: 20px 0 10px 0;
+            padding: 15px 12px;
             text-align: center;
+            font-weight: 700;
+            color: #128c7e;
+            font-size: 1.1em;
+            user-select: none;
         }
         .whatsapp-btn {
             background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
             color: #fff;
-            font-size: 1.05em;
+            font-size: 1.1em;
             border: none;
-            border-radius: 6px;
-            padding: 9px 24px;
-            margin-top: 8px;
+            border-radius: 12px;
+            padding: 12px 28px;
+            margin-top: 12px;
             cursor: pointer;
-            font-weight: bold;
-            display: inline-block;
-            transition: background 0.2s, transform 0.1s;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.15s ease;
         }
         .whatsapp-btn:hover {
             background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
+            transform: scale(1.08);
+        }
+        .whatsapp-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        /* متابعة الطلب */
+        #track-result {
+            margin-top: 12px;
+            font-weight: 700;
+            font-size: 1.05em;
+            text-align: center;
+        }
+        /* لوحة الإدارة */
+        .admin-section {
+            display: none;
+            margin-top: 40px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+        }
+        .admin-section table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 14px;
+            background: #f9fbff;
+            box-shadow: 0 8px 24px rgba(0,87,143,0.15);
+            border-radius: 14px;
+        }
+        .admin-section th,
+        .admin-section td {
+            border: none;
+            padding: 14px 18px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1em;
+            color: #34495e;
+            font-weight: 600;
+        }
+        .admin-section th {
+            background: #0077c8;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1em;
+            border-radius: 14px 14px 0 0;
+        }
+        .admin-section tbody tr {
+            background: #fff;
+            box-shadow: 0 3px 12px rgba(0,87,143,0.1);
+            border-radius: 12px;
+            transition: background 0.3s ease;
+        }
+        .admin-section tbody tr:hover {
+            background: #e3f0fb;
+        }
+        .admin-section td.desc-cell {
+            max-width: 180px;
+            word-wrap: break-word;
+            white-space: normal;
+            text-align: right;
+            direction: rtl;
+        }
+        .admin-section select {
+            padding: 9px 14px;
+            border-radius: 10px;
+            border: 1.8px solid #bdc3c7;
+            font-weight: 700;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            background: #f9fbfd;
+            color: #2c3e50;
+        }
+        .admin-section select:focus {
+            border-color: #005a9c;
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 8px rgba(0,90,156,0.3);
+        }
+        .admin-section button {
+            background: #e74c3c;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 1em;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(231,76,60,0.4);
+            transition: background 0.3s ease, transform 0.15s ease;
+        }
+        .admin-section button:hover {
+            background: #c0392b;
             transform: scale(1.05);
         }
+        .logout-btn {
+            background: #e74c3c;
+            font-size: 1.1em;
+            padding: 12px 28px;
+            border-radius: 14px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            float: left;
+            box-shadow: 0 6px 20px rgba(231,76,60,0.5);
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.15s ease;
+        }
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        /* رسائل الخطأ والنجاح */
+        .error, .success {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.05em;
+            margin: 12px 0 0 0;
+        }
+        /* حقوق النشر */
         .copyright {
             text-align: center;
-            color: #666;
-            font-size: 0.98em;
-            margin: 30px 0 10px 0;
-            letter-spacing: 0.5px;
+            color: #888;
+            font-size: 0.95em;
+            margin: 40px 0 20px 0;
+            letter-spacing: 0.7px;
+            font-weight: 600;
         }
         .copyright strong {
-            color: #2186c4;
+            color: #0077c8;
         }
-        @media (max-width: 700px) {
-            .container { padding: 12px 4px; }
-            table, th, td { font-size: 13px; }
-            h1 { font-size: 1.3em; }
+        /* استجابة الهواتف */
+        @media (max-width: 720px) {
+            .container {
+                margin: 20px 15px 40px 15px;
+                padding: 25px 20px 30px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.3em;
+                margin-top: 35px;
+                margin-bottom: 18px;
+            }
+            input, textarea, select {
+                padding: 12px 10px;
+                font-size: 0.95em;
+            }
+            button, .logout-btn, .admin-section button {
+                font-size: 1em;
+                padding: 12px 22px;
+            }
+            .admin-section th, .admin-section td {
+                padding: 10px 8px;
+                font-size: 0.9em;
+            }
+            .admin-section td.desc-cell {
+                max-width: 140px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>دكتور نت لحلول الشبكات</h1>
-        <p style="text-align:center; color:#555; margin-bottom:18px;">
-            لحجز طلبات الدعم الفني بسهولة وسرعة
-        </p>
-        
+        <p class="subtitle">لحجز طلبات الدعم الفني بسهولة وسرعة</p>
+
         <!-- حجز طلب جديد -->
         <h2>حجز طلب جديد</h2>
-        <form id="ticket-form">
+        <form id="ticket-form" autocomplete="off" novalidate>
             <label for="name">الاسم الكامل:</label>
-            <input type="text" id="name" required>
+            <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل" />
             <label for="phone">رقم الهاتف:</label>
-            <input type="text" id="phone" required>
+            <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم هاتفك" pattern="[\d\s\+\-]+" />
             <label for="email">البريد الإلكتروني (اختياري):</label>
-            <input type="email" id="email">
+            <input type="email" id="email" name="email" placeholder="مثال: example@mail.com" />
             <label for="desc">وصف المشكلة:</label>
-            <textarea id="desc" rows="3" required></textarea>
+            <textarea id="desc" name="desc" rows="4" required placeholder="صف المشكلة التي تواجهها"></textarea>
             <button type="submit" id="submit-btn">حجز الطلب</button>
-            <div id="ticket-success" class="success"></div>
-            <div id="ticket-error" class="error"></div>
-            <!-- مكان رسالة واتساب سيظهر هنا -->
+            <div id="ticket-success" class="success" role="alert" aria-live="polite"></div>
+            <div id="ticket-error" class="error" role="alert" aria-live="assertive"></div>
             <div id="whatsapp-section"></div>
         </form>
 
         <!-- متابعة الطلب -->
         <h2>متابعة الطلب</h2>
-        <form id="track-form">
+        <form id="track-form" autocomplete="off" novalidate>
             <label for="track-id">أدخل رقم الحجز لمتابعة الطلب:</label>
-            <input type="text" id="track-id" required>
+            <input type="text" id="track-id" name="track-id" required placeholder="رقم الحجز" />
             <button type="submit" id="track-btn">متابعة</button>
-            <div id="track-result"></div>
+            <div id="track-result" role="alert" aria-live="polite"></div>
         </form>
 
         <!-- لوحة الإدارة -->
         <h2>لوحة الإدارة</h2>
-        <form id="admin-login-form">
+        <form id="admin-login-form" autocomplete="off" novalidate>
             <label for="admin-password">كلمة مرور لوحة الإدارة:</label>
-            <input type="password" id="admin-password" required>
+            <input type="password" id="admin-password" name="admin-password" required placeholder="أدخل كلمة المرور" />
             <button type="submit">دخول</button>
-            <div id="admin-login-error" class="error"></div>
+            <div id="admin-login-error" class="error" role="alert" aria-live="assertive"></div>
         </form>
 
-        <div class="admin-section" id="admin-section">
-            <button class="logout-btn" id="logout-btn">تسجيل خروج</button>
-            <h3 style="color:#176399;">لوحة إدارة الطلبات</h3>
-            <table>
+        <div class="admin-section" id="admin-section" aria-live="polite" aria-label="لوحة إدارة الطلبات">
+            <button class="logout-btn" id="logout-btn" aria-label="تسجيل خروج من لوحة الإدارة">تسجيل خروج</button>
+            <h3 style="color:#005a9c; margin-bottom: 20px;">لوحة إدارة الطلبات</h3>
+            <table role="table" aria-describedby="admin-section">
                 <thead>
                     <tr>
-                        <th>رقم الحجز</th>
-                        <th>الاسم</th>
-                        <th>الهاتف</th>
-                        <th>الوصف</th>
-                        <th>الحالة</th>
-                        <th>تغيير الحالة</th>
-                        <th>حذف</th>
+                        <th scope="col">رقم الحجز</th>
+                        <th scope="col">الاسم</th>
+                        <th scope="col">الهاتف</th>
+                        <th scope="col">الوصف</th>
+                        <th scope="col">الحالة</th>
+                        <th scope="col">تغيير الحالة</th>
+                        <th scope="col">حذف</th>
                     </tr>
                 </thead>
                 <tbody id="admin-tbody"></tbody>
@@ -211,9 +358,9 @@
         </div>
     </div>
 
-    <div class="copyright">
+    <footer class="copyright" role="contentinfo">
         حقوق النشر &copy; <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong>
-    </div>
+    </footer>
 
     <!-- Firebase App (core) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -222,187 +369,206 @@
     <!-- (اختياري) Analytics -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
     <script>
-      // بيانات مشروعك من Firebase
-      const firebaseConfig = {
-        apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
-        authDomain: "doctor-net-e72eb.firebaseapp.com",
-        projectId: "doctor-net-e72eb",
-        storageBucket: "doctor-net-e72eb.appspot.com",
-        messagingSenderId: "564197492244",
-        appId: "1:564197492244:web:a901c2dac343aa5a268901",
-        measurementId: "G-RZ2XHF1J27"
-      };
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
-      if (firebase.analytics) { firebase.analytics(); }
+        // إعداد Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
+            authDomain: "doctor-net-e72eb.firebaseapp.com",
+            projectId: "doctor-net-e72eb",
+            storageBucket: "doctor-net-e72eb.appspot.com",
+            messagingSenderId: "564197492244",
+            appId: "1:564197492244:web:a901c2dac343aa5a268901",
+            measurementId: "G-RZ2XHF1J27"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        if (firebase.analytics) {
+            firebase.analytics();
+        }
     </script>
 
     <script>
-    // =========== حجز طلب جديد ===========
-    document.getElementById("ticket-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const name = document.getElementById("name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const desc = document.getElementById("desc").value.trim();
-        const successDiv = document.getElementById("ticket-success");
-        const errorDiv = document.getElementById("ticket-error");
-        const whatsappDiv = document.getElementById("whatsapp-section");
-        successDiv.textContent = "";
-        errorDiv.textContent = "";
-        whatsappDiv.innerHTML = "";
+        // حجز طلب جديد
+        document.getElementById("ticket-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const desc = document.getElementById("desc").value.trim();
+            const successDiv = document.getElementById("ticket-success");
+            const errorDiv = document.getElementById("ticket-error");
+            const whatsappDiv = document.getElementById("whatsapp-section");
+            successDiv.textContent = "";
+            errorDiv.textContent = "";
+            whatsappDiv.innerHTML = "";
 
-        if (!name || !phone || !desc) {
-            errorDiv.textContent = "يرجى ملء جميع الحقول المطلوبة.";
-            return;
-        }
+            if (!name || !phone || !desc) {
+                errorDiv.textContent = "يرجى ملء جميع الحقول المطلوبة.";
+                return;
+            }
 
-        const ticket = {
-            name,
-            phone,
-            email,
-            desc,
-            status: "جديد",
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
+            // تحقق بسيط من رقم الهاتف (أرقام ومسافات ورموز + - فقط)
+            const phonePattern = /^[\d\s\+\-]+$/;
+            if (!phonePattern.test(phone)) {
+                errorDiv.textContent = "يرجى إدخال رقم هاتف صحيح.";
+                return;
+            }
 
-        db.collection("tickets").add(ticket)
-            .then((docRef) => {
-                const ticketId = docRef.id;
-                successDiv.textContent = "تم حجز الطلب بنجاح! رقم الحجز: " + ticketId;
+            const ticket = {
+                name,
+                phone,
+                email,
+                desc,
+                status: "جديد",
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
 
-                // رسالة واتساب
-                whatsappDiv.innerHTML = `
-                  <div class="whatsapp-section">
-                    <div style="font-size:1.05em; color:#128c7e; font-weight:bold;">
-                      يرجى إرسال رقم الحجز الخاص بك على الواتساب حتى يتم متابعة طلبك بسرعة!
-                    </div>
-                    <a class="whatsapp-btn"
-                       href="https://wa.me/201064496440?text=مرحباً،%20رقم%20حجز%20الدعم%20الخاص%20بي%20هو:%20${ticketId}"
-                       target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب" style="width:22px;vertical-align:middle;margin-left:7px;">
-                        إرسال رقم الحجز على الواتساب
-                    </a>
-                    <div style="margin-top:7px; color:#555; font-size:0.98em;">
-                      أو قم بنسخ رقم الحجز وإرساله يدويًا على الواتساب: <b>201064496440+</b>
-                    </div>
-                  </div>
-                `;
+            db.collection("tickets")
+                .add(ticket)
+                .then((docRef) => {
+                    const ticketId = docRef.id;
+                    successDiv.textContent = "تم حجز الطلب بنجاح! رقم الحجز: " + ticketId;
 
-                document.getElementById("ticket-form").reset();
-            })
-            .catch((error) => {
-                errorDiv.textContent = "حدث خطأ أثناء الحجز: " + error.message;
-            });
-    });
+                    whatsappDiv.innerHTML = `
+                      <div class="whatsapp-section" role="region" aria-label="إرسال رقم الحجز عبر واتساب">
+                        <div>
+                          يرجى إرسال رقم الحجز الخاص بك على الواتساب حتى يتم متابعة طلبك بسرعة!
+                        </div>
+                        <a class="whatsapp-btn"
+                           href="https://wa.me/201064496440?text=مرحباً،%20رقم%20حجز%20الدعم%20الخاص%20بي%20هو:%20${ticketId}"
+                           target="_blank" rel="noopener noreferrer" aria-label="إرسال رقم الحجز على الواتساب">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب" />
+                            إرسال رقم الحجز على الواتساب
+                        </a>
+                        <div style="margin-top:8px; color:#555; font-size:0.95em;">
+                          أو قم بنسخ رقم الحجز وإرساله يدويًا على الواتساب: <b>201064496440+</b>
+                        </div>
+                      </div>
+                    `;
 
-    // =========== متابعة الطلب ===========
-    document.getElementById("track-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const ticketId = document.getElementById("track-id").value.trim();
-        const resultDiv = document.getElementById("track-result");
-        resultDiv.textContent = "";
+                    this.reset();
+                })
+                .catch((error) => {
+                    errorDiv.textContent = "حدث خطأ أثناء الحجز: " + error.message;
+                });
+        });
 
-        if (!ticketId) {
-            resultDiv.textContent = "يرجى إدخال رقم الحجز.";
-            return;
-        }
+        // متابعة الطلب
+        document.getElementById("track-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const ticketId = document.getElementById("track-id").value.trim();
+            const resultDiv = document.getElementById("track-result");
+            resultDiv.textContent = "";
 
-        db.collection("tickets").doc(ticketId).get()
-            .then((doc) => {
-                if (doc.exists) {
-                    const t = doc.data();
-                    resultDiv.innerHTML =
-                        `<div class="success">
+            if (!ticketId) {
+                resultDiv.textContent = "يرجى إدخال رقم الحجز.";
+                return;
+            }
+
+            db.collection("tickets")
+                .doc(ticketId)
+                .get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const t = doc.data();
+                        resultDiv.innerHTML = `<div class="success" role="alert">
                             <b>الاسم:</b> ${t.name}<br>
                             <b>الهاتف:</b> ${t.phone}<br>
                             <b>الوصف:</b> ${t.desc}<br>
                             <b>الحالة:</b> ${t.status}
                         </div>`;
-                } else {
-                    resultDiv.innerHTML = '<div class="error">لم يتم العثور على الطلب.</div>';
-                }
-            })
-            .catch((error) => {
-                resultDiv.innerHTML = '<div class="error">حدث خطأ أثناء البحث: ' + error.message + '</div>';
-            });
-    });
-
-    // =========== لوحة الإدارة ===========
-    const ADMIN_PASSWORD = "doctor123"; // يمكنك تغيير كلمة المرور هنا
-
-    document.getElementById("admin-login-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const password = document.getElementById("admin-password").value;
-        const errorDiv = document.getElementById("admin-login-error");
-        errorDiv.textContent = "";
-        if (password === ADMIN_PASSWORD) {
-            document.getElementById("admin-section").style.display = "block";
-            document.getElementById("admin-login-form").style.display = "none";
-            fetchTicketsFromFirestore();
-        } else {
-            errorDiv.textContent = "كلمة المرور غير صحيحة!";
-        }
-    });
-
-    document.getElementById("logout-btn").addEventListener("click", function() {
-        document.getElementById("admin-section").style.display = "none";
-        document.getElementById("admin-login-form").style.display = "block";
-        document.getElementById("admin-password").value = "";
-    });
-
-    function fetchTicketsFromFirestore() {
-        db.collection("tickets").orderBy("createdAt", "desc").get().then((querySnapshot) => {
-            const tickets = [];
-            querySnapshot.forEach((doc) => {
-                tickets.push({ id: doc.id, ...doc.data() });
-            });
-            renderTicketsTable(tickets);
+                    } else {
+                        resultDiv.innerHTML = '<div class="error" role="alert">لم يتم العثور على الطلب.</div>';
+                    }
+                })
+                .catch((error) => {
+                    resultDiv.innerHTML = '<div class="error" role="alert">حدث خطأ أثناء البحث: ' + error.message + '</div>';
+                });
         });
-    }
 
-    function renderTicketsTable(tickets) {
-        const tbody = document.getElementById("admin-tbody");
-        tbody.innerHTML = "";
-        tickets.forEach((t) => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>${t.id}</td>
-                <td>${t.name}</td>
-                <td>${t.phone}</td>
-                <td>${t.desc}</td>
-                <td>${t.status}</td>
-                <td>
-                    <select onchange="updateTicketStatus('${t.id}', this.value)">
-                        <option value="جديد" ${t.status === "جديد" ? "selected" : ""}>جديد</option>
-                        <option value="جاري التنفيذ" ${t.status === "جاري التنفيذ" ? "selected" : ""}>جاري التنفيذ</option>
-                        <option value="مغلق" ${t.status === "مغلق" ? "selected" : ""}>مغلق</option>
-                    </select>
-                </td>
-                <td>
-                    <button onclick="deleteTicket('${t.id}')">حذف</button>
-                </td>
-            `;
-            tbody.appendChild(tr);
+        // لوحة الإدارة
+        const ADMIN_PASSWORD = "doctor123";
+
+        document.getElementById("admin-login-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const password = document.getElementById("admin-password").value;
+            const errorDiv = document.getElementById("admin-login-error");
+            errorDiv.textContent = "";
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById("admin-section").style.display = "block";
+                document.getElementById("admin-login-form").style.display = "none";
+                fetchTicketsFromFirestore();
+            } else {
+                errorDiv.textContent = "كلمة المرور غير صحيحة!";
+            }
         });
-    }
 
-    // تحديث حالة الطلب
-    function updateTicketStatus(id, newStatus) {
-        db.collection("tickets").doc(id).update({ status: newStatus })
-            .then(() => fetchTicketsFromFirestore());
-    }
-    window.updateTicketStatus = updateTicketStatus;
+        document.getElementById("logout-btn").addEventListener("click", function () {
+            document.getElementById("admin-section").style.display = "none";
+            document.getElementById("admin-login-form").style.display = "block";
+            document.getElementById("admin-password").value = "";
+        });
 
-    // حذف طلب
-    function deleteTicket(id) {
-        if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
-            db.collection("tickets").doc(id).delete()
-                .then(() => fetchTicketsFromFirestore());
+        function fetchTicketsFromFirestore() {
+            db.collection("tickets")
+                .orderBy("createdAt", "desc")
+                .get()
+                .then((querySnapshot) => {
+                    const tickets = [];
+                    querySnapshot.forEach((doc) => {
+                        tickets.push({ id: doc.id, ...doc.data() });
+                    });
+                    renderTicketsTable(tickets);
+                })
+                .catch((error) => {
+                    alert("حدث خطأ أثناء جلب الطلبات: " + error.message);
+                });
         }
-    }
-    window.deleteTicket = deleteTicket;
 
+        function renderTicketsTable(tickets) {
+            const tbody = document.getElementById("admin-tbody");
+            tbody.innerHTML = "";
+            tickets.forEach((t) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${t.id}</td>
+                    <td>${t.name}</td>
+                    <td>${t.phone}</td>
+                    <td class="desc-cell">${t.desc}</td>
+                    <td>${t.status}</td>
+                    <td>
+                        <select onchange="updateTicketStatus('${t.id}', this.value)" aria-label="تغيير حالة الطلب رقم ${t.id}">
+                            <option value="جديد" ${t.status === "جديد" ? "selected" : ""}>جديد</option>
+                            <option value="جاري التنفيذ" ${t.status === "جاري التنفيذ" ? "selected" : ""}>جاري التنفيذ</option>
+                            <option value="مغلق" ${t.status === "مغلق" ? "selected" : ""}>مغلق</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button onclick="deleteTicket('${t.id}')" aria-label="حذف الطلب رقم ${t.id}">حذف</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateTicketStatus(id, newStatus) {
+            db.collection("tickets")
+                .doc(id)
+                .update({ status: newStatus })
+                .then(() => fetchTicketsFromFirestore())
+                .catch((error) => alert("خطأ أثناء تحديث الحالة: " + error.message));
+        }
+        window.updateTicketStatus = updateTicketStatus;
+
+        function deleteTicket(id) {
+            if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+                db.collection("tickets")
+                    .doc(id)
+                    .delete()
+                    .then(() => fetchTicketsFromFirestore())
+                    .catch((error) => alert("خطأ أثناء حذف الطلب: " + error.message));
+            }
+        }
+        window.deleteTicket = deleteTicket;
     </script>
 </body>
 </html>
