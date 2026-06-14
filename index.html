@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دكتور نت - حلول الشبكات المتكاملة</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,42 +21,597 @@
             --text: #333;
         }
         
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
         
-        body { background: linear-gradient(135deg, #1a237e 0%, var(--primary) 50%, #4cc9f0 100%); color: var(--text); min-height: 100vh; padding: 20px; }
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, var(--primary) 50%, #4cc9f0 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
         
-        .container { max-width: 1200px; margin: 0 auto; background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2); overflow: hidden; }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,10 100,0 L100,100 Q50,90 0,100 Z" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: cover;
+            z-index: -1;
+        }
         
-        .header { background: linear-gradient(90deg, var(--primary), var(--secondary)); padding: 40px; text-align: center; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
         
-        .doctor-net-logo h1 { color: white; font-size: 3.5rem; font-weight: 900; letter-spacing: 2px; }
-        .doctor-net-logo p { color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; }
+        .header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
         
-        .main-content { padding: 40px 30px; }
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,122.7C672,117,768,107,864,112C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .doctor-net-logo {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .doctor-net-logo h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .doctor-net-logo p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .main-content {
+            padding: 40px 30px;
+        }
 
         /* تنسيق شركاء النجاح */
-        .partners-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+        .partners-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
         
-        .partner-badge { background: white; border: 1px solid rgba(67, 97, 238, 0.15); padding: 12px 20px; border-radius: 10px; font-weight: 700; color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
+        .partner-badge {
+            background: white;
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
 
-        .partner-badge:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(67, 97, 238, 0.2); }
+        .partner-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.2);
+        }
         
-        .section-title { color: var(--primary); font-size: 2rem; margin: 30px 0; text-align: center; font-weight: 800; position: relative; }
+        .partner-badge i {
+            color: var(--warning);
+        }
         
-        .social-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
+        .section-title {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-right: 15px;
+            font-weight: 800;
+            text-align: center;
+        }
         
-        .social-btn { display: flex; align-items: center; gap: 10px; color: white; font-weight: 700; padding: 15px 30px; border-radius: 50px; text-decoration: none; transition: 0.3s; }
-        .social-btn.wa { background: #25d366; }
-        .social-btn.fb { background: #3a0ca3; }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            right: 50%;
+            bottom: -12px;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 3px;
+            transform: translateX(50%);
+        }
         
-        .form-container { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); margin-bottom: 30px; }
-        .form-input { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; margin-bottom: 15px; }
-        .submit-btn { width: 100%; padding: 15px; background: var(--secondary); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
         
-        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .admin-table th, .admin-table td { padding: 15px; border-bottom: 1px solid #ddd; text-align: center; }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(90deg, var(--success), #27ae60);
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(46, 204, 113, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
         
-        .footer { background: var(--dark); color: white; text-align: center; padding: 25px; }
+        .social-btn.facebook {
+            background: linear-gradient(90deg, var(--secondary), #3a0ca3);
+            box-shadow: 0 6px 18px rgba(58, 12, 163, 0.3);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
+        }
+        
+        .social-btn.facebook:hover {
+            box-shadow: 0 10px 25px rgba(58, 12, 163, 0.4);
+        }
+        
+        .social-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+        }
+        
+        .form-input:focus {
+            border-color: var(--accent);
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.2);
+        }
+        
+        textarea.form-input {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 22px rgba(67, 97, 238, 0.35);
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.45);
+        }
+        
+        .status-message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .success {
+            background: rgba(46, 204, 113, 0.12);
+            color: var(--success);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .error {
+            background: rgba(230, 57, 70, 0.12);
+            color: var(--danger);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+        }
+        
+        .whatsapp-section {
+            background: rgba(37, 211, 102, 0.1);
+            border: 2px solid var(--success);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+            display: none;
+        }
+        
+        .whatsapp-section h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .whatsapp-section p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #25d366, #128c7e);
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+        }
+        
+        .admin-panel {
+            background: rgba(29, 53, 87, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            border: 1px dashed rgba(67, 97, 238, 0.2);
+            display: none;
+        }
+        
+        .admin-panel h2 {
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            margin-top: 20px;
+        }
+        
+        .admin-table th {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .admin-table th:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+        
+        .admin-table th:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+        
+        .admin-table td {
+            background: white;
+            padding: 14px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-table tr {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+        }
+        
+        .admin-table select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            background: #f8f9ff;
+            font-weight: 600;
+            cursor: pointer;
+            min-width: 150px;
+        }
+        
+        .admin-btn {
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .delete-btn {
+            background: var(--danger);
+            color: white;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+        }
+        
+        .delete-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(230, 57, 70, 0.35);
+        }
+        
+        .logout-btn {
+            background: linear-gradient(90deg, var(--danger), #c1121f);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(230, 57, 70, 0.3);
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(230, 57, 70, 0.4);
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+        
+        .footer strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* تنسيق خاص بصندوق الدخول للإدارة */
+        .admin-login-box {
+            max-width: 450px !important;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 30px !important;
+        }
+        .admin-login-box .section-title {
+            display: inline-block;
+            font-size: 1.6rem;
+            padding-bottom: 15px;
+        }
+        .admin-login-box .form-group {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .admin-login-box .form-input {
+            text-align: center;
+            letter-spacing: 5px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-color: #a8dadc;
+            background-color: #f1faee;
+        }
+        .admin-login-box .form-input:focus {
+            border-color: var(--accent);
+            background-color: white;
+        }
+
+        /* تنسيق صندوق الراعي الرسمي (سمارت راديوس) */
+        .sponsor-box {
+            background: linear-gradient(135deg, #1d3557, #4361ee);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sponsor-box h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .sponsor-box h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        .sponsor-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(76, 201, 240, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .sponsor-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(76, 201, 240, 0.6);
+            background: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .doctor-net-logo h1 {
+                font-size: 2.8rem;
+            }
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            .header {
+                height: 240px;
+                padding: 20px;
+            }
+            .doctor-net-logo h1 {
+                font-size: 2.3rem;
+            }
+            .doctor-net-logo p {
+                font-size: 1.1rem;
+            }
+            .main-content {
+                padding: 30px 20px;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .social-btn {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+            }
+            .form-container {
+                padding: 20px;
+            }
+            .whatsapp-btn {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+            }
+            .sponsor-box h2 {
+                font-size: 1.8rem;
+            }
+            .sponsor-btn {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                height: 200px;
+            }
+            .doctor-net-logo h1 {
+                font-size: 1.8rem;
+            }
+            .social-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .social-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            .admin-table th, .admin-table td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+            .admin-table select {
+                min-width: 120px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -62,102 +619,352 @@
         <header class="header">
             <div class="doctor-net-logo">
                 <h1>DOCTOR NET</h1>
-                <p>حلول الشبكات المتكاملة</p>
+                <p>حلول الشبكات المتكاملة باحترافية وجودة عالية</p>
             </div>
         </header>
         
         <div class="main-content">
+            
+            <!-- إضافة شريط شركاء النجاح -->
             <div class="partners-container">
-                <a href="https://www.smart-radius.com" target="_blank" class="partner-badge" style="background: linear-gradient(45deg, #3a0ca3, #4361ee); color: white; border: none;">
-                    <i class="fas fa-crown" style="color: gold;"></i> برعاية سمارت راديوس - الأفضل في الشرق الأوسط
-                </a>
                 <div class="partner-badge"><i class="fas fa-star"></i> إمبراطورية أبويوسف عطا</div>
                 <div class="partner-badge"><i class="fas fa-star"></i> إمبراطورية باسم LG</div>
                 <div class="partner-badge"><i class="fas fa-star"></i> شركة أبوكمال</div>
             </div>
 
             <div class="social-container">
-                <a href="https://wa.me/201064496440" class="social-btn wa"><i class="fab fa-whatsapp"></i> واتساب</a>
-                <a href="https://www.facebook.com/share/1RzaRwfF5Y/" class="social-btn fb"><i class="fab fa-facebook"></i> فيسبوك</a>
+                <a href="https://wa.me/201064496440" class="social-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    تواصل عبر واتساب
+                </a>
+                <a href="https://www.facebook.com/share/1RzaRwfF5Y/" class="social-btn facebook">
+                    <i class="fab fa-facebook-messenger"></i>
+                    تواصل عبر فيسبوك
+                </a>
             </div>
             
             <h2 class="section-title">حجز طلب دعم فني</h2>
             <div class="form-container">
                 <form id="ticket-form">
-                    <input type="text" id="name" class="form-input" placeholder="الاسم الكامل" required>
-                    <input type="tel" id="phone" class="form-input" placeholder="رقم الهاتف" required>
-                    <textarea id="desc" class="form-input" placeholder="وصف المشكلة" required></textarea>
-                    <button type="submit" class="submit-btn">إرسال الطلب</button>
+                    <div class="form-group">
+                        <label for="name" class="form-label">الاسم الكامل</label>
+                        <input type="text" id="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">رقم الهاتف</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="أدخل رقم هاتفك" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني (اختياري)</label>
+                        <input type="email" id="email" class="form-input" placeholder="مثال: example@mail.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="desc" class="form-label">وصف المشكلة</label>
+                        <textarea id="desc" class="form-input" placeholder="صف المشكلة التي تواجهها بالتفصيل" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">حجز الطلب</button>
+                    
+                    <div id="ticket-status" class="status-message" style="display: none;"></div>
+                    
+                    <div class="whatsapp-section" id="whatsapp-section">
+                        <h3>يرجى إرسال رقم الحجز عبر واتساب</h3>
+                        <p>لضمان متابعة طلبك بشكل أسرع، يرجى إرسال رقم الحجز الخاص بك إلى دكتور نت عبر واتساب</p>
+                        <a href="#" class="whatsapp-btn" id="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i>
+                            إرسال رقم الحجز عبر واتساب
+                        </a>
+                    </div>
                 </form>
-                <div id="ticket-status" style="margin-top:15px; text-align:center;"></div>
             </div>
             
-            <div id="admin-panel" style="display: none;" class="form-container">
-                <h2 class="section-title">لوحة الإدارة</h2>
-                <table class="admin-table" id="admin-table">
-                    <thead><tr><th>الاسم</th><th>الطلب</th><th>الحالة</th></tr></thead>
-                    <tbody id="admin-tbody"></tbody>
-                </table>
+            <h2 class="section-title">متابعة حالة الطلب</h2>
+            <div class="form-container">
+                <form id="track-form">
+                    <div class="form-group">
+                        <label for="track-id" class="form-label">رقم حجز الطلب</label>
+                        <input type="text" id="track-id" class="form-input" placeholder="أدخل رقم الحجز لمتابعة الطلب" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">متابعة حالة الطلب</button>
+                    
+                    <div id="track-status" class="status-message" style="display: none;"></div>
+                </form>
+            </div>
+            
+            <div class="admin-panel" id="admin-panel">
+                <h2 class="section-title">لوحة إدارة الطلبات</h2>
+                <div class="form-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الحجز</th>
+                                <th>الاسم</th>
+                                <th>الهاتف</th>
+                                <th>الوصف</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tbody">
+                            <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+                        </tbody>
+                    </table>
+                    
+                    <button class="logout-btn" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="form-container admin-login-box" id="admin-login-form">
+                <h2 class="section-title">تسجيل دخول الإدارة</h2>
+                <div class="form-group">
+                    <label for="admin-password" class="form-label">كلمة مرور الإدارة</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="........" required>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="admin-login-btn" style="width: 100%; margin-top: 15px; border-radius: 10px;">تسجيل الدخول</button>
+                
+                <div id="admin-status" class="status-message" style="display: none;"></div>
             </div>
 
-            <div id="admin-login-form" class="form-container">
-                <h2 class="section-title">دخول الإدارة</h2>
-                <input type="password" id="admin-password" class="form-input" placeholder="كلمة المرور">
-                <button id="admin-login-btn" class="submit-btn">دخول</button>
+            <!-- صندوق الراعي الرسمي (سمارت راديوس) -->
+            <div class="sponsor-box">
+                <h3>برعاية الأفضل في الشرق الأوسط</h3>
+                <h2>سيستم سمارت راديوس</h2>
+                <a href="https://www.smart-radius.com" target="_blank" class="sponsor-btn">
+                    <i class="fas fa-external-link-alt"></i> زيارة الموقع الرسمي
+                </a>
             </div>
-        </div>
+            
+        </div> <!-- نهاية محتوى الصفحة الرئيسي -->
         
         <footer class="footer">
-            <p>حقوق النشر © مصطفى عاطف الشورى - برعاية سمارت راديوس</p>
+            <p>حقوق النشر © <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong></p>
+            <p>جميع الحقوق محفوظة 2024</p>
         </footer>
     </div>
     
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     
     <script>
+        // إعداد Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
             authDomain: "doctor-net-e72eb.firebaseapp.com",
             projectId: "doctor-net-e72eb",
             storageBucket: "doctor-net-e72eb.appspot.com",
             messagingSenderId: "564197492244",
-            appId: "1:564197492244:web:a901c2dac343aa5a268901"
+            appId: "1:564197492244:web:a901c2dac343aa5a268901",
+            measurementId: "G-RZ2XHF1J27"
         };
+        
+        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-
-        // منطق حجز الطلب
+        
+        // إدارة الحالة
+        const showStatus = (elementId, message, isSuccess) => {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = isSuccess ? "status-message success" : "status-message error";
+            element.style.display = "block";
+            
+            setTimeout(() => {
+                element.style.opacity = 1;
+            }, 10);
+            
+            setTimeout(() => {
+                element.style.opacity = 0;
+                setTimeout(() => {
+                    element.style.display = "none";
+                }, 500);
+            }, 5000);
+        };
+        
+        // حجز طلب جديد
         document.getElementById("ticket-form").addEventListener("submit", async (e) => {
             e.preventDefault();
-            const name = document.getElementById("name").value;
-            const phone = document.getElementById("phone").value;
-            const desc = document.getElementById("desc").value;
-            await db.collection("tickets").add({ name, phone, desc, status: "جديد", createdAt: new Date() });
-            alert("تم الحجز بنجاح!");
-            document.getElementById("ticket-form").reset();
-        });
-
-        // منطق الإدارة
-        document.getElementById("admin-login-btn").addEventListener("click", () => {
-            if (document.getElementById("admin-password").value === "doctor123") {
-                document.getElementById("admin-panel").style.display = "block";
-                document.getElementById("admin-login-form").style.display = "none";
-                loadTickets();
-            } else {
-                alert("كلمة المرور خطأ!");
+            
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const desc = document.getElementById("desc").value.trim();
+            
+            if (!name || !phone || !desc) {
+                showStatus("ticket-status", "يرجى ملء جميع الحقول المطلوبة", false);
+                return;
+            }
+            
+            const ticket = {
+                name,
+                phone,
+                email: email || "غير محدد",
+                desc,
+                status: "جديد",
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            try {
+                const docRef = await db.collection("tickets").add(ticket);
+                const ticketId = docRef.id;
+                
+                showStatus("ticket-status", `تم حجز الطلب بنجاح! رقم الحجز: ${ticketId}`, true);
+                
+                // إظهار قسم إرسال رقم الحجز عبر واتساب
+                const whatsappSection = document.getElementById("whatsapp-section");
+                whatsappSection.style.display = "block";
+                
+                // إنشاء رابط واتساب مع رقم الحجز
+                const whatsappLink = document.getElementById("whatsapp-link");
+                const message = `مرحباً، لقد قمت بحجز طلب دعم فني جديد. رقم الحجز الخاص بي هو: ${ticketId}`;
+                const whatsappUrl = `https://wa.me/201064496440?text=${encodeURIComponent(message)}`;
+                whatsappLink.href = whatsappUrl;
+                
+                // إعادة تعيين النموذج
+                document.getElementById("ticket-form").reset();
+            } catch (error) {
+                showStatus("ticket-status", `حدث خطأ أثناء الحجز: ${error.message}`, false);
             }
         });
-
-        async function loadTickets() {
-            const snapshot = await db.collection("tickets").get();
+        
+        // متابعة الطلب
+        document.getElementById("track-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const trackId = document.getElementById("track-id").value.trim();
+            
+            if (!trackId) {
+                showStatus("track-status", "يرجى إدخال رقم الحجز", false);
+                return;
+            }
+            
+            try {
+                const doc = await db.collection("tickets").doc(trackId).get();
+                
+                if (doc.exists) {
+                    const ticket = doc.data();
+                    const message = `
+                        <strong>الاسم:</strong> ${ticket.name}<br>
+                        <strong>الهاتف:</strong> ${ticket.phone}<br>
+                        <strong>الوصف:</strong> ${ticket.desc}<br>
+                        <strong>الحالة:</strong> ${ticket.status}
+                    `;
+                    
+                    document.getElementById("track-status").innerHTML = message;
+                    document.getElementById("track-status").className = "status-message success";
+                    document.getElementById("track-status").style.display = "block";
+                } else {
+                    showStatus("track-status", "لم يتم العثور على طلب بهذا الرقم", false);
+                }
+            } catch (error) {
+                showStatus("track-status", `حدث خطأ أثناء البحث: ${error.message}`, false);
+            }
+        });
+        
+        // تسجيل دخول الإدارة
+        const ADMIN_PASSWORD = "doctor123";
+        
+        document.getElementById("admin-login-btn").addEventListener("click", async (e) => {
+            e.preventDefault();
+            
+            const password = document.getElementById("admin-password").value;
+            
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById("admin-login-form").style.display = "none";
+                document.getElementById("admin-panel").style.display = "block";
+                fetchTickets();
+                showStatus("admin-status", "تم تسجيل الدخول بنجاح!", true);
+            } else {
+                showStatus("admin-status", "كلمة المرور غير صحيحة!", false);
+            }
+        });
+        
+        // تسجيل الخروج
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            document.getElementById("admin-panel").style.display = "none";
+            document.getElementById("admin-login-form").style.display = "block";
+            document.getElementById("admin-password").value = "";
+        });
+        
+        // جلب بيانات الطلبات
+        async function fetchTickets() {
+            try {
+                const querySnapshot = await db.collection("tickets").orderBy("createdAt", "desc").get();
+                const tickets = [];
+                querySnapshot.forEach(doc => {
+                    tickets.push({ id: doc.id, ...doc.data() });
+                });
+                renderTickets(tickets);
+            } catch (error) {
+                console.error("Error fetching tickets: ", error);
+            }
+        }
+        
+        // عرض الطلبات في لوحة الإدارة
+        function renderTickets(tickets) {
             const tbody = document.getElementById("admin-tbody");
             tbody.innerHTML = "";
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                tbody.innerHTML += `<tr><td>${data.name}</td><td>${data.desc}</td><td>${data.status}</td></tr>`;
+            
+            tickets.forEach(ticket => {
+                const tr = document.createElement("tr");
+                
+                tr.innerHTML = `
+                    <td>${ticket.id}</td>
+                    <td>${ticket.name}</td>
+                    <td>${ticket.phone}</td>
+                    <td>${ticket.desc}</td>
+                    <td>
+                        <select id="status-${ticket.id}" onchange="updateStatus('${ticket.id}', this.value)">
+                            <option value="جديد" ${ticket.status === "جديد" ? "selected" : ""}>جديد</option>
+                            <option value="قيد المعالجة" ${ticket.status === "قيد المعالجة" ? "selected" : ""}>قيد المعالجة</option>
+                            <option value="مكتمل" ${ticket.status === "مكتمل" ? "selected" : ""}>مكتمل</option>
+                            <option value="ملغي" ${ticket.status === "ملغي" ? "selected" : ""}>ملغي</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="admin-btn delete-btn" onclick="deleteTicket('${ticket.id}')">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(tr);
             });
         }
+        
+        // تحديث حالة الطلب
+        async function updateStatus(ticketId, newStatus) {
+            try {
+                await db.collection("tickets").doc(ticketId).update({ status: newStatus });
+                showStatus("admin-status", "تم تحديث حالة الطلب بنجاح!", true);
+            } catch (error) {
+                showStatus("admin-status", `حدث خطأ أثناء تحديث الحالة: ${error.message}`, false);
+            }
+        }
+        
+        // حذف الطلب
+        async function deleteTicket(ticketId) {
+            if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+                try {
+                    await db.collection("tickets").doc(ticketId).delete();
+                    fetchTickets();
+                    showStatus("admin-status", "تم حذف الطلب بنجاح!", true);
+                } catch (error) {
+                    showStatus("admin-status", `حدث خطأ أثناء حذف الطلب: ${error.message}`, false);
+                }
+            }
+        }
+        
+        // جعل الدوال متاحة بشكل عام
+        window.updateStatus = updateStatus;
+        window.deleteTicket = deleteTicket;
     </script>
 </body>
 </html>
