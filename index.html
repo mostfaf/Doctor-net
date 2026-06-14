@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دكتور نت - حلول الشبكات المتكاملة</title>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -61,13 +59,14 @@
             z-index: 10;
         }
         
+        /* -- تعديل ارتفاع الهيدر ليستوعب الراعي الرسمي -- */
         .header {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            height: 280px;
+            min-height: 380px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,9 +90,9 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 25px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             backdrop-filter: blur(10px);
@@ -106,16 +105,102 @@
             font-size: 3.5rem;
             font-weight: 900;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             letter-spacing: 2px;
         }
         
         .doctor-net-logo p {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.4rem;
-            font-weight: 300;
+            font-size: 1.3rem;
+            font-weight: 400;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 20px auto;
+        }
+
+        /* --- تنسيقات الراعي الرسمي (سمارت راديوس) --- */
+        .sponsor-badge {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+        .sponsor-badge span {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .sponsor-badge strong {
+            display: block;
+            color: var(--warning);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .sponsor-link {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .sponsor-link:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- تنسيقات الكيانات والشركات --- */
+        .partners-section {
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+        .entities-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .entity-card {
+            background: linear-gradient(135deg, #ffffff, #f0f4ff);
+            padding: 18px 25px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        .entity-card::before {
+            content: "\f005"; /* Star Icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 3rem;
+            color: rgba(76, 201, 240, 0.1);
+            transform: rotate(15deg);
+        }
+        .entity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.2);
+            border-color: var(--accent);
+            color: var(--primary);
         }
         
         .main-content {
@@ -194,6 +279,14 @@
             margin-bottom: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(67, 97, 238, 0.15);
+        }
+
+        /* تنسيق خاص ببطاقة تسجيل الدخول للمدير لتكون أرتب */
+        #admin-login-form {
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            background: #fdfdff;
+            border-top: 4px solid var(--primary);
         }
         
         .form-group {
@@ -320,7 +413,7 @@
             border-radius: 15px;
             padding: 25px;
             margin-top: 40px;
-            border: 1px dashed rgba(67, 97, 238, 0.2);
+            border: 1px dashed rgba(67, 97, 238, 0.3);
             display: none;
         }
         
@@ -329,12 +422,20 @@
             text-align: center;
             margin-bottom: 25px;
         }
+
+        /* --- تحسينات جدول الإدارة --- */
+        .table-responsive {
+            overflow-x: auto; /* يسمح بالتمرير الأفقي في الشاشات الصغيرة */
+            border-radius: 15px;
+            padding-bottom: 10px;
+        }
         
         .admin-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0 12px;
-            margin-top: 20px;
+            margin-top: 10px;
+            min-width: 800px; /* لضمان عدم تداخل الأعمدة */
         }
         
         .admin-table th {
@@ -346,11 +447,11 @@
         }
         
         .admin-table th:first-child {
-            border-radius: 15px 0 0 15px;
+            border-radius: 0 15px 15px 0; /* تم التعديل لدعم اتجاه RTL */
         }
         
         .admin-table th:last-child {
-            border-radius: 0 15px 15px 0;
+            border-radius: 15px 0 0 15px; /* تم التعديل لدعم اتجاه RTL */
         }
         
         .admin-table td {
@@ -359,11 +460,17 @@
             text-align: center;
             font-weight: 600;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background-color 0.2s ease;
         }
         
         .admin-table tr {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             border-radius: 15px;
+        }
+
+        /* تأثير عند التمرير بالماوس على صفوف الإدارة */
+        .admin-table tr:hover td {
+            background-color: #f1f4ff; 
         }
         
         .admin-table select {
@@ -374,6 +481,12 @@
             font-weight: 600;
             cursor: pointer;
             min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-table select:focus {
+            border-color: var(--secondary);
+            outline: none;
         }
         
         .admin-btn {
@@ -435,11 +548,6 @@
             .doctor-net-logo h1 {
                 font-size: 2.8rem;
             }
-            
-            .admin-table {
-                display: block;
-                overflow-x: auto;
-            }
         }
         
         @media (max-width: 768px) {
@@ -448,7 +556,7 @@
             }
             
             .header {
-                height: 240px;
+                min-height: 320px;
                 padding: 20px;
             }
             
@@ -458,6 +566,10 @@
             
             .doctor-net-logo p {
                 font-size: 1.1rem;
+            }
+            
+            .sponsor-badge strong {
+                font-size: 1.3rem;
             }
             
             .main-content {
@@ -485,7 +597,7 @@
         
         @media (max-width: 576px) {
             .header {
-                height: 200px;
+                min-height: 280px;
             }
             
             .doctor-net-logo h1 {
@@ -521,10 +633,27 @@
             <div class="doctor-net-logo">
                 <h1>DOCTOR NET</h1>
                 <p>حلول الشبكات المتكاملة باحترافية وجودة عالية</p>
+                
+                <div class="sponsor-badge">
+                    <span>برعاية الأفضل في الشرق الأوسط</span>
+                    <strong>سيستم سمارت راديوس</strong>
+                    <a href="http://www.smart-radius.com" target="_blank" class="sponsor-link">
+                        <i class="fas fa-globe"></i> www.smart-radius.com
+                    </a>
+                </div>
             </div>
         </header>
         
         <div class="main-content">
+            <div class="partners-section">
+                <h2 class="section-title">شركاء النجاح</h2>
+                <div class="entities-container">
+                    <div class="entity-card">إمبراطورية أبويوسف عطا</div>
+                    <div class="entity-card">إمبراطورية باسم LG</div>
+                    <div class="entity-card">شركة أبوكمال</div>
+                </div>
+            </div>
+
             <div class="social-container">
                 <a href="https://wa.me/201064496440" class="social-btn">
                     <i class="fab fa-whatsapp"></i>
@@ -591,21 +720,22 @@
             <div class="admin-panel" id="admin-panel">
                 <h2 class="section-title">لوحة إدارة الطلبات</h2>
                 <div class="form-container">
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>رقم الحجز</th>
-                                <th>الاسم</th>
-                                <th>الهاتف</th>
-                                <th>الوصف</th>
-                                <th>الحالة</th>
-                                <th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-tbody">
-                            <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>رقم الحجز</th>
+                                    <th>الاسم</th>
+                                    <th>الهاتف</th>
+                                    <th>الوصف</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-tbody">
+                                </tbody>
+                        </table>
+                    </div>
                     
                     <button class="logout-btn" id="logout-btn">
                         <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
@@ -614,240 +744,12 @@
             </div>
             
             <div class="form-container" id="admin-login-form">
-                <h2 class="section-title">لوحة إدارة الطلبات</h2>
+                <h2 class="section-title">تسجيل دخول الإدارة</h2>
                 <div class="form-group">
                     <label for="admin-password" class="form-label">كلمة مرور الإدارة</label>
                     <input type="password" id="admin-password" class="form-input" placeholder="أدخل كلمة المرور" required>
                 </div>
                 
-                <button type="submit" class="submit-btn" id="admin-login-btn">دخول لوحة الإدارة</button>
-                
-                <div id="admin-status" class="status-message" style="display: none;"></div>
-            </div>
-        </div>
-        
-        <footer class="footer">
-            <p>حقوق النشر © <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong></p>
-            <p>جميع الحقوق محفوظة 2024</p>
-        </footer>
-    </div>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    
-    <script>
-        // إعداد Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
-            authDomain: "doctor-net-e72eb.firebaseapp.com",
-            projectId: "doctor-net-e72eb",
-            storageBucket: "doctor-net-e72eb.appspot.com",
-            messagingSenderId: "564197492244",
-            appId: "1:564197492244:web:a901c2dac343aa5a268901",
-            measurementId: "G-RZ2XHF1J27"
-        };
-        
-        // تهيئة Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        
-        // إدارة الحالة
-        const showStatus = (elementId, message, isSuccess) => {
-            const element = document.getElementById(elementId);
-            element.textContent = message;
-            element.className = isSuccess ? "status-message success" : "status-message error";
-            element.style.display = "block";
-            
-            setTimeout(() => {
-                element.style.opacity = 1;
-            }, 10);
-            
-            setTimeout(() => {
-                element.style.opacity = 0;
-                setTimeout(() => {
-                    element.style.display = "none";
-                }, 500);
-            }, 5000);
-        };
-        
-        // حجز طلب جديد
-        document.getElementById("ticket-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById("name").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const desc = document.getElementById("desc").value.trim();
-            
-            if (!name || !phone || !desc) {
-                showStatus("ticket-status", "يرجى ملء جميع الحقول المطلوبة", false);
-                return;
-            }
-            
-            const ticket = {
-                name,
-                phone,
-                email: email || "غير محدد",
-                desc,
-                status: "جديد",
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            };
-            
-            try {
-                const docRef = await db.collection("tickets").add(ticket);
-                const ticketId = docRef.id;
-                
-                showStatus("ticket-status", `تم حجز الطلب بنجاح! رقم الحجز: ${ticketId}`, true);
-                
-                // إظهار قسم إرسال رقم الحجز عبر واتساب
-                const whatsappSection = document.getElementById("whatsapp-section");
-                whatsappSection.style.display = "block";
-                
-                // إنشاء رابط واتساب مع رقم الحجز
-                const whatsappLink = document.getElementById("whatsapp-link");
-                const message = `مرحباً، لقد قمت بحجز طلب دعم فني جديد. رقم الحجز الخاص بي هو: ${ticketId}`;
-                const whatsappUrl = `https://wa.me/201064496440?text=${encodeURIComponent(message)}`;
-                whatsappLink.href = whatsappUrl;
-                
-                // إعادة تعيين النموذج
-                document.getElementById("ticket-form").reset();
-            } catch (error) {
-                showStatus("ticket-status", `حدث خطأ أثناء الحجز: ${error.message}`, false);
-            }
-        });
-        
-        // متابعة الطلب
-        document.getElementById("track-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            
-            const trackId = document.getElementById("track-id").value.trim();
-            
-            if (!trackId) {
-                showStatus("track-status", "يرجى إدخال رقم الحجز", false);
-                return;
-            }
-            
-            try {
-                const doc = await db.collection("tickets").doc(trackId).get();
-                
-                if (doc.exists) {
-                    const ticket = doc.data();
-                    const message = `
-                        <strong>الاسم:</strong> ${ticket.name}<br>
-                        <strong>الهاتف:</strong> ${ticket.phone}<br>
-                        <strong>الوصف:</strong> ${ticket.desc}<br>
-                        <strong>الحالة:</strong> ${ticket.status}
-                    `;
-                    
-                    document.getElementById("track-status").innerHTML = message;
-                    document.getElementById("track-status").className = "status-message success";
-                    document.getElementById("track-status").style.display = "block";
-                } else {
-                    showStatus("track-status", "لم يتم العثور على طلب بهذا الرقم", false);
-                }
-            } catch (error) {
-                showStatus("track-status", `حدث خطأ أثناء البحث: ${error.message}`, false);
-            }
-        });
-        
-        // تسجيل دخول الإدارة
-        const ADMIN_PASSWORD = "doctor123";
-        
-        document.getElementById("admin-login-btn").addEventListener("click", async (e) => {
-            e.preventDefault();
-            
-            const password = document.getElementById("admin-password").value;
-            
-            if (password === ADMIN_PASSWORD) {
-                document.getElementById("admin-login-form").style.display = "none";
-                document.getElementById("admin-panel").style.display = "block";
-                fetchTickets();
-                showStatus("admin-status", "تم تسجيل الدخول بنجاح!", true);
-            } else {
-                showStatus("admin-status", "كلمة المرور غير صحيحة!", false);
-            }
-        });
-        
-        // تسجيل الخروج
-        document.getElementById("logout-btn").addEventListener("click", () => {
-            document.getElementById("admin-panel").style.display = "none";
-            document.getElementById("admin-login-form").style.display = "block";
-            document.getElementById("admin-password").value = "";
-        });
-        
-        // جلب بيانات الطلبات
-        async function fetchTickets() {
-            try {
-                const querySnapshot = await db.collection("tickets").orderBy("createdAt", "desc").get();
-                const tickets = [];
-                querySnapshot.forEach(doc => {
-                    tickets.push({ id: doc.id, ...doc.data() });
-                });
-                renderTickets(tickets);
-            } catch (error) {
-                console.error("Error fetching tickets: ", error);
-            }
-        }
-        
-        // عرض الطلبات في لوحة الإدارة
-        function renderTickets(tickets) {
-            const tbody = document.getElementById("admin-tbody");
-            tbody.innerHTML = "";
-            
-            tickets.forEach(ticket => {
-                const tr = document.createElement("tr");
-                
-                tr.innerHTML = `
-                    <td>${ticket.id}</td>
-                    <td>${ticket.name}</td>
-                    <td>${ticket.phone}</td>
-                    <td>${ticket.desc}</td>
-                    <td>
-                        <select id="status-${ticket.id}" onchange="updateStatus('${ticket.id}', this.value)">
-                            <option value="جديد" ${ticket.status === "جديد" ? "selected" : ""}>جديد</option>
-                            <option value="قيد المعالجة" ${ticket.status === "قيد المعالجة" ? "selected" : ""}>قيد المعالجة</option>
-                            <option value="مكتمل" ${ticket.status === "مكتمل" ? "selected" : ""}>مكتمل</option>
-                            <option value="ملغي" ${ticket.status === "ملغي" ? "selected" : ""}>ملغي</option>
-                        </select>
-                    </td>
-                    <td>
-                        <button class="admin-btn delete-btn" onclick="deleteTicket('${ticket.id}')">
-                            <i class="fas fa-trash"></i> حذف
-                        </button>
-                    </td>
-                `;
-                
-                tbody.appendChild(tr);
-            });
-        }
-        
-        // تحديث حالة الطلب
-        async function updateStatus(ticketId, newStatus) {
-            try {
-                await db.collection("tickets").doc(ticketId).update({ status: newStatus });
-                showStatus("admin-status", "تم تحديث حالة الطلب بنجاح!", true);
-            } catch (error) {
-                showStatus("admin-status", `حدث خطأ أثناء تحديث الحالة: ${error.message}`, false);
-            }
-        }
-        
-        // حذف الطلب
-        async function deleteTicket(ticketId) {
-            if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
-                try {
-                    await db.collection("tickets").doc(ticketId).delete();
-                    fetchTickets();
-                    showStatus("admin-status", "تم حذف الطلب بنجاح!", true);
-                } catch (error) {
-                    showStatus("admin-status", `حدث خطأ أثناء حذف الطلب: ${error.message}`, false);
-                }
-            }
-        }
-        
-        // جعل الدوال متاحة بشكل عام
-        window.updateStatus = updateStatus;
-        window.deleteTicket = deleteTicket;
-    </script>
-</body>
-</html>
+                ```
+
+أتمنى لك كل التوفيق في عملك، وإذا احتجت لأي مساعدة إضافية في تنسيق أجزاء أخرى، أنا هنا دائماً!
