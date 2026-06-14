@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دكتور نت - حلول الشبكات المتكاملة</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -459,92 +461,8 @@
             color: var(--accent);
             font-weight: 700;
         }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .doctor-net-logo h1 {
-                font-size: 2.8rem;
-            }
-            
-            .admin-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-            }
-            
-            .header {
-                height: 240px;
-                padding: 20px;
-            }
-            
-            .doctor-net-logo h1 {
-                font-size: 2.3rem;
-            }
-            
-            .doctor-net-logo p {
-                font-size: 1.1rem;
-            }
-            
-            .main-content {
-                padding: 30px 20px;
-            }
-            
-            .section-title {
-                font-size: 1.7rem;
-            }
-            
-            .social-btn {
-                padding: 14px 25px;
-                font-size: 1.1rem;
-            }
-            
-            .form-container {
-                padding: 20px;
-            }
-            
-            .whatsapp-btn {
-                padding: 14px 25px;
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .header {
-                height: 200px;
-            }
-            
-            .doctor-net-logo h1 {
-                font-size: 1.8rem;
-            }
-            
-            .social-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .social-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
-            .admin-table th, .admin-table td {
-                padding: 12px 8px;
-                font-size: 0.9rem;
-            }
-            
-            .admin-table select {
-                min-width: 120px;
-            }
-        }
 
-        /* تنسيق خاص بصندوق الدخول للإدارة لتصغير حجمه وتجميله */
+        /* تنسيق خاص بصندوق الدخول للإدارة */
         .admin-login-box {
             max-width: 450px !important;
             margin: 0 auto;
@@ -572,6 +490,128 @@
             border-color: var(--accent);
             background-color: white;
         }
+
+        /* تنسيق صندوق الراعي الرسمي (سمارت راديوس) */
+        .sponsor-box {
+            background: linear-gradient(135deg, #1d3557, #4361ee);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sponsor-box h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .sponsor-box h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        .sponsor-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(76, 201, 240, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .sponsor-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(76, 201, 240, 0.6);
+            background: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .doctor-net-logo h1 {
+                font-size: 2.8rem;
+            }
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            .header {
+                height: 240px;
+                padding: 20px;
+            }
+            .doctor-net-logo h1 {
+                font-size: 2.3rem;
+            }
+            .doctor-net-logo p {
+                font-size: 1.1rem;
+            }
+            .main-content {
+                padding: 30px 20px;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .social-btn {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+            }
+            .form-container {
+                padding: 20px;
+            }
+            .whatsapp-btn {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+            }
+            .sponsor-box h2 {
+                font-size: 1.8rem;
+            }
+            .sponsor-btn {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                height: 200px;
+            }
+            .doctor-net-logo h1 {
+                font-size: 1.8rem;
+            }
+            .social-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .social-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            .admin-table th, .admin-table td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+            .admin-table select {
+                min-width: 120px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -585,6 +625,7 @@
         
         <div class="main-content">
             
+            <!-- إضافة شريط شركاء النجاح -->
             <div class="partners-container">
                 <div class="partner-badge"><i class="fas fa-star"></i> إمبراطورية أبويوسف عطا</div>
                 <div class="partner-badge"><i class="fas fa-star"></i> إمبراطورية باسم LG</div>
@@ -669,7 +710,8 @@
                             </tr>
                         </thead>
                         <tbody id="admin-tbody">
-                            </tbody>
+                            <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+                        </tbody>
                     </table>
                     
                     <button class="logout-btn" id="logout-btn">
@@ -689,18 +731,30 @@
                 
                 <div id="admin-status" class="status-message" style="display: none;"></div>
             </div>
+
+            <!-- صندوق الراعي الرسمي (سمارت راديوس) -->
+            <div class="sponsor-box">
+                <h3>برعاية الأفضل في الشرق الأوسط</h3>
+                <h2>سيستم سمارت راديوس</h2>
+                <a href="https://www.smart-radius.com" target="_blank" class="sponsor-btn">
+                    <i class="fas fa-external-link-alt"></i> زيارة الموقع الرسمي
+                </a>
+            </div>
             
-        </div> <footer class="footer">
+        </div> <!-- نهاية محتوى الصفحة الرئيسي -->
+        
+        <footer class="footer">
             <p>حقوق النشر © <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong></p>
             <p>جميع الحقوق محفوظة 2024</p>
         </footer>
     </div>
     
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     
     <script>
-        // إعداد Firebase (نفس كودك الأصلي بالضبط)
+        // إعداد Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
             authDomain: "doctor-net-e72eb.firebaseapp.com",
