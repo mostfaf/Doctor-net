@@ -19,6 +19,8 @@
             --light: #f8f9fa;
             --dark: #1d3557;
             --text: #333;
+            --container-max-width: 1200px;
+            --container-padding: 20px;
         }
         
         * {
@@ -28,14 +30,20 @@
             font-family: 'Cairo', sans-serif;
         }
         
+        html, body {
+            height: 100%;
+        }
+        
         body {
             background: linear-gradient(135deg, #1a237e 0%, var(--primary) 50%, #4cc9f0 100%);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
+            padding: 12px;
             position: relative;
             overflow-x: hidden;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
         
         body::before {
@@ -51,27 +59,29 @@
         }
         
         .container {
-            max-width: 1200px;
+            width: 100%;
+            max-width: var(--container-max-width);
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             position: relative;
             z-index: 10;
+            padding: 0;
         }
         
         .header {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 30px;
+            padding: 28px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            height: 280px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 160px; /* أصغر ارتفاع مريح */
         }
         
         .header::before {
@@ -81,73 +91,75 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,122.7C672,117,768,107,864,112C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.08)" d="M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,122.7C672,117,768,107,864,112C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
             background-size: cover;
             background-position: center;
             z-index: 1;
+            opacity: 0.9;
         }
         
         .doctor-net-logo {
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 600px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
         .doctor-net-logo h1 {
             color: white;
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
             font-weight: 900;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
         }
         
         .doctor-net-logo p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: clamp(0.95rem, 2.2vw, 1.25rem);
             font-weight: 300;
-            max-width: 600px;
+            max-width: 720px;
             margin: 0 auto;
         }
         
         .main-content {
-            padding: 40px 30px;
+            padding: 28px 22px;
         }
 
-        /* تنسيق شركاء النجاح */
+        /* شركاء النجاح */
         .partners-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
         }
         
         .partner-badge {
             background: white;
-            border: 1px solid rgba(67, 97, 238, 0.15);
-            padding: 10px 20px;
+            border: 1px solid rgba(67, 97, 238, 0.12);
+            padding: 8px 14px;
             border-radius: 10px;
             font-weight: 700;
             color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
         }
 
         .partner-badge:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.2);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.12);
         }
         
         .partner-badge i {
@@ -156,10 +168,10 @@
         
         .section-title {
             color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 25px;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 18px;
             position: relative;
-            padding-right: 15px;
+            padding-right: 10px;
             font-weight: 800;
             text-align: center;
         }
@@ -168,9 +180,9 @@
             content: "";
             position: absolute;
             right: 50%;
-            bottom: -12px;
-            width: 100px;
-            height: 5px;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
             background: linear-gradient(90deg, var(--accent), var(--secondary));
             border-radius: 3px;
             transform: translateX(50%);
@@ -179,86 +191,82 @@
         .social-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 16px;
+            margin-bottom: 22px;
             flex-wrap: wrap;
         }
         
         .social-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 12px;
             background: linear-gradient(90deg, var(--success), #27ae60);
             color: white;
             font-weight: 700;
-            font-size: 1.2rem;
-            padding: 16px 32px;
+            font-size: 1rem;
+            padding: 12px 22px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 6px 18px rgba(46, 204, 113, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 14px rgba(46, 204, 113, 0.22);
+            transition: all 0.25s ease;
             border: none;
             cursor: pointer;
         }
         
         .social-btn.facebook {
             background: linear-gradient(90deg, var(--secondary), #3a0ca3);
-            box-shadow: 0 6px 18px rgba(58, 12, 163, 0.3);
+            box-shadow: 0 6px 14px rgba(58, 12, 163, 0.22);
         }
         
         .social-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
-        }
-        
-        .social-btn.facebook:hover {
-            box-shadow: 0 10px 25px rgba(58, 12, 163, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
         
         .social-btn i {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
         
         .form-container {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(67, 97, 238, 0.15);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(67, 97, 238, 0.08);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
         
         .form-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         .form-input {
             width: 100%;
-            padding: 16px;
-            border: 2px solid #e0e0e0;
+            padding: 12px;
+            border: 1.6px solid #e6e6e6;
             border-radius: 10px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: #f8f9ff;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: #fbfdff;
         }
         
         .form-input:focus {
             border-color: var(--accent);
             background: white;
             outline: none;
-            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.2);
+            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.12);
         }
         
         textarea.form-input {
-            min-height: 140px;
+            min-height: 110px;
             resize: vertical;
         }
         
@@ -266,31 +274,31 @@
             background: linear-gradient(90deg, var(--secondary), var(--primary));
             color: white;
             font-weight: 700;
-            font-size: 1.2rem;
-            padding: 16px 40px;
+            font-size: 1.05rem;
+            padding: 12px 20px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 22px rgba(67, 97, 238, 0.35);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 18px rgba(67, 97, 238, 0.28);
+            transition: all 0.25s ease;
             display: block;
-            margin: 30px auto 0;
+            margin: 18px auto 0;
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
         }
         
         .submit-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 26px rgba(67, 97, 238, 0.38);
         }
         
         .status-message {
             text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 14px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.98rem;
         }
         
         .success {
@@ -306,24 +314,24 @@
         }
         
         .whatsapp-section {
-            background: rgba(37, 211, 102, 0.1);
-            border: 2px solid var(--success);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
+            background: rgba(37, 211, 102, 0.08);
+            border: 1.6px solid rgba(37,211,102,0.18);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 18px;
             text-align: center;
             display: none;
         }
         
         .whatsapp-section h3 {
             color: var(--dark);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
         }
         
         .whatsapp-section p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 0.98rem;
             color: #333;
         }
         
@@ -334,127 +342,124 @@
             background: linear-gradient(90deg, #25d366, #128c7e);
             color: white;
             font-weight: 700;
-            font-size: 1.2rem;
-            padding: 16px 35px;
+            font-size: 1rem;
+            padding: 10px 20px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 14px rgba(37, 211, 102, 0.22);
+            transition: all 0.25s ease;
         }
         
         .whatsapp-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 10px 22px rgba(37, 211, 102, 0.32);
         }
         
         .admin-panel {
-            background: rgba(29, 53, 87, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 40px;
-            border: 1px dashed rgba(67, 97, 238, 0.2);
+            background: rgba(29, 53, 87, 0.03);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 22px;
+            border: 1px dashed rgba(67, 97, 238, 0.12);
             display: none;
         }
         
         .admin-panel h2 {
             color: var(--dark);
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
         }
         
         .admin-table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 12px;
-            margin-top: 20px;
+            border-spacing: 0 10px;
+            margin-top: 12px;
+            font-size: 0.95rem;
         }
         
         .admin-table th {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: white;
-            padding: 16px;
+            padding: 12px;
             text-align: center;
             font-weight: 700;
-        }
-        
-        .admin-table th:first-child {
-            border-radius: 15px 0 0 15px;
-        }
-        
-        .admin-table th:last-child {
-            border-radius: 0 15px 15px 0;
+            font-size: 0.95rem;
         }
         
         .admin-table td {
             background: white;
-            padding: 14px;
+            padding: 10px;
             text-align: center;
             font-weight: 600;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
         
         .admin-table tr {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            border-radius: 10px;
         }
         
         .admin-table select {
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 8px;
-            border: 2px solid #e0e0e0;
-            background: #f8f9ff;
+            border: 1.6px solid #e6e6e6;
+            background: #fbfdff;
             font-weight: 600;
             cursor: pointer;
-            min-width: 150px;
+            min-width: 130px;
+            font-size: 0.95rem;
         }
         
         .admin-btn {
-            padding: 10px 18px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
             font-weight: 700;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
         }
         
         .delete-btn {
             background: var(--danger);
             color: white;
-            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.18);
         }
         
         .delete-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(230, 57, 70, 0.35);
+            box-shadow: 0 6px 14px rgba(230, 57, 70, 0.28);
         }
         
         .logout-btn {
             background: linear-gradient(90deg, var(--danger), #c1121f);
             color: white;
-            padding: 12px 28px;
+            padding: 10px 18px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
-            box-shadow: 0 6px 18px rgba(230, 57, 70, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 14px rgba(230, 57, 70, 0.22);
+            transition: all 0.2s ease;
             display: block;
-            margin: 20px auto 0;
+            margin: 16px auto 0;
+            max-width: 240px;
         }
         
         .logout-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 22px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 8px 18px rgba(230, 57, 70, 0.3);
         }
         
         .footer {
             background: var(--dark);
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 18px;
             font-weight: 300;
-            font-size: 1.1rem;
+            font-size: 0.98rem;
         }
         
         .footer strong {
@@ -462,60 +467,60 @@
             font-weight: 700;
         }
 
-        /* تنسيق خاص بصندوق الدخول للإدارة */
+        /* صندوق الدخول */
         .admin-login-box {
-            max-width: 450px !important;
+            max-width: 480px !important;
             margin: 0 auto;
             text-align: center;
-            padding: 40px 30px !important;
+            padding: 20px 16px !important;
         }
         .admin-login-box .section-title {
             display: inline-block;
-            font-size: 1.6rem;
-            padding-bottom: 15px;
+            font-size: 1.2rem;
+            padding-bottom: 10px;
         }
         .admin-login-box .form-group {
             text-align: right;
-            margin-top: 20px;
+            margin-top: 12px;
         }
         .admin-login-box .form-input {
             text-align: center;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.05rem;
             border-color: #a8dadc;
             background-color: #f1faee;
+            padding: 10px;
         }
         .admin-login-box .form-input:focus {
             border-color: var(--accent);
             background-color: white;
         }
 
-        /* تنسيق صندوق الراعي الرسمي (سمارت راديوس) */
         .sponsor-box {
             background: linear-gradient(135deg, #1d3557, #4361ee);
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            border-radius: 15px;
-            margin-top: 50px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 28px 16px;
+            border-radius: 12px;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
         .sponsor-box h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--accent);
         }
         
         .sponsor-box h2 {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             font-weight: 900;
-            margin-bottom: 25px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 18px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.25);
         }
         
         .sponsor-btn {
@@ -523,93 +528,112 @@
             background: var(--accent);
             color: var(--dark);
             font-weight: 800;
-            font-size: 1.2rem;
-            padding: 12px 35px;
+            font-size: 1rem;
+            padding: 10px 22px;
             border-radius: 50px;
             text-decoration: none;
-            box-shadow: 0 6px 15px rgba(76, 201, 240, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 14px rgba(76, 201, 240, 0.28);
+            transition: all 0.25s ease;
         }
         
         .sponsor-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(76, 201, 240, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(76, 201, 240, 0.44);
             background: white;
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
             .doctor-net-logo h1 {
-                font-size: 2.8rem;
+                font-size: clamp(1.6rem, 6vw, 2.6rem);
             }
             .admin-table {
                 display: block;
                 overflow-x: auto;
             }
+            .main-content {
+                padding: 20px;
+            }
         }
         
         @media (max-width: 768px) {
+            :root {
+                --container-padding: 12px;
+            }
             .container {
-                margin: 10px;
+                margin: 8px;
+                box-shadow: 0 8px 18px rgba(0,0,0,0.12);
             }
             .header {
-                height: 240px;
-                padding: 20px;
+                padding: 18px 14px;
+                min-height: 140px;
+            }
+            .doctor-net-logo {
+                padding: 10px;
             }
             .doctor-net-logo h1 {
-                font-size: 2.3rem;
+                font-size: clamp(1.4rem, 6.5vw, 2.2rem);
             }
             .doctor-net-logo p {
-                font-size: 1.1rem;
+                font-size: 0.98rem;
             }
             .main-content {
-                padding: 30px 20px;
+                padding: 16px;
             }
             .section-title {
-                font-size: 1.7rem;
+                font-size: 1.25rem;
             }
             .social-btn {
-                padding: 14px 25px;
-                font-size: 1.1rem;
+                padding: 10px 16px;
+                font-size: 0.98rem;
             }
             .form-container {
-                padding: 20px;
+                padding: 14px;
             }
             .whatsapp-btn {
-                padding: 14px 25px;
-                font-size: 1.1rem;
+                padding: 10px 16px;
+                font-size: 0.98rem;
             }
             .sponsor-box h2 {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
             }
             .sponsor-btn {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
         }
         
         @media (max-width: 576px) {
             .header {
-                height: 200px;
+                min-height: 120px;
             }
             .doctor-net-logo h1 {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
             }
             .social-container {
                 flex-direction: column;
-                align-items: center;
-                gap: 15px;
+                align-items: stretch;
+                gap: 12px;
             }
             .social-btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 100%;
                 justify-content: center;
             }
             .admin-table th, .admin-table td {
-                padding: 12px 8px;
-                font-size: 0.9rem;
+                padding: 10px 6px;
+                font-size: 0.85rem;
             }
             .admin-table select {
-                min-width: 120px;
+                min-width: 110px;
+            }
+            .submit-btn {
+                max-width: 100%;
+                padding: 12px;
+                font-size: 0.98rem;
+            }
+            .form-input {
+                padding: 10px;
+                font-size: 0.98rem;
             }
         }
     </style>
@@ -727,7 +751,7 @@
                     <input type="password" id="admin-password" class="form-input" placeholder="........" required>
                 </div>
                 
-                <button type="submit" class="submit-btn" id="admin-login-btn" style="width: 100%; margin-top: 15px; border-radius: 10px;">تسجيل الدخول</button>
+                <button type="submit" class="submit-btn" id="admin-login-btn" style="width: 100%; margin-top: 12px; border-radius: 10px;">تسجيل الدخول</button>
                 
                 <div id="admin-status" class="status-message" style="display: none;"></div>
             </div>
@@ -754,7 +778,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     
     <script>
-        // إعداد Firebase
+        // إعداد Firebase (لم أتغيره)
         const firebaseConfig = {
             apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
             authDomain: "doctor-net-e72eb.firebaseapp.com",
@@ -775,10 +799,7 @@
             element.textContent = message;
             element.className = isSuccess ? "status-message success" : "status-message error";
             element.style.display = "block";
-            
-            setTimeout(() => {
-                element.style.opacity = 1;
-            }, 10);
+            element.style.opacity = 1;
             
             setTimeout(() => {
                 element.style.opacity = 0;
@@ -857,9 +878,10 @@
                         <strong>الحالة:</strong> ${ticket.status}
                     `;
                     
-                    document.getElementById("track-status").innerHTML = message;
-                    document.getElementById("track-status").className = "status-message success";
-                    document.getElementById("track-status").style.display = "block";
+                    const trackStatus = document.getElementById("track-status");
+                    trackStatus.innerHTML = message;
+                    trackStatus.className = "status-message success";
+                    trackStatus.style.display = "block";
                 } else {
                     showStatus("track-status", "لم يتم العثور على طلب بهذا الرقم", false);
                 }
