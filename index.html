@@ -231,6 +231,10 @@
             border: 1px solid rgba(67, 97, 238, 0.08);
         }
         
+        .form-group {
+            margin-bottom: 14px;
+        }
+        
         .form-label {
             display: block;
             margin-bottom: 6px;
@@ -360,13 +364,17 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
         
+        .admin-btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+        
         .delete-btn {
             background: var(--danger);
             color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
         }
         
         .logout-btn {
@@ -378,6 +386,7 @@
             cursor: pointer;
             display: block;
             margin: 16px auto 0;
+            max-width: 240px;
         }
         
         .footer {
@@ -388,14 +397,14 @@
             font-weight: 300;
             font-size: 0.98rem;
         }
-        
+
         .admin-login-box {
             max-width: 480px !important;
             margin: 0 auto;
             text-align: center;
             padding: 20px 16px !important;
         }
-        
+
         .sponsor-box {
             background: linear-gradient(135deg, #1d3557, #4361ee);
             color: white;
@@ -404,6 +413,20 @@
             border-radius: 12px;
             margin-top: 36px;
             margin-bottom: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .sponsor-box h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+        
+        .sponsor-box h2 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 18px;
         }
         
         .sponsor-btn {
@@ -418,7 +441,7 @@
         
         @media (max-width: 768px) {
             .container { margin: 8px; }
-            .social-container { flex-direction: column; }
+            .social-container { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
@@ -432,6 +455,7 @@
         </header>
         
         <div class="main-content">
+            
             <div class="sponsor-box">
                 <h3>برعاية الأفضل في الشرق الأوسط</h3>
                 <h2>سيستم سمارت راديوس</h2>
@@ -447,11 +471,12 @@
             </div>
 
             <div class="social-container">
-                <a href="https://wtsi.me/201012261790" class="social-btn">
+                <!-- تم تصحيح رابط الواتساب هنا ليعمل بشكل مباشر -->
+                <a href="https://wa.me/201012261790" target="_blank" class="social-btn">
                     <i class="fab fa-whatsapp"></i>
                     تواصل عبر واتساب
                 </a>
-                <a href="https://www.facebook.com/share/1RzaRwfF5Y/" class="social-btn facebook">
+                <a href="https://www.facebook.com/share/1RzaRwfF5Y/" target="_blank" class="social-btn facebook">
                     <i class="fab fa-facebook-messenger"></i>
                     تواصل عبر فيسبوك
                 </a>
@@ -464,20 +489,32 @@
                         <label for="name" class="form-label">الاسم الكامل</label>
                         <input type="text" id="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="phone" class="form-label">رقم الهاتف</label>
                         <input type="tel" id="phone" class="form-input" placeholder="أدخل رقم هاتفك" required>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني (اختياري)</label>
+                        <input type="email" id="email" class="form-input" placeholder="مثال: example@mail.com">
+                    </div>
+                    
                     <div class="form-group">
                         <label for="desc" class="form-label">وصف المشكلة</label>
                         <textarea id="desc" class="form-input" placeholder="صف المشكلة التي تواجهها بالتفصيل" required></textarea>
                     </div>
+                    
                     <button type="submit" class="submit-btn">حجز الطلب</button>
+                    
                     <div id="ticket-status" class="status-message" style="display: none;"></div>
+                    
                     <div class="whatsapp-section" id="whatsapp-section">
                         <h3>يرجى إرسال رقم الحجز عبر واتساب</h3>
-                        <a href="#" class="whatsapp-btn" id="whatsapp-link">
-                            <i class="fab fa-whatsapp"></i> إرسال رقم الحجز عبر واتساب
+                        <p>لضمان متابعة طلبك بشكل أسرع، يرجى إرسال رقم الحجز الخاص بك إلى دكتور نت عبر واتساب</p>
+                        <a href="#" target="_blank" class="whatsapp-btn" id="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i>
+                            إرسال رقم الحجز عبر واتساب
                         </a>
                     </div>
                 </form>
@@ -486,8 +523,13 @@
             <h2 class="section-title">متابعة حالة الطلب</h2>
             <div class="form-container">
                 <form id="track-form">
-                    <input type="text" id="track-id" class="form-input" placeholder="أدخل رقم الحجز" required>
+                    <div class="form-group">
+                        <label for="track-id" class="form-label">رقم حجز الطلب</label>
+                        <input type="text" id="track-id" class="form-input" placeholder="أدخل رقم الحجز لمتابعة الطلب" required>
+                    </div>
+                    
                     <button type="submit" class="submit-btn">متابعة حالة الطلب</button>
+                    
                     <div id="track-status" class="status-message" style="display: none;"></div>
                 </form>
             </div>
@@ -496,28 +538,49 @@
                 <h2 class="section-title">لوحة إدارة الطلبات</h2>
                 <div class="form-container">
                     <table class="admin-table">
-                        <thead><tr><th>رقم الحجز</th><th>الاسم</th><th>الحالة</th><th>الإجراءات</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>رقم الحجز</th>
+                                <th>الاسم</th>
+                                <th>الهاتف</th>
+                                <th>الوصف</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
                         <tbody id="admin-tbody"></tbody>
                     </table>
-                    <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
+                    
+                    <button class="logout-btn" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
                 </div>
             </div>
             
             <div class="form-container admin-login-box" id="admin-login-form">
                 <h2 class="section-title">تسجيل دخول الإدارة</h2>
-                <input type="password" id="admin-password" class="form-input" placeholder="كلمة المرور">
-                <button type="submit" class="submit-btn" id="admin-login-btn">تسجيل الدخول</button>
+                <div class="form-group">
+                    <label for="admin-password" class="form-label">كلمة مرور الإدارة</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="........" required>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="admin-login-btn" style="width: 100%; margin-top: 12px; border-radius: 10px;">تسجيل الدخول</button>
+                
                 <div id="admin-status" class="status-message" style="display: none;"></div>
             </div>
+            
         </div>
         
         <footer class="footer">
-            <p>حقوق النشر © <strong>مصطفى عاطف الشورى</strong></p>
+            <p>حقوق النشر © <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong></p>
+            <p>جميع الحقوق محفوظة 2027</p>
         </footer>
     </div>
     
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
@@ -528,27 +591,192 @@
             appId: "1:564197492244:web:a901c2dac343aa5a268901",
             measurementId: "G-RZ2XHF1J27"
         };
+        
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-
+        
+        const showStatus = (elementId, message, isSuccess) => {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = isSuccess ? "status-message success" : "status-message error";
+            element.style.display = "block";
+            element.style.opacity = 1;
+            
+            setTimeout(() => {
+                element.style.opacity = 0;
+                setTimeout(() => {
+                    element.style.display = "none";
+                }, 500);
+            }, 5000);
+        };
+        
         document.getElementById("ticket-form").addEventListener("submit", async (e) => {
             e.preventDefault();
-            const name = document.getElementById("name").value;
-            const phone = document.getElementById("phone").value;
-            const desc = document.getElementById("desc").value;
             
-            const docRef = await db.collection("tickets").add({ name, phone, desc, status: "جديد", createdAt: firebase.firestore.FieldValue.serverTimestamp() });
-            const ticketId = docRef.id;
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const desc = document.getElementById("desc").value.trim();
             
-            const whatsappLink = document.getElementById("whatsapp-link");
-            const message = `مرحباً، رقم الحجز الخاص بي هو: ${ticketId}`;
-            whatsappLink.href = `https://wtsi.me/201012261790?text=${encodeURIComponent(message)}`;
+            if (!name || !phone || !desc) {
+                showStatus("ticket-status", "يرجى ملء جميع الحقول المطلوبة", false);
+                return;
+            }
             
-            document.getElementById("whatsapp-section").style.display = "block";
-            alert("تم الحجز بنجاح! رقم طلبك: " + ticketId);
+            const ticket = {
+                name,
+                phone,
+                email: email || "غير محدد",
+                desc,
+                status: "جديد",
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            try {
+                const docRef = await db.collection("tickets").add(ticket);
+                const ticketId = docRef.id;
+                
+                showStatus("ticket-status", `تم حجز الطلب بنجاح! رقم الحجز: ${ticketId}`, true);
+                
+                const whatsappSection = document.getElementById("whatsapp-section");
+                whatsappSection.style.display = "block";
+                
+                const whatsappLink = document.getElementById("whatsapp-link");
+                const message = `مرحباً، لقد قمت بحجز طلب دعم فني جديد. رقم الحجز الخاص بي هو: ${ticketId}`;
+                // تم تصحيح رابط الواتساب هنا أيضاً ليعمل بشكل صحيح
+                const whatsappUrl = `https://wa.me/201012261790?text=${encodeURIComponent(message)}`;
+                whatsappLink.href = whatsappUrl;
+                
+                document.getElementById("ticket-form").reset();
+            } catch (error) {
+                showStatus("ticket-status", `حدث خطأ أثناء الحجز: ${error.message}`, false);
+            }
         });
         
-        // باقي دوال الإدارة والتحكم كما هي...
+        document.getElementById("track-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const trackId = document.getElementById("track-id").value.trim();
+            
+            if (!trackId) {
+                showStatus("track-status", "يرجى إدخال رقم الحجز", false);
+                return;
+            }
+            
+            try {
+                const doc = await db.collection("tickets").doc(trackId).get();
+                
+                if (doc.exists) {
+                    const ticket = doc.data();
+                    const message = `
+                        <strong>الاسم:</strong> ${ticket.name}<br>
+                        <strong>الهاتف:</strong> ${ticket.phone}<br>
+                        <strong>الوصف:</strong> ${ticket.desc}<br>
+                        <strong>الحالة:</strong> ${ticket.status}
+                    `;
+                    
+                    const trackStatus = document.getElementById("track-status");
+                    trackStatus.innerHTML = message;
+                    trackStatus.className = "status-message success";
+                    trackStatus.style.display = "block";
+                } else {
+                    showStatus("track-status", "لم يتم العثور على طلب بهذا الرقم", false);
+                }
+            } catch (error) {
+                showStatus("track-status", `حدث خطأ أثناء البحث: ${error.message}`, false);
+            }
+        });
+        
+        const ADMIN_PASSWORD = "doctor123";
+        
+        document.getElementById("admin-login-btn").addEventListener("click", async (e) => {
+            e.preventDefault();
+            
+            const password = document.getElementById("admin-password").value;
+            
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById("admin-login-form").style.display = "none";
+                document.getElementById("admin-panel").style.display = "block";
+                fetchTickets();
+                showStatus("admin-status", "تم تسجيل الدخول بنجاح!", true);
+            } else {
+                showStatus("admin-status", "كلمة المرور غير صحيحة!", false);
+            }
+        });
+        
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            document.getElementById("admin-panel").style.display = "none";
+            document.getElementById("admin-login-form").style.display = "block";
+            document.getElementById("admin-password").value = "";
+        });
+        
+        async function fetchTickets() {
+            try {
+                const querySnapshot = await db.collection("tickets").orderBy("createdAt", "desc").get();
+                const tickets = [];
+                querySnapshot.forEach(doc => {
+                    tickets.push({ id: doc.id, ...doc.data() });
+                });
+                renderTickets(tickets);
+            } catch (error) {
+                console.error("Error fetching tickets: ", error);
+            }
+        }
+        
+        function renderTickets(tickets) {
+            const tbody = document.getElementById("admin-tbody");
+            tbody.innerHTML = "";
+            
+            tickets.forEach(ticket => {
+                const tr = document.createElement("tr");
+                
+                tr.innerHTML = `
+                    <td>${ticket.id}</td>
+                    <td>${ticket.name}</td>
+                    <td>${ticket.phone}</td>
+                    <td>${ticket.desc}</td>
+                    <td>
+                        <select id="status-${ticket.id}" onchange="updateStatus('${ticket.id}', this.value)">
+                            <option value="جديد" ${ticket.status === "جديد" ? "selected" : ""}>جديد</option>
+                            <option value="قيد المعالجة" ${ticket.status === "قيد المعالجة" ? "selected" : ""}>قيد المعالجة</option>
+                            <option value="مكتمل" ${ticket.status === "مكتمل" ? "selected" : ""}>مكتمل</option>
+                            <option value="ملغي" ${ticket.status === "ملغي" ? "selected" : ""}>ملغي</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="admin-btn delete-btn" onclick="deleteTicket('${ticket.id}')">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        }
+        
+        async function updateStatus(ticketId, newStatus) {
+            try {
+                await db.collection("tickets").doc(ticketId).update({ status: newStatus });
+                showStatus("admin-status", "تم تحديث حالة الطلب بنجاح!", true);
+            } catch (error) {
+                showStatus("admin-status", `حدث خطأ أثناء تحديث الحالة: ${error.message}`, false);
+            }
+        }
+        
+        async function deleteTicket(ticketId) {
+            if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+                try {
+                    await db.collection("tickets").doc(ticketId).delete();
+                    fetchTickets();
+                    showStatus("admin-status", "تم حذف الطلب بنجاح!", true);
+                } catch (error) {
+                    showStatus("admin-status", `حدث خطأ أثناء حذف الطلب: ${error.message}`, false);
+                }
+            }
+        }
+        
+        window.updateStatus = updateStatus;
+        window.deleteTicket = deleteTicket;
     </script>
 </body>
 </html>
