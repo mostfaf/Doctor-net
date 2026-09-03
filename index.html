@@ -464,11 +464,51 @@
             border-radius: 50px;
             text-decoration: none;
         }
+
+        /* --- تنسيقات زر لوحة إدارة العميل الجديد --- */
+        .client-admin-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+        
+        .client-admin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(90deg, var(--dark), var(--primary));
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(29, 53, 87, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: pulse-admin 2s infinite;
+            text-align: center;
+        }
+        
+        .client-admin-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(29, 53, 87, 0.45);
+            color: white;
+        }
+        
+        @keyframes pulse-admin {
+            0% { box-shadow: 0 0 0 0 rgba(58, 12, 163, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(58, 12, 163, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(58, 12, 163, 0); }
+        }
+        /* ------------------------------------------ */
         
         @media (max-width: 768px) {
             .container { margin: 8px; }
             .social-container { flex-direction: column; align-items: stretch; }
             .admin-table { display: block; overflow-x: auto; }
+            .client-admin-btn { font-size: 1rem; padding: 12px 20px; }
         }
     </style>
 </head>
@@ -482,6 +522,14 @@
         </header>
         
         <div class="main-content">
+            
+            <!-- زر وصول العميل للوحة الإدارة (تمت إضافته هنا أول الصفحة) -->
+            <div class="client-admin-container">
+                <a href="http://76.13.151.163:5000/client/login" class="client-admin-btn" target="_blank">
+                    <i class="fas fa-user-shield"></i>
+                    اضغط هنا للوصول للوحه الاداره الخاصه بك
+                </a>
+            </div>
             
             <div class="social-container">
                 <a href="https://wa.me/201012261790" target="_blank" class="social-btn">
