@@ -3,615 +3,954 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دكتور نت - حلول الشبكات المتكاملة</title>
+    <meta name="theme-color" content="#071a33">
+    <meta name="description" content="Doctor Net — منصة إدارة الدمج ومتابعة الشبكات وطلبات الدعم الفني.">
+    <title>Doctor Net | إدارة الدمج والشبكات</title>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #3a0ca3;
-            --secondary: #4361ee;
-            --accent: #4cc9f0;
-            --success: #2ecc71;
-            --warning: #f9c74f;
-            --danger: #e63946;
-            --light: #f8f9fa;
-            --dark: #1d3557;
-            --text: #333;
-            --container-max-width: 1200px;
-            --container-padding: 20px;
+            --navy: #071a33;
+            --navy-2: #0b2850;
+            --blue: #1769ff;
+            --cyan: #18c9ff;
+            --green: #18b879;
+            --gold: #f5b942;
+            --red: #e84d5b;
+            --ink: #10233f;
+            --muted: #65748b;
+            --line: #e7edf5;
+            --surface: #ffffff;
+            --soft: #f5f8fc;
+            --shadow: 0 18px 55px rgba(7, 26, 51, 0.10);
+            --shadow-sm: 0 10px 28px rgba(7, 26, 51, 0.07);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 16px;
+            --container: 1180px;
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
         }
-        
-        html, body {
-            height: 100%;
-        }
-        
+
+        html { scroll-behavior: smooth; }
         body {
-            background: linear-gradient(135deg, #1a237e 0%, var(--primary) 50%, #4cc9f0 100%);
-            color: var(--text);
-            line-height: 1.6;
             min-height: 100vh;
-            padding: 12px;
-            position: relative;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 8% 4%, rgba(24,201,255,.13), transparent 28%),
+                radial-gradient(circle at 92% 12%, rgba(23,105,255,.10), transparent 30%),
+                linear-gradient(180deg, #eef6ff 0%, #f7faff 34%, #f5f8fc 100%);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-        }
-        
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,10 100,0 L100,100 Q50,90 0,100 Z" fill="rgba(255,255,255,0.03)"/></svg>');
-            background-size: cover;
-            z-index: -1;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            position: relative;
-            z-index: 10;
-            padding: 0;
-        }
-        
-        .header {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            padding: 28px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 160px;
-        }
-        
-        .header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.08)" d="M0,64L48,74.7C96,85,192,107,288,117.3C384,128,480,128,576,122.7C672,117,768,107,864,112C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            opacity: 0.9;
-        }
-        
-        .doctor-net-logo {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 14px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .doctor-net-logo h1 {
-            color: white;
-            font-size: clamp(1.8rem, 5vw, 3.2rem);
-            font-weight: 900;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-            margin-bottom: 10px;
-            letter-spacing: 1.5px;
-        }
-        
-        .doctor-net-logo p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: clamp(0.95rem, 2.2vw, 1.25rem);
-            font-weight: 300;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        
-        .main-content {
-            padding: 28px 22px;
         }
 
-        .partners-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 28px;
+        a { color: inherit; }
+        button, input, textarea, select { font: inherit; }
+
+        .page-shell {
+            width: min(var(--container), calc(100% - 28px));
+            margin: 14px auto 24px;
         }
-        
-        .partner-badge {
-            background: white;
-            border: 1px solid rgba(67, 97, 238, 0.12);
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+
+        /* Top navigation */
+        .topbar {
+            position: sticky;
+            top: 12px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 14px 10px 18px;
+            background: rgba(255,255,255,.88);
+            border: 1px solid rgba(210,222,239,.78);
+            border-radius: 18px;
+            box-shadow: 0 12px 32px rgba(7,26,51,.06);
+            backdrop-filter: blur(16px);
+        }
+
+        .brand-mini {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: #fff;
+            background: linear-gradient(145deg, var(--navy), var(--blue));
+            box-shadow: 0 9px 22px rgba(23,105,255,.24);
+            font-size: 18px;
+        }
+
+        .brand-copy {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .brand-copy strong {
+            font-size: 1rem;
+            letter-spacing: .6px;
+            color: var(--navy);
+        }
+
+        .brand-copy span {
+            color: var(--muted);
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+        .topbar-actions {
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.25s ease;
-            font-size: 0.95rem;
         }
 
-        .partner-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.12);
-        }
-        
-        .partner-badge i {
-            color: var(--warning);
-        }
-        
-        .section-title {
-            color: var(--primary);
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            margin-bottom: 18px;
-            position: relative;
-            padding-right: 10px;
+        .nav-link {
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 9px 13px;
+            font-size: .82rem;
             font-weight: 800;
-            text-align: center;
+            color: var(--navy-2);
+            transition: .2s ease;
         }
-        
-        .section-title::after {
+        .nav-link:hover { background: var(--soft); transform: translateY(-1px); }
+
+        .nav-link.primary {
+            color: #fff;
+            background: linear-gradient(135deg, var(--blue), #3257d8);
+            box-shadow: 0 8px 18px rgba(23,105,255,.20);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            margin-top: 14px;
+            padding: clamp(26px, 4vw, 46px);
+            border-radius: var(--radius-xl);
+            background:
+                radial-gradient(circle at 78% 20%, rgba(24,201,255,.18), transparent 22%),
+                radial-gradient(circle at 100% 100%, rgba(23,105,255,.23), transparent 35%),
+                linear-gradient(135deg, #071a33 0%, #0b2850 55%, #134c8f 100%);
+            color: #fff;
+            box-shadow: 0 24px 70px rgba(7,26,51,.22);
+        }
+
+        .hero::before,
+        .hero::after {
             content: "";
             position: absolute;
-            right: 50%;
-            bottom: -10px;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            border-radius: 3px;
-            transform: translateX(50%);
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 50%;
+            pointer-events: none;
         }
-        
-        .social-container {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
+        .hero::before {
+            width: 360px; height: 360px; left: -170px; top: -190px;
         }
-        
-        .social-btn {
+        .hero::after {
+            width: 500px; height: 500px; right: -250px; bottom: -300px;
+        }
+
+        .network-grid {
+            position: absolute;
+            inset: 0;
+            opacity: .20;
+            background-image:
+                linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), transparent 92%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            gap: clamp(22px, 5vw, 60px);
+        }
+
+        .eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: linear-gradient(90deg, var(--success), #27ae60);
-            color: white;
-            font-weight: 700;
-            font-size: 1rem;
-            padding: 12px 22px;
-            border-radius: 50px;
+            gap: 8px;
+            width: fit-content;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.12);
+            color: #dff7ff;
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #4be39b;
+            box-shadow: 0 0 0 5px rgba(75,227,155,.11);
+        }
+
+        .hero h1 {
+            margin-top: 16px;
+            max-width: 700px;
+            font-size: clamp(2.2rem, 6vw, 4.4rem);
+            line-height: 1.03;
+            font-weight: 900;
+            letter-spacing: -1.2px;
+        }
+
+        .hero h1 .accent { color: #62dcff; }
+
+        .hero-lead {
+            margin-top: 16px;
+            max-width: 690px;
+            color: rgba(255,255,255,.82);
+            font-size: clamp(.96rem, 2vw, 1.1rem);
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 11px;
+            margin-top: 26px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 11px 17px;
+            border-radius: 14px;
             text-decoration: none;
-            box-shadow: 0 6px 14px rgba(46, 204, 113, 0.22);
-            transition: all 0.25s ease;
-            border: none;
+            border: 1px solid transparent;
+            font-weight: 800;
+            font-size: .92rem;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
             cursor: pointer;
         }
-        
-        .social-btn.facebook {
-            background: linear-gradient(90deg, var(--secondary), #3a0ca3);
-            box-shadow: 0 6px 14px rgba(58, 12, 163, 0.22);
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-main {
+            color: #06203a;
+            background: linear-gradient(135deg, #6be4ff, #28c9fa);
+            box-shadow: 0 13px 28px rgba(24,201,255,.22);
         }
-        
-        .social-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        .btn-soft {
+            color: #fff;
+            background: rgba(255,255,255,.07);
+            border-color: rgba(255,255,255,.16);
         }
-        
-        .form-container {
-            background: white;
-            border-radius: 12px;
+        .btn-soft:hover { background: rgba(255,255,255,.12); }
+
+        .hero-card {
             padding: 18px;
-            margin-bottom: 28px;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(67, 97, 238, 0.08);
+            border-radius: 22px;
+            background: rgba(255,255,255,.075);
+            border: 1px solid rgba(255,255,255,.13);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 20px 50px rgba(0,0,0,.10);
+            backdrop-filter: blur(12px);
         }
-        
-        .form-group {
-            margin-bottom: 14px;
+
+        .hero-card-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
         }
-        
+
+        .hero-card-title {
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .live-badge {
+            border-radius: 999px;
+            padding: 4px 8px;
+            font-size: .67rem;
+            font-weight: 900;
+            color: #dfffea;
+            background: rgba(24,184,121,.15);
+            border: 1px solid rgba(98,255,194,.18);
+        }
+
+        .dashboard-cta {
+            display: block;
+            text-decoration: none;
+            padding: 18px;
+            border-radius: 17px;
+            background: #fff;
+            color: var(--navy);
+            box-shadow: 0 16px 32px rgba(0,0,0,.14);
+            transition: .2s ease;
+        }
+        .dashboard-cta:hover { transform: translateY(-3px); }
+
+        .dashboard-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dashboard-icon {
+            width: 48px; height: 48px;
+            flex: 0 0 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: linear-gradient(145deg, #eaf6ff, #d9eeff);
+            color: var(--blue);
+            font-size: 20px;
+        }
+
+        .dashboard-cta strong { display: block; font-size: .98rem; }
+        .dashboard-cta span { display: block; color: var(--muted); font-size: .75rem; font-weight: 700; margin-top: 2px; }
+
+        .mini-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .metric {
+            padding: 11px 8px;
+            text-align: center;
+            border-radius: 13px;
+            background: rgba(255,255,255,.055);
+            border: 1px solid rgba(255,255,255,.08);
+        }
+        .metric i { display: block; color: #67ddff; margin-bottom: 4px; }
+        .metric span { display: block; color: rgba(255,255,255,.72); font-size: .65rem; font-weight: 700; }
+
+        /* Main content */
+        .main-content {
+            margin-top: 18px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 16px;
+            margin: 8px 4px 0;
+        }
+
+        .section-head h2 {
+            color: var(--navy);
+            font-size: clamp(1.2rem, 3vw, 1.7rem);
+            font-weight: 900;
+            letter-spacing: -.3px;
+        }
+        .section-head p {
+            color: var(--muted);
+            font-size: .78rem;
+            font-weight: 600;
+            max-width: 520px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .service-card {
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(255,255,255,.92);
+            box-shadow: var(--shadow-sm);
+        }
+        .service-icon {
+            width: 42px; height: 42px;
+            display: grid; place-items: center;
+            border-radius: 13px;
+            margin-bottom: 11px;
+            color: var(--blue);
+            background: #edf5ff;
+        }
+        .service-card h3 { font-size: .94rem; font-weight: 900; color: var(--navy); }
+        .service-card p { margin-top: 4px; color: var(--muted); font-size: .72rem; font-weight: 600; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .form-container {
+            background: rgba(255,255,255,.96);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: clamp(18px, 2.4vw, 24px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-title {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 17px;
+        }
+        .form-title-icon {
+            width: 43px; height: 43px;
+            display: grid; place-items: center;
+            border-radius: 13px;
+            color: var(--blue);
+            background: linear-gradient(145deg, #ebf4ff, #dff3ff);
+        }
+        .form-title h2 { font-size: 1.05rem; color: var(--navy); font-weight: 900; }
+        .form-title p { font-size: .71rem; color: var(--muted); font-weight: 600; margin-top: 1px; }
+
+        .form-group { margin-bottom: 13px; }
         .form-label {
             display: block;
             margin-bottom: 6px;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1rem;
+            color: var(--navy-2);
+            font-size: .76rem;
+            font-weight: 800;
         }
-        
+
         .form-input {
             width: 100%;
-            padding: 12px;
-            border: 1.6px solid #e6e6e6;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            background: #fbfdff;
-        }
-        
-        .form-input:focus {
-            border-color: var(--accent);
-            background: white;
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.12);
-        }
-        
-        textarea.form-input {
-            min-height: 110px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(90deg, var(--secondary), var(--primary));
-            color: white;
-            font-weight: 700;
-            font-size: 1.05rem;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 6px 18px rgba(67, 97, 238, 0.28);
-            transition: all 0.25s ease;
-            display: block;
-            margin: 18px auto 0;
-            width: 100%;
-            max-width: 320px;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 26px rgba(67, 97, 238, 0.38);
-        }
-        
-        .status-message {
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 14px;
-            font-weight: 600;
-            font-size: 0.98rem;
-        }
-        
-        .success {
-            background: rgba(46, 204, 113, 0.12);
-            color: var(--success);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-        }
-        
-        .error {
-            background: rgba(230, 57, 70, 0.12);
-            color: var(--danger);
-            border: 1px solid rgba(230, 57, 70, 0.3);
-        }
-        
-        .whatsapp-section {
-            background: rgba(37, 211, 102, 0.08);
-            border: 1.6px solid rgba(37,211,102,0.18);
+            padding: 12px 13px;
+            border: 1px solid #dce5f0;
             border-radius: 12px;
-            padding: 18px;
-            margin-top: 18px;
-            text-align: center;
-            display: none;
+            background: #fbfdff;
+            color: var(--ink);
+            outline: none;
+            font-size: .88rem;
+            transition: border .18s ease, box-shadow .18s ease, background .18s ease;
         }
-        
-        .whatsapp-section h3 {
-            color: var(--dark);
-            margin-bottom: 8px;
-            font-size: 1.05rem;
+        .form-input:focus {
+            border-color: #63b7ff;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(23,105,255,.08);
         }
-        
-        .whatsapp-section p {
-            margin-bottom: 12px;
-            font-size: 0.98rem;
-            color: #333;
+        textarea.form-input { min-height: 128px; resize: vertical; }
+
+        .submit-btn {
+            display: flex;
+            width: 100%;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            border: 0;
+            border-radius: 13px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--blue), #2546c7);
+            box-shadow: 0 11px 24px rgba(23,105,255,.20);
+            font-weight: 900;
+            cursor: pointer;
+            transition: .2s ease;
         }
-        
+        .submit-btn:hover { transform: translateY(-2px); }
+
+        .track-card {
+            display: grid;
+            gap: 18px;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .social-btn,
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(90deg, #25d366, #128c7e);
-            color: white;
-            font-weight: 700;
-            font-size: 1rem;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 6px 14px rgba(37, 211, 102, 0.22);
-            transition: all 0.25s ease;
-        }
-        
-        .admin-panel {
-            background: rgba(29, 53, 87, 0.03);
+            justify-content: center;
+            gap: 9px;
+            width: 100%;
+            min-height: 45px;
+            padding: 10px 13px;
             border-radius: 12px;
-            padding: 18px;
-            margin-top: 22px;
-            border: 1px dashed rgba(67, 97, 238, 0.12);
-            display: none;
+            text-decoration: none;
+            color: #fff;
+            font-size: .80rem;
+            font-weight: 900;
+            transition: .2s ease;
         }
-        
+        .social-btn:hover, .whatsapp-btn:hover { transform: translateY(-2px); }
+
+        .social-btn {
+            background: linear-gradient(135deg, #25d366, #129c78);
+            box-shadow: 0 10px 22px rgba(37,211,102,.14);
+        }
+        .social-btn.facebook {
+            background: linear-gradient(135deg, #3159df, #1937ab);
+            box-shadow: 0 10px 22px rgba(49,89,223,.14);
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 11px 12px;
+            border-radius: 11px;
+            margin-top: 12px;
+            font-size: .76rem;
+            font-weight: 800;
+            word-break: break-word;
+        }
+        .status-message.success {
+            background: rgba(24,184,121,.09);
+            color: #0f8f60;
+            border: 1px solid rgba(24,184,121,.20);
+        }
+        .status-message.error {
+            background: rgba(232,77,91,.08);
+            color: #c33443;
+            border: 1px solid rgba(232,77,91,.18);
+        }
+
+        .whatsapp-section {
+            display: none;
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 13px;
+            border: 1px solid rgba(37,211,102,.18);
+            background: rgba(37,211,102,.055);
+            text-align: center;
+        }
+        .whatsapp-section h3 { color: var(--navy); font-size: .83rem; font-weight: 900; }
+        .whatsapp-section p { color: var(--muted); font-size: .70rem; margin: 5px 0 11px; }
+        .whatsapp-btn {
+            width: auto;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            padding-inline: 17px;
+        }
+
+        /* Sponsors */
+        .sponsor-box {
+            padding: 22px;
+            border-radius: var(--radius-lg);
+            color: #fff;
+            background:
+                radial-gradient(circle at 90% 0%, rgba(24,201,255,.16), transparent 30%),
+                linear-gradient(135deg, #091d37, #103e76);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .sponsor-box h3 {
+            color: #7ce5ff;
+            font-size: .70rem;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+        .sponsor-box h2 {
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+        .sponsor-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            min-height: 41px;
+            padding: 8px 15px;
+            border-radius: 11px;
+            color: #06203a;
+            background: #6be4ff;
+            text-decoration: none;
+            font-size: .76rem;
+            font-weight: 900;
+        }
+
+        .partners-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .partner-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 10px;
+            color: var(--navy-2);
+            background: rgba(255,255,255,.94);
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            box-shadow: var(--shadow-sm);
+            font-size: .72rem;
+            font-weight: 900;
+            text-align: center;
+        }
+        .partner-badge i { color: var(--gold); }
+
+        /* Admin area kept intact functionally */
+        .admin-panel {
+            display: none;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .admin-login-box {
+            display: block;
+            max-width: 520px !important;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         .admin-table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 10px;
+            border-spacing: 0 8px;
             margin-top: 12px;
-            font-size: 0.95rem;
+            font-size: .78rem;
         }
-        
         .admin-table th {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-weight: 700;
-        }
-        
-        .admin-table td {
-            background: white;
             padding: 10px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--navy), #164884);
             text-align: center;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
-        
-        .admin-table select {
-            padding: 6px 10px;
-            border-radius: 8px;
-            border: 1.6px solid #e6e6e6;
+        .admin-table td {
+            padding: 9px;
             background: #fbfdff;
-            font-weight: 600;
-            cursor: pointer;
-            min-width: 130px;
+            text-align: center;
+            font-weight: 700;
+            border-bottom: 1px solid #edf1f6;
         }
-        
-        .admin-btn {
-            padding: 8px 12px;
+        .admin-table select {
+            min-width: 120px;
+            padding: 6px 8px;
             border-radius: 8px;
+            border: 1px solid #dce5f0;
+            background: #fff;
             font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
-        
-        .delete-btn {
-            background: var(--danger);
-            color: white;
-        }
-        
-        .logout-btn {
-            background: linear-gradient(90deg, var(--danger), #c1121f);
-            color: white;
-            padding: 10px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            display: block;
-            margin: 16px auto 0;
-            max-width: 240px;
-        }
-        
-        .footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 18px;
-            font-weight: 300;
-            font-size: 0.98rem;
-        }
-
-        .admin-login-box {
-            max-width: 480px !important;
-            margin: 0 auto;
-            text-align: center;
-            padding: 20px 16px !important;
-        }
-
-        .sponsor-box {
-            background: linear-gradient(135deg, #1d3557, #4361ee);
-            color: white;
-            text-align: center;
-            padding: 28px 16px;
-            border-radius: 12px;
-            margin-top: 12px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-        
-        .sponsor-box h3 {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 8px;
-            color: var(--accent);
-        }
-        
-        .sponsor-box h2 {
-            font-size: 1.6rem;
-            font-weight: 900;
-            margin-bottom: 18px;
-        }
-        
-        .sponsor-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--dark);
+        .admin-btn {
+            padding: 7px 10px;
+            border: 0;
+            border-radius: 8px;
             font-weight: 800;
-            padding: 10px 22px;
-            border-radius: 50px;
-            text-decoration: none;
+            cursor: pointer;
+        }
+        .delete-btn { background: var(--red); color: #fff; }
+
+        .logout-btn {
+            display: block;
+            max-width: 220px;
+            width: 100%;
+            margin: 15px auto 0;
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 11px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--red), #b92d3b);
+            font-weight: 800;
+            cursor: pointer;
         }
 
-        /* --- تنسيقات زر لوحة إدارة العميل الجديد --- */
-        .client-admin-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 24px;
-            width: 100%;
-        }
-        
-        .client-admin-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(90deg, var(--dark), var(--primary));
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 6px 18px rgba(29, 53, 87, 0.3);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            animation: pulse-admin 2s infinite;
+        .footer {
+            margin-top: 18px;
+            padding: 20px 16px;
+            border-radius: 18px;
+            color: rgba(255,255,255,.82);
+            background: var(--navy);
             text-align: center;
+            font-size: .70rem;
         }
-        
-        .client-admin-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(29, 53, 87, 0.45);
-            color: white;
+        .footer strong { color: #fff; }
+        .footer p + p { margin-top: 2px; }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .hero-grid, .content-grid { grid-template-columns: 1fr; }
+            .hero-card { max-width: 720px; }
+            .services { grid-template-columns: repeat(2, 1fr); }
         }
-        
-        @keyframes pulse-admin {
-            0% { box-shadow: 0 0 0 0 rgba(58, 12, 163, 0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(58, 12, 163, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(58, 12, 163, 0); }
+
+        @media (max-width: 680px) {
+            .page-shell { width: min(100% - 16px, 680px); margin-top: 8px; }
+            .topbar { top: 6px; padding: 8px 10px; }
+            .topbar-actions .nav-link:not(.primary) { display: none; }
+            .brand-mark { width: 38px; height: 38px; border-radius: 11px; }
+            .brand-copy strong { font-size: .90rem; }
+            .brand-copy span { font-size: .64rem; }
+            .hero {
+                margin-top: 8px;
+                padding: 24px 17px;
+                border-radius: 22px;
+            }
+            .hero h1 { font-size: clamp(2.05rem, 14vw, 3.25rem); }
+            .hero-lead { font-size: .87rem; }
+            .hero-actions { display: grid; grid-template-columns: 1fr; }
+            .btn { width: 100%; }
+            .mini-metrics { grid-template-columns: repeat(3, 1fr); }
+            .services { grid-template-columns: 1fr 1fr; gap: 9px; }
+            .service-card { padding: 14px; }
+            .section-head { align-items: start; flex-direction: column; gap: 4px; }
+            .quick-links { grid-template-columns: 1fr; }
+            .partners-container { grid-template-columns: 1fr; }
+            .admin-table { display: block; overflow-x: auto; white-space: nowrap; }
         }
-        /* ------------------------------------------ */
-        
-        @media (max-width: 768px) {
-            .container { margin: 8px; }
-            .social-container { flex-direction: column; align-items: stretch; }
-            .admin-table { display: block; overflow-x: auto; }
-            .client-admin-btn { font-size: 1rem; padding: 12px 20px; }
+
+        @media (max-width: 420px) {
+            .services { grid-template-columns: 1fr; }
+            .hero-card { padding: 13px; }
+            .metric { padding: 9px 4px; }
+            .metric span { font-size: .60rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="doctor-net-logo">
-                <h1>SYSTEM DOCTOR NET</h1>
-                <p>لإدارة الشبكات المتكاملة باحترافية وجودة عالية</p>
-            </div>
-        </header>
-        
-        <div class="main-content">
-            
-            <!-- زر وصول العميل للوحة الإدارة (تمت إضافته هنا أول الصفحة) -->
-            <div class="client-admin-container">
-                <a href="http://76.13.151.163:5000/client/login" class="client-admin-btn" target="_blank">
-                    <i class="fas fa-user-shield"></i>
-                    اضغط هنا للوصول للوحه الاداره الخاصه بك
+    <div class="page-shell">
+
+        <nav class="topbar">
+            <a class="brand-mini" href="#">
+                <span class="brand-mark"><i class="fas fa-network-wired"></i></span>
+                <span class="brand-copy">
+                    <strong>DOCTOR NET</strong>
+                    <span>إدارة الدمج والشبكات</span>
+                </span>
+            </a>
+
+            <div class="topbar-actions">
+                <a class="nav-link" href="#support">الدعم الفني</a>
+                <a class="nav-link" href="#track">متابعة طلب</a>
+                <a class="nav-link primary" href="http://76.13.151.163:5000/client/login" target="_blank" rel="noopener">
+                    <i class="fas fa-user-shield"></i> لوحة العميل
                 </a>
             </div>
-            
-            <div class="social-container">
-                <a href="https://wa.me/201012261790" target="_blank" class="social-btn">
-                    <i class="fab fa-whatsapp"></i>
-                    تواصل عبر واتساب
-                </a>
-                <a href="https://www.facebook.com/share/1RzaRwfF5Y/" target="_blank" class="social-btn facebook">
-                    <i class="fab fa-facebook-messenger"></i>
-                    تواصل عبر فيسبوك
-                </a>
-            </div>
-            
-            <h2 class="section-title">حجز طلب دعم فني</h2>
-            <div class="form-container">
-                <form id="ticket-form">
-                    <div class="form-group">
-                        <label for="name" class="form-label">الاسم الكامل</label>
-                        <input type="text" id="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone" class="form-label">رقم الهاتف</label>
-                        <input type="tel" id="phone" class="form-input" placeholder="أدخل رقم هاتفك" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email" class="form-label">البريد الإلكتروني (اختياري)</label>
-                        <input type="email" id="email" class="form-input" placeholder="مثال: example@mail.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="desc" class="form-label">وصف المشكلة</label>
-                        <textarea id="desc" class="form-input" placeholder="صف المشكلة التي تواجهها بالتفصيل" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">حجز الطلب</button>
-                    
-                    <div id="ticket-status" class="status-message" style="display: none;"></div>
-                    
-                    <div class="whatsapp-section" id="whatsapp-section">
-                        <h3>يرجى إرسال رقم الحجز عبر واتساب</h3>
-                        <p>لضمان متابعة طلبك بشكل أسرع، يرجى إرسال رقم الحجز الخاص بك إلى دكتور نت عبر واتساب</p>
-                        <a href="#" target="_blank" class="whatsapp-btn" id="whatsapp-link">
-                            <i class="fab fa-whatsapp"></i>
-                            إرسال رقم الحجز عبر واتساب
+        </nav>
+
+        <header class="hero">
+            <div class="network-grid"></div>
+
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow"><span class="status-dot"></span> SYSTEM DOCTOR NET</div>
+                    <h1>إدارة الدمج<br><span class="accent">بوضوح. وتحكم.</span></h1>
+                    <p class="hero-lead">
+                        بوابتك الرئيسية للوصول إلى لوحة العميل، متابعة الشبكة، وحجز ومتابعة طلبات الدعم الفني من مكان واحد.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-main" href="http://76.13.151.163:5000/client/login" target="_blank" rel="noopener">
+                            <i class="fas fa-gauge-high"></i>
+                            الدخول إلى لوحة الإدارة
+                        </a>
+                        <a class="btn btn-soft" href="#support">
+                            <i class="fas fa-headset"></i>
+                            حجز دعم فني
                         </a>
                     </div>
-                </form>
-            </div>
-            
-            <h2 class="section-title">متابعة حالة الطلب</h2>
-            <div class="form-container">
-                <form id="track-form">
-                    <div class="form-group">
-                        <label for="track-id" class="form-label">رقم حجز الطلب</label>
-                        <input type="text" id="track-id" class="form-input" placeholder="أدخل رقم الحجز لمتابعة الطلب" required>
+                </div>
+
+                <div class="hero-card">
+                    <div class="hero-card-head">
+                        <div class="hero-card-title">مركز الوصول السريع</div>
+                        <span class="live-badge">READY</span>
                     </div>
-                    
-                    <button type="submit" class="submit-btn">متابعة حالة الطلب</button>
-                    
-                    <div id="track-status" class="status-message" style="display: none;"></div>
-                </form>
+
+                    <a class="dashboard-cta" href="http://76.13.151.163:5000/client/login" target="_blank" rel="noopener">
+                        <div class="dashboard-row">
+                            <span class="dashboard-icon"><i class="fas fa-user-shield"></i></span>
+                            <span>
+                                <strong>لوحة العميل الخاصة بك</strong>
+                                <span>الدخول ومتابعة حالة الخطوط والنظام</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <div class="mini-metrics">
+                        <div class="metric"><i class="fas fa-network-wired"></i><span>إدارة الدمج</span></div>
+                        <div class="metric"><i class="fas fa-chart-line"></i><span>متابعة الخطوط</span></div>
+                        <div class="metric"><i class="fas fa-bell"></i><span>تنبيهات</span></div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- تم نقل قسم الرعاة والشركاء هنا أسفل متابعة حالة الطلب -->
-            <div class="sponsor-box">
-                <h3>برعاية الأفضل في الشرق الأوسط</h3>
-                <h2>سيستم سمارت راديوس</h2>
-                <a href="https://www.smart-radius.com" target="_blank" class="sponsor-btn">
-                    <i class="fas fa-external-link-alt"></i> زيارة الموقع الرسمي
-                </a>
+        </header>
+
+        <main class="main-content">
+
+            <div class="section-head">
+                <div>
+                    <h2>كل ما تحتاجه… من واجهة واحدة</h2>
+                    <p>تم ترتيب الصفحة لتكون نقطة دخول واضحة وسريعة لعملاء Doctor Net، مع الحفاظ على وظائف الحجز والمتابعة والإدارة الموجودة.</p>
+                </div>
             </div>
 
-            <div class="partners-container">
+            <section class="services" aria-label="مميزات النظام">
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>إدارة الدمج</h3>
+                    <p>وصول مباشر إلى لوحة العميل الخاصة بالنظام.</p>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-signal"></i></div>
+                    <h3>متابعة الخطوط</h3>
+                    <p>واجهة مخصصة لمتابعة حالة الخطوط وقراءات النظام.</p>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3>الدعم الفني</h3>
+                    <p>احجز طلبك وسجّل المشكلة ليتم التعامل معها.</p>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                    <h3>متابعة الطلب</h3>
+                    <p>استخدم رقم الحجز لمعرفة آخر حالة لطلبك.</p>
+                </article>
+            </section>
+
+            <div class="content-grid">
+
+                <section id="support" class="form-container">
+                    <div class="form-title">
+                        <span class="form-title-icon"><i class="fas fa-headset"></i></span>
+                        <div>
+                            <h2>حجز طلب دعم فني</h2>
+                            <p>أرسل تفاصيل المشكلة وسيظهر لك رقم الحجز فورًا.</p>
+                        </div>
+                    </div>
+
+                    <form id="ticket-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">الاسم الكامل</label>
+                            <input type="text" id="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">رقم الهاتف</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="أدخل رقم هاتفك" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">البريد الإلكتروني (اختياري)</label>
+                            <input type="email" id="email" class="form-input" placeholder="مثال: example@mail.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="desc" class="form-label">وصف المشكلة</label>
+                            <textarea id="desc" class="form-input" placeholder="صف المشكلة التي تواجهها بالتفصيل" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            حجز الطلب
+                        </button>
+
+                        <div id="ticket-status" class="status-message" style="display: none;"></div>
+
+                        <div class="whatsapp-section" id="whatsapp-section">
+                            <h3>يرجى إرسال رقم الحجز عبر واتساب</h3>
+                            <p>لضمان متابعة طلبك بشكل أسرع، يرجى إرسال رقم الحجز الخاص بك إلى دكتور نت عبر واتساب</p>
+                            <a href="#" target="_blank" rel="noopener" class="whatsapp-btn" id="whatsapp-link">
+                                <i class="fab fa-whatsapp"></i>
+                                إرسال رقم الحجز عبر واتساب
+                            </a>
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="track-card">
+                    <section id="track" class="form-container">
+                        <div class="form-title">
+                            <span class="form-title-icon"><i class="fas fa-magnifying-glass-chart"></i></span>
+                            <div>
+                                <h2>متابعة حالة الطلب</h2>
+                                <p>اكتب رقم الحجز لمعرفة الحالة الحالية.</p>
+                            </div>
+                        </div>
+
+                        <form id="track-form">
+                            <div class="form-group">
+                                <label for="track-id" class="form-label">رقم حجز الطلب</label>
+                                <input type="text" id="track-id" class="form-input" placeholder="أدخل رقم الحجز لمتابعة الطلب" required>
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-search"></i>
+                                متابعة حالة الطلب
+                            </button>
+
+                            <div id="track-status" class="status-message" style="display: none;"></div>
+                        </form>
+                    </section>
+
+                    <section class="form-container">
+                        <div class="form-title">
+                            <span class="form-title-icon"><i class="fas fa-comments"></i></span>
+                            <div>
+                                <h2>تواصل مباشر</h2>
+                                <p>قنوات التواصل الحالية مع Doctor Net.</p>
+                            </div>
+                        </div>
+                        <div class="quick-links">
+                            <a href="https://wa.me/201012261790" target="_blank" rel="noopener" class="social-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                تواصل عبر واتساب
+                            </a>
+                            <a href="https://www.facebook.com/share/1RzaRwfF5Y/" target="_blank" rel="noopener" class="social-btn facebook">
+                                <i class="fab fa-facebook-messenger"></i>
+                                تواصل عبر فيسبوك
+                            </a>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+
+            <section class="sponsor-box">
+                <h3>برعاية الأفضل في الشرق الأوسط</h3>
+                <h2>سيستم سمارت راديوس</h2>
+                <a href="https://www.smart-radius.com" target="_blank" rel="noopener" class="sponsor-btn">
+                    <i class="fas fa-external-link-alt"></i> زيارة الموقع الرسمي
+                </a>
+            </section>
+
+            <section class="partners-container" aria-label="الشركاء">
                 <div class="partner-badge"><i class="fas fa-star"></i> إمبراطورية أبويوسف عطا</div>
                 <div class="partner-badge"><i class="fas fa-star"></i> إمبراطورية باسم LG</div>
                 <div class="partner-badge"><i class="fas fa-star"></i> شركة أبوكمال</div>
-            </div>
-            
-            <!-- لوحة الإدارة في الأسفل كما طلبت -->
-            <div class="admin-panel" id="admin-panel">
-                <h2 class="section-title">لوحة إدارة الطلبات</h2>
+            </section>
+
+            <!-- لوحة الإدارة في الأسفل كما هو موجود في النسخة الأصلية -->
+            <section class="admin-panel" id="admin-panel">
+                <div class="form-title">
+                    <span class="form-title-icon"><i class="fas fa-user-lock"></i></span>
+                    <div>
+                        <h2>لوحة إدارة الطلبات</h2>
+                        <p>إدارة الطلبات الحالية من نفس الصفحة.</p>
+                    </div>
+                </div>
+
                 <div class="form-container">
                     <table class="admin-table">
                         <thead>
@@ -626,37 +965,47 @@
                         </thead>
                         <tbody id="admin-tbody"></tbody>
                     </table>
-                    
+
                     <button class="logout-btn" id="logout-btn">
                         <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                     </button>
                 </div>
-            </div>
-            
-            <div class="form-container admin-login-box" id="admin-login-form">
-                <h2 class="section-title">تسجيل دخول الإدارة</h2>
+            </section>
+
+            <section class="form-container admin-login-box" id="admin-login-form">
+                <div class="form-title" style="justify-content:center;">
+                    <span class="form-title-icon"><i class="fas fa-user-lock"></i></span>
+                    <div style="text-align:right;">
+                        <h2>تسجيل دخول الإدارة</h2>
+                        <p>منطقة الإدارة الداخلية للطلبات.</p>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="admin-password" class="form-label">كلمة مرور الإدارة</label>
                     <input type="password" id="admin-password" class="form-input" placeholder="........" required>
                 </div>
-                
-                <button type="submit" class="submit-btn" id="admin-login-btn" style="width: 100%; margin-top: 12px; border-radius: 10px;">تسجيل الدخول</button>
-                
+
+                <button type="submit" class="submit-btn" id="admin-login-btn">
+                    <i class="fas fa-right-to-bracket"></i>
+                    تسجيل الدخول
+                </button>
+
                 <div id="admin-status" class="status-message" style="display: none;"></div>
-            </div>
-            
-        </div>
-        
+            </section>
+
+        </main>
+
         <footer class="footer">
             <p>حقوق النشر © <strong>مصطفى عاطف الشورى</strong> - برعاية <strong>سيستم سمارت راديوس</strong></p>
             <p>جميع الحقوق محفوظة 2027</p>
         </footer>
     </div>
-    
-    <!-- Firebase SDK -->
+
+    <!-- Firebase SDK — preserved from the original project -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBc8_zLnXtj9SoypTUUD4df8aCL1Jus3gU",
